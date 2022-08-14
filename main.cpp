@@ -1,8 +1,8 @@
-#include <iostream>
+#include "head.h"
 
-using namespace std;
 
 int main()
 {
-	return 0;
+       std:: cout <<"Hello World"<<std::endl;
+        return 0;
 }
