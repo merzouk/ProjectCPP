@@ -1,4 +1,4 @@
-#Mon premier Makefile
+#Manage project cpp by Makefile
 
 OS=linux
 
