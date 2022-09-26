@@ -10,7 +10,7 @@ endif
 
 CC = g++ -g -Wall -ansi -pedantic -std=c++20
 
-PROG=manage_cypher
+PROG=manage_prj
 ARCHIVE=sortie.zip
 TARGET_ARCHIVE=*.cpp *.hpp Makefile
 

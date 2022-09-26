@@ -1,0 +1,10 @@
+bin/
+obj/
+docs/
+*.cbp
+*.depend
+*.layout
+*.o
+*.exe
+*.zip
+manage_prj
