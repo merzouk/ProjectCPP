@@ -1,5 +1,5 @@
 # ProjectCPP
-Projet C++ pour la formation C/C++ embarqué
+Projet CPP pour la formation C/CPP embarqué
 
 
 
