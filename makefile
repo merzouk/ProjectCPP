@@ -1,20 +1,42 @@
-CC=g++ -g -Wall -ansi -pedantic -std=c99 # define the compiler to use
-TARGET=exec_prog # define the name of the executable
-SOURCES=main.cpp
-LFLAGS=-lm
+#Mon premier Makefile
 
-#define list of objects
-OBJSC=$(SOURCES:.c=.o)
-OBJS=$(OBJSC:.cpp=.o)
+OS=linux
 
-# the target is obtained linking all .o files
-all: $(SOURCES) $(TARGET)
+ifeq ($(OS), linux)
+	DELETE=rm
+else
+	DELETE=del
+endif
 
-$(TARGET): $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o $(TARGET)
+CC = g++ -g -Wall -ansi -pedantic -std=c++20
 
-purge: clean
-	rm -f $(TARGET)
+PROG=manage_cypher
+ARCHIVE=sortie.zip
+TARGET_ARCHIVE=*.cpp *.hpp Makefile
+
+#Identifier tous les fichiers .c de mon programme
+SRC = $(wildcard *.cpp)
+
+#Créer une liste des fichiers .o liés aux fichiers .c
+OBJ = $(SRC:.cpp=.o)
+
+all: $(PROG)
+
+$(PROG): $(OBJ)
+	@echo "Fin build des fichiers .o et generation du fichier executable ==> \"$(PROG)\" : " 
+	$(CC) -o $@  $^ 
+
+%.o : %.c
+	$(CC) -o $@ -c $< 
 
 clean:
-	rm -f *.o
+	@echo "Suppresion des fichiers .o : " 
+	$(DELETE) -rf *.o
+
+mrproper: clean
+	@echo "Suppresion du programme executable \"$(PROG)\" et du fichier archive \"$(ARCHIVE)\" : " 
+	$(DELETE) -rf $(PROG) $(ARCHIVE)
+
+zip:
+	@echo "Generation du fichier archive \"$(ARCHIVE)\" : " 
+	tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE) 
