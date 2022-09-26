@@ -1,4 +1,4 @@
-#Manage project cpp by Makefile
+#Manage cpp project by Makefile
 
 OS=linux
 
