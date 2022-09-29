@@ -141,6 +141,45 @@ namespace Manage {
 
        }
 
+        int validate_sexe(string s)
+       {
+
+            cout << s << endl;
+            int x = s.compare("F");
+            if(x == 0) return 0;
+             x = s.compare("M");
+            if(x == 0) return 0;
+              return 1;
+       }
+
+       int validate_statut(string s){
+              int x = s.compare("Marie");
+            if(x == 0) return 0;
+              x = s.compare("Celibataire");
+            if(x == 0) return 0;
+              x = s.compare("Veuf");
+            if(x == 0) return 0;
+              x = s.compare("Veuve");
+            if(x == 0) return 0;
+               x = s.compare("Pasce");
+            if(x == 0) return 0;
+               x = s.compare("Autre");
+            if(x == 0) return 0;
+            return 1;
+       }
+       // SARL/SA/SAS/EURL
+        int validate_entreprise_name(string s){
+              int x = s.compare("SARL");
+            if(x == 0) return 0;
+              x = s.compare("SA");
+            if(x == 0) return 0;
+              x = s.compare("SAS");
+            if(x == 0) return 0;
+              x = s.compare("EURL");
+            if(x == 0) return 0;
+            return 1;
+       }
+
        void Console::modifier_contact_pid() {
               cout << "Seule l'adresse postale sera modifiee " << endl;
               cout << "Veuillez saisir l'identifiant du contact " << endl;
@@ -208,14 +247,18 @@ namespace Manage {
               cout << "Veuillez saisir le prenom du contact : " << endl;
               cin.ignore();
               getline(cin, prenom);
-              cout << "Veuillez saisir le sexe (M/F): ";
-              cin.ignore();
-              getline(cin, sexe);
-              cout
-                            << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou autres : "
-                            << endl;
-              cin.ignore();
-              getline(cin, situation);
+              do{
+                     cout << "Veuillez saisir le sexe (M/F): ";
+                     cin.clear();
+                     getline(cin, sexe);
+              }while(validate_sexe(sexe) == 1);
+              do{
+                     cout
+                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autre : "
+                                   << endl;
+                     cin.clear();
+                     getline(cin, situation);
+              }while(validate_statut(situation) == 1);
               cout << "Veuillez saisir l'annee de naissance : " << endl;
               annee = check_input_value();
               cout << "Veuillez saisir le mois de naissance : " << endl;
@@ -247,33 +290,38 @@ namespace Manage {
               cout << "Veuillez saisir le nom du contact : " << endl;
               cin.ignore();
               getline(cin, nom);
+
               cout << "Veuillez saisir le prenom du contact : " << endl;
               cin.ignore();
               getline(cin, prenom);
-              //do{
-              cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
-              cin.ignore();
-              getline(cin, sexe);
-             // }while((sexe != "F"  || sexe != "M"));
-              cout
-                            << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou autres : "
-                            << endl;
-              cin.ignore();
-              getline(cin, situation);
-              cout << "Veuillez saisir le nom de l'entreprise : " << endl;
-              cin.ignore();
-              getline(cin, entreprise);
-              //do{
-              cout
-                            << "Veuillez saisir le statut juridique valide de l'entreprise SARL/SA/SAS/EURL : "
-                            << endl;
-              cin.ignore();
-              getline(cin, entreprise);
-              //}while(!(entreprise != "SARL" && entreprise != "SA" && entreprise != "SAS" && entreprise != "EURL"));
+              do{
+                     cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
+                     cin.clear();
+                     getline(cin, sexe);
+             }while(validate_sexe(sexe) == 1);
+             do{
+                     cout
+                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou autres : "
+                                   << endl;
+                     cin.clear();
+                     getline(cin, situation);
+             }while(validate_statut(situation) == 1);
+
+                     cout << "Veuillez saisir le nom de l'entreprise : " << endl;
+                     cin.ignore();
+                     getline(cin, entreprise);
+
+              do{
+                     cout
+                                   << "Veuillez saisir le statut juridique valide de l'entreprise SARL/SA/SAS/EURL : "
+                                   << endl;
+                     cin.clear();
+                     getline(cin, statut);
+              }while(validate_entreprise_name(statut) == 1);
               do {
                      cout << "Veuillez saisir une adresse  mail de contact valide : "
                                    << endl;
-                     cin.ignore();
+                     cin.clear();
                      getline(cin, email);
               } while (!check_email(email));
 
