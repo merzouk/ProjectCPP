@@ -70,7 +70,9 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 # Exemple de jeu de données :
 
-![alt text](liste.jpg)
+<p align="center">
+  <img src="./liste.jpg" width="350" title="hover text">
+</p>
 
 # Note
 
