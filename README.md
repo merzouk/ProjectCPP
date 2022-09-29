@@ -70,9 +70,7 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 # Exemple de jeu de données :
 
-<p align="center">
-  <img src="./liste.jpg" width="350" title="hover text">
-</p>
+![My Image](liste.jpg)
 
 # Note
 
