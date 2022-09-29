@@ -68,6 +68,10 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 - Diagramme de Classes
 - Un projet zippé
 
+# Exemple de jeu de données :
+
+![alt text](liste.jpg)
+
 # Note
 
 ```
