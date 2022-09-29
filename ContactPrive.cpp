@@ -18,7 +18,7 @@ namespace Heritage
               cout.fill('0');
               cout << "Particlier:" << setw(5) << this->get_identifiant() << endl;
               this->get_adressePostale()->infos();
-              cout << "Situation Familliale : " << this->get_situation_familliale() << endl;
+              cout <<"              "<<  "Situation Familliale : " << this->get_situation_familliale() << endl;
               DateNaissance *date_naiss = this->get_dateNaissance();
 
               time_t now = time(0);
@@ -27,7 +27,7 @@ namespace Heritage
               int year = 1900 + ltm->tm_year;
               int annee_naiss = date_naiss->get_annee();
               int age = year - annee_naiss;
-              cout << "Age : " <<age << " ans";
+              cout << "              "<<"Age : " <<age << " ans";
               (anniversaire(date_naiss->get_jour(), date_naiss->get_mois()) == true) ? cout <<" et Bon Anniversaire !": cout <<"";
               cout << endl;
        }
