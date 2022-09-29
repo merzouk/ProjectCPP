@@ -39,6 +39,7 @@ De plus, vous constituerez une application console utilisant la hiérarchie pré
 Cette application offrira à l’utilisateur la possibilité de :
 - Lister les contacts privés et/ou professionnels en respectant certaines contraintes au niveau de l’affichage (cf. Annexe)
 - Recherche à partir de certains critères :
+
 o Par Numéro
 
 o Par Nom
