@@ -46,7 +46,7 @@ namespace Manage {
               }
        }
 
-       void Annuaire::delete_elt_by_pid(int pid) {
+       void Annuaire::delete_elt_by_id(int pid) {
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               bool delete_contact = false;
               for (; it != map_annuaire.end(); it++) {
@@ -183,14 +183,31 @@ namespace Manage {
               return contacts;
        }
 
+       Contact *Annuaire::get_elt_by_email(string email)
+       {
+              map<string, Contact*>::iterator it = this->map_annuaire.begin();
+              for (; it != map_annuaire.end(); it++)
+              {
+                     ContactProfessionel *pro = dynamic_cast<ContactProfessionel*>(it->second);
+                     if(pro)
+                     {
+                            if(pro->get_email() == email)
+                            {
+                                   return pro;
+                            }
+                     }
+              }
+              return nullptr;
+       }
+
        void Annuaire::display() {
               cout.fill(' ');
               if (this->map_annuaire.size() == 0) {
                      cout << "Aucun contact dans la liste" << endl << endl;
                      return;
               }
-                          cout <<setw(5)    << "Id"
-                               <<setw(30)   << "Nom"
+                          cout << setw(5)   << "Id"
+                               << setw(30)  << "Nom"
                                << setw(30)  << "Prenom"
 				   << setw(6)   << "Sexe"
 				   << setw(10)  << "Entre"
@@ -229,8 +246,8 @@ namespace Manage {
                      cout << "Aucun contact dans l'annuaire" << endl << endl;
                      return;
               }
-                   cout        <<setw(5)    << "Id"
-                               <<setw(30)   << "Nom"
+                   cout        << setw(5)   << "Id"
+                               << setw(30)  << "Nom"
                                << setw(30)  << "Prenom"
 				   << setw(6)   << "Sexe"
 				   << setw(10)  << "Entre"
@@ -277,20 +294,20 @@ namespace Manage {
                      return;
               cout.fill(' ');
 
-              cout <<setw(5)    << contact_prive->get_identifiant()
-                   <<setw(30)   << contact_prive->get_nom()
+              cout << setw(5)   << contact_prive->get_identifiant()
+                   << setw(30)  << contact_prive->get_nom()
                    << setw(30)  << contact_prive->get_prenom()
-				   << setw(6)   << contact_prive->get_sexe()
-				   << setw(10)  << " "
-				   << setw(6)   << " "
-				   << setw(5)   << contact_prive->get_adressePostale()->get_numero()
-				   << setw(40)  << contact_prive->get_adressePostale()->get_rue()
-				   << setw(15)  << contact_prive->get_adressePostale()->get_complement()
-				   << setw(6)   << contact_prive->get_adressePostale()->get_code_postale()
-				   << setw(20)  << contact_prive->get_adressePostale()->get_ville()
-				   << setw(14)  << format_date(contact_prive)
-                               << setw(30)  << " "
-                               << endl;
+		     << setw(6)   << contact_prive->get_sexe()
+                   << setw(10)  << " "
+                   << setw(6)   << " "
+                   << setw(5)   << contact_prive->get_adressePostale()->get_numero()
+                   << setw(40)  << contact_prive->get_adressePostale()->get_rue()
+                   << setw(15)  << contact_prive->get_adressePostale()->get_complement()
+                   << setw(6)   << contact_prive->get_adressePostale()->get_code_postale()
+                   << setw(20)  << contact_prive->get_adressePostale()->get_ville()
+                   << setw(14)  << format_date(contact_prive)
+                   << setw(30)  << " "
+                   << endl;
        }
 
        void Annuaire::print_contact_professionnel(ContactProfessionel *contact_prof)
@@ -299,18 +316,18 @@ namespace Manage {
                      return;
               cout.fill(' ');
               cout << setw(5)  << contact_prof->get_identifiant()
-			       << setw(30) << contact_prof->get_nom()
+                   << setw(30) << contact_prof->get_nom()
                    << setw(30) << contact_prof->get_prenom()
-				   << setw(6)  << contact_prof->get_sexe()
-				   << setw(10) << contact_prof->get_entreprise()
-				   << setw(6)  << contact_prof->get_statut()
-				   << setw(5)  << contact_prof->get_adressePostale()->get_numero()
-				   << setw(40) << contact_prof->get_adressePostale()->get_rue()
-				   << setw(15) << contact_prof->get_adressePostale()->get_complement()
-				   << setw(6)  << contact_prof->get_adressePostale()->get_code_postale()
-				   << setw(20) << contact_prof->get_adressePostale()->get_ville()
-				   << setw(14) << " "
-				   << setw(30) << contact_prof->get_email() << endl;
+                   << setw(6)  << contact_prof->get_sexe()
+                   << setw(10) << contact_prof->get_entreprise()
+		     << setw(6)  << contact_prof->get_statut()
+		     << setw(5)  << contact_prof->get_adressePostale()->get_numero()
+		     << setw(40) << contact_prof->get_adressePostale()->get_rue()
+		     << setw(15) << contact_prof->get_adressePostale()->get_complement()
+                   << setw(6)  << contact_prof->get_adressePostale()->get_code_postale()
+                   << setw(20) << contact_prof->get_adressePostale()->get_ville()
+                   << setw(14) << " "
+                   << setw(30) << contact_prof->get_email() << endl;
        }
 
        void Annuaire::load_annuaire_from_files(string fileContactPrivate, string fileContactPro)
@@ -438,7 +455,7 @@ namespace Manage {
                      char *p = NULL;
                      n = utils->to_char(nom, n);
                      p = utils->to_char(prenom, p);
-                     ContactPrive *prive = new ContactPrive(dat, stoi(identifiant.c_str()),
+                     ContactPrive *prive = new ContactPrive(dat, utils->str_to_int(identifiant.c_str()),
                                    n, p, sexe, situation, adressePostale);
                      this->add_new_elt(prive);
               }

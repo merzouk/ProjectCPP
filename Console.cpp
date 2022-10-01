@@ -108,11 +108,27 @@ namespace Manage {
                      this->annuaire->display(contacts);
        }
 
+       void Console::rechercher_contact_email()
+       {
+             string email;
+             do
+             {
+                     cout << "Veuillez saisir une adresse mail de contact valide : " << endl;
+                     cin.clear();
+                     getline(cin, email);
+              } while (!utils->check_email(email));
+              Contact* contact = this->annuaire->get_elt_by_email(email);
+              if(contact)
+                     contact->infos();
+              else
+                     cout << "Aucun contact trouve dans l'annuaire pour l'adresse mail : "<<email << endl;
+       }
+
        void Console::supprimer_contact_pid() {
               cout << "Veuillez saisir l'identifiant du contact" << endl;
               int pid = check_input_value();
               try {
-                     this->annuaire->delete_elt_by_pid(pid);
+                     this->annuaire->delete_elt_by_id(pid);
               } catch (const ContactException &ex) {
                      cout << "Suppression en echec : " << ex.what() << endl;
               } catch (...) {

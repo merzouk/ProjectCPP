@@ -48,7 +48,6 @@ namespace Heritage
                      this->adressePostale = adressePostale;
                      this->utils = new Utils();
               }
-
               ~Contact()
               {
                     free(this->nom);
@@ -58,7 +57,7 @@ namespace Heritage
                     delete this->utils;
                     this->utils = nullptr;
               }
-               AdressePostale *get_adressePostale(){return this->adressePostale;};
+              AdressePostale *get_adressePostale(){return this->adressePostale;};
               int get_identifiant(){return this->identifiant;}
               char * get_nom(){return this->nom;}
               char * get_prenom(){return this->prenom;}
@@ -94,7 +93,6 @@ namespace Heritage
               string get_situation_familliale()
               {
                      string situ_famille;
-                     //enum situation {Marie = 0, Celibataire = 1, Veuf = 2, Pacse = 3};
                      switch (this->f)
                      {
                      case 0:
@@ -137,8 +135,7 @@ namespace Heritage
                      else
                          this->s = F;
               }
-              //enum situation {Marie = 0, Celibataire = 1, Veuf = 2, Pacse = 3};
-              void set_situation(string situa )
+              void set_situation(string situa)
               {
                      if(situa == "Marie" || situa == "Mariee")
                             this->f =  Marie;

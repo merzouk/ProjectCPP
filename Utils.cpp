@@ -36,7 +36,8 @@ namespace Manage
 		return s;
 	}
 
-	char* Utils::str_to_char(string s, char *ptr) {
+	char* Utils::str_to_char(string s, char *ptr)
+	{
 		int n = s.length();
 		ptr = (char*) malloc((n + 1) * sizeof(char));
 		for (int i = 0; i < n; i++) {
@@ -115,7 +116,8 @@ namespace Manage
 		return 1;
 	}
 
-	bool Utils::check_email(string email) {
+	bool Utils::check_email(string email)
+	{
 		const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
 		return regex_match(email, pattern);
 	}

@@ -17,7 +17,7 @@ namespace Manage
            do {
                      try
                      {
-                            cout << "Veuillez saisir un entier compris entre 0 et 10 :" << endl;
+                            cout << "Veuillez saisir un entier compris entre 0 et 11 :" << endl;
                             cin >> opc;
                             aux = true;
                      }
@@ -29,7 +29,7 @@ namespace Manage
                             std::string tmp;
                             getline(cin, tmp);
                      }
-           } while (aux == false || (0 < opc && opc > 10));
+           } while (aux == false || (0 < opc && opc > 11));
            return opc;
        }
 
@@ -53,10 +53,11 @@ namespace Manage
                          cout<<"6.  Rechercher un Contact par son code postale"                  <<endl;
                          cout<<"7.  Rechercher un contact par son Departement"                   <<endl;
                          cout<<"8.  Rechercher un contact par sa ville"                          <<endl;
-                         cout<<"9.  Supprimer un contact par son identifiant"                    <<endl;
-                         cout<<"10. Modifier un contact par son identifiant"                     <<endl;
-                         cout<<"0.  Quitter"                                                     <<endl <<endl;
-                         cout<<"Votre choix : "                                                  << endl;
+                         cout<<"9.  Rechercher un contact par son email"                         <<endl;
+                         cout<<"10. Supprimer un contact par son identifiant"                    <<endl;
+                         cout<<"11. Modifier un contact par son identifiant"                     <<endl;
+                         cout<<"0.  Quitter"                                                     <<endl;
+                         cout<<endl <<"Votre choix : "                                           <<endl;
 
                          menu = check_input_value();
                          cout<<endl;
@@ -90,9 +91,12 @@ namespace Manage
                                    console->rechercher_contact_ville();
                                 break;
                             case 9 :
-                                   console->supprimer_contact_pid();
+                                   console->rechercher_contact_email();
                                 break;
                             case 10 :
+                                   console->supprimer_contact_pid();
+                                break;
+                            case 11 :
                                     console->modifier_contact_pid();
                                 break;
                             }

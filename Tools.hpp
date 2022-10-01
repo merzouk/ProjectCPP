@@ -20,10 +20,11 @@ namespace MapTools
                      virtual~Tools(){}
                      virtual void add_new_elt(V *v) = 0;
                      virtual void delete_elt_by_key(U u) = 0;
-                     virtual void delete_elt_by_pid(T t) = 0;
+                     virtual void delete_elt_by_id(T t) = 0;
                      virtual void update_elt_by_id(T t) = 0;
                      virtual V *get_elt_by_key(U u) = 0;
                      virtual V *get_elt_by_id(T t) = 0;
+                     virtual V *get_elt_by_email(U email) = 0;
                      virtual vector<V*> get_list_elts_by_last_name(U lastname) = 0;
                      virtual vector<V*> get_list_elts_by_zip_code(T t) = 0;
                      virtual vector<V*> get_list_elts_by_department(T departement) = 0;

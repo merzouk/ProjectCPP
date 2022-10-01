@@ -40,6 +40,7 @@ namespace Manage
                      void ajouter_contact_professionnel();
                      void rechercher_contact_pid();
                      void rechercher_contact_nom();
+                     void rechercher_contact_email();
                      void rechercher_contact_code_postale();
                      void rechercher_contact_departement();
                      void rechercher_contact_ville();

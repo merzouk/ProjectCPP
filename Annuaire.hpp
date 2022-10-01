@@ -26,11 +26,11 @@ namespace Manage
                                this->utils = nullptr;
                         }
 
-
                      /*virtual*/ void add_new_elt(Contact *contact)  override;
                      /*virtual*/ void delete_elt_by_key(string key)  override;
-                     /*virtual*/ void delete_elt_by_pid(int pid)  override;
+                     /*virtual*/ void delete_elt_by_id(int pid)  override;
                      /*virtual*/ void update_elt_by_id(int pid)  override;
+                     /*virtual*/ Contact *get_elt_by_email(string email) override;
                      /*virtual*/ Contact *get_elt_by_key(string key)  override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_keys(vector<string> keys)  override;
                      /*virtual*/ Contact *get_elt_by_id(int pid) override;
@@ -50,7 +50,6 @@ namespace Manage
                      void buildContactPrive(string fileContactPro);
                      DateNaissance *build(string dat);
                      int get_next_pid();
-
        };
 }
 #endif // MAGASIN_H_FILE
