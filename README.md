@@ -78,6 +78,21 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 ![My Image](liste.jpg)
 
+# Exemple de fichiers de données chargés par le programme au démarrage :
+
+## Fichier de données des contacts privés :
+
+![My Image](file_privates_contact.jpg)
+
+## Fichier de données des contacts professionnels :
+
+![My Image](file_pros_contact.jpg)
+
+## Affichage par le programme des données chargées :
+
+![My Image](affichage_données_chargées.jpg)
+
+
 # Note
 
 ```
