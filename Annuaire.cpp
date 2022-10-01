@@ -197,13 +197,13 @@ namespace Manage {
 				   << setw(6)   << "Stat"
 				   << setw(5)   << "Num"
 				   << setw(40)  << "Rue"
-				   << setw(15)  << "Complement"
-				   << setw(6)   << "CP"
+				   << setw(15)  << "Compl"
+				   << setw(6)   << "C_P"
 				   << setw(20)  << "Ville"
-                               << setw(10)  << "Date Naiss"
+                               << setw(14)  << "Date Naiss"
                                << setw(30)  << "Email"								<< endl;
               cout
-                            << "***************************************************************************************************************************************************************************************************************"
+                            << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != this->map_annuaire.end(); it++) {
@@ -216,7 +216,7 @@ namespace Manage {
                             print_contact_professionnel(contact_prof);
                      }
                      cout
-                                   << "***************************************************************************************************************************************************************************************************************"
+                                   << "*********************************************************************************************************************************************************************************************************************************"
                                    << endl;
               }
 
@@ -237,13 +237,13 @@ namespace Manage {
 				   << setw(6)   << "Stat"
 				   << setw(5)   << "Num"
 				   << setw(40)  << "Rue"
-				   << setw(15)  << "Complement"
-				   << setw(6)   << "CP"
+				   << setw(15)  << "Compl"
+				   << setw(6)   << "C_P"
 				   << setw(20)  << "Ville"
-				   << setw(10)  << "Date Naiss"
+				   << setw(14)  << "Date Naiss"
                                << setw(30)  << "Email"								<< endl;
               cout
-                            << "***************************************************************************************************************************************************************************************************************"
+                            << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
               for (Contact *contact : vects) {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
@@ -255,10 +255,20 @@ namespace Manage {
                             print_contact_professionnel(contact_prof);
                      }
                      cout
-                                   << "***************************************************************************************************************************************************************************************************************"
+                                   << "*********************************************************************************************************************************************************************************************************************************"
                                    << endl;
               }
 
+       }
+
+       string format_date(ContactPrive *contact_prive)
+       {
+              string date_naissance =    to_string(contact_prive->get_dateNaissance()->get_jour())
+                                       + "/"
+                                       + to_string(contact_prive->get_dateNaissance()->get_mois())
+                                       +  "/"
+                                       + to_string(contact_prive->get_dateNaissance()->get_annee()) ;
+              return date_naissance;
        }
 
        void Annuaire::print_contact_prive(ContactPrive *contact_prive)
@@ -278,10 +288,9 @@ namespace Manage {
 				   << setw(15)  << contact_prive->get_adressePostale()->get_complement()
 				   << setw(6)   << contact_prive->get_adressePostale()->get_code_postale()
 				   << setw(20)  << contact_prive->get_adressePostale()->get_ville()
-				   << setw(10)   << contact_prive->get_dateNaissance()->get_jour() << "/"
-                                << contact_prive->get_dateNaissance()->get_mois() << "/"
-                                << contact_prive->get_dateNaissance()->get_annee()
-                   << setw(30) <<" "								<< endl;
+				   << setw(14)  << format_date(contact_prive)
+                               << setw(30)  << " "
+                               << endl;
        }
 
        void Annuaire::print_contact_professionnel(ContactProfessionel *contact_prof)
@@ -300,7 +309,7 @@ namespace Manage {
 				   << setw(15) << contact_prof->get_adressePostale()->get_complement()
 				   << setw(6)  << contact_prof->get_adressePostale()->get_code_postale()
 				   << setw(20) << contact_prof->get_adressePostale()->get_ville()
-				   << setw(10) << " "
+				   << setw(14) << " "
 				   << setw(30) << contact_prof->get_email() << endl;
        }
 
