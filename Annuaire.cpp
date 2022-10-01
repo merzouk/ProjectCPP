@@ -200,10 +200,10 @@ namespace Manage {
 				   << setw(15)  << "Complement"
 				   << setw(6)   << "CP"
 				   << setw(20)  << "Ville"
-				   << setw(10)  << "Dat Naiss"
-                   << setw(30) <<"Email"								<< endl;
+                               << setw(10)  << "Dat Naiss"
+                               << setw(30)  << "Email"								<< endl;
               cout
-                            << "*****************************************************************************************************************************************"
+                            << "***************************************************************************************************************************************************************************************************************"
                             << endl;
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != this->map_annuaire.end(); it++) {
@@ -229,9 +229,9 @@ namespace Manage {
                      cout << "Aucun contact dans l'annuaire" << endl << endl;
                      return;
               }
-                   cout <<setw(5)    << "Id"
-                   <<setw(30)   << "Nom"
-                   << setw(30)  << "Prenom"
+                   cout        <<setw(5)    << "Id"
+                               <<setw(30)   << "Nom"
+                               << setw(30)  << "Prenom"
 				   << setw(6)   << "Sexe"
 				   << setw(10)  << "Entre"
 				   << setw(6)   << "Stat"
@@ -241,9 +241,9 @@ namespace Manage {
 				   << setw(6)   << "CP"
 				   << setw(20)  << "Ville"
 				   << setw(10)  << "Dat Naiss"
-                   << setw(30) <<"Email"								<< endl;
+                               << setw(30)  << "Email"								<< endl;
               cout
-                            << "*****************************************************************************************************************************************"
+                            << "***************************************************************************************************************************************************************************************************************"
                             << endl;
               for (Contact *contact : vects) {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
@@ -255,7 +255,7 @@ namespace Manage {
                             print_contact_professionnel(contact_prof);
                      }
                      cout
-                                   << "*****************************************************************************************************************************************"
+                                   << "***************************************************************************************************************************************************************************************************************"
                                    << endl;
               }
 
@@ -301,7 +301,7 @@ namespace Manage {
 				   << setw(6)  << contact_prof->get_adressePostale()->get_code_postale()
 				   << setw(20) << contact_prof->get_adressePostale()->get_ville()
 				   << setw(10) << " "
-				   << setw(30) << contact_prof->get_email() << "              " << endl;
+				   << setw(30) << contact_prof->get_email() << endl;
        }
 
        void Annuaire::load_annuaire_from_files(string fileContactPrivate, string fileContactPro)
