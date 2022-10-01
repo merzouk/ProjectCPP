@@ -50,6 +50,8 @@ o Par Département
 
 o Par Ville
 
+o Par Email
+
 - Ajouter un contact quel qu'en soit le type
 - Modifier/Supprimer un Contact via son identifiant
 
@@ -91,6 +93,10 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 ## Affichage par le programme des données chargées :
 
 ![My Image](affichage_données_chargées.jpg)
+
+# Diagramme de classe :
+
+![My Image](diagramme.jpg)
 
 
 # Note
