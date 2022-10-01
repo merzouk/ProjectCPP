@@ -189,9 +189,9 @@ namespace Manage {
                      cout << "Aucun contact dans la liste" << endl << endl;
                      return;
               }
-                  cout <<setw(5)    << "Id"
-                   <<setw(30)   << "Nom"
-                   << setw(30)  << "Prenom"
+                          cout <<setw(5)    << "Id"
+                               <<setw(30)   << "Nom"
+                               << setw(30)  << "Prenom"
 				   << setw(6)   << "Sexe"
 				   << setw(10)  << "Entre"
 				   << setw(6)   << "Stat"
@@ -200,7 +200,7 @@ namespace Manage {
 				   << setw(15)  << "Complement"
 				   << setw(6)   << "CP"
 				   << setw(20)  << "Ville"
-                               << setw(10)  << "Dat Naiss"
+                               << setw(10)  << "Date Naiss"
                                << setw(30)  << "Email"								<< endl;
               cout
                             << "***************************************************************************************************************************************************************************************************************"
@@ -240,7 +240,7 @@ namespace Manage {
 				   << setw(15)  << "Complement"
 				   << setw(6)   << "CP"
 				   << setw(20)  << "Ville"
-				   << setw(10)  << "Dat Naiss"
+				   << setw(10)  << "Date Naiss"
                                << setw(30)  << "Email"								<< endl;
               cout
                             << "***************************************************************************************************************************************************************************************************************"

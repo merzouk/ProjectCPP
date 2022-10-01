@@ -44,6 +44,7 @@ namespace Heritage
                      this->identifiant = identifiant;
                      this->s = s;
                      this->f = f;
+                     this->set_sexe(sexe);
                      this->adressePostale = adressePostale;
                      this->utils = new Utils();
               }
@@ -130,7 +131,8 @@ namespace Heritage
 
               void set_sexe(string sex)
               {
-                     if(sex == "M")
+                     int x = sex.compare("M");
+                     if(x == 0)
                         this->s = M;
                      else
                          this->s = F;
