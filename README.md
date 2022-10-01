@@ -50,6 +50,8 @@ o Par Département
 
 o Par Ville
 
+o Par Email
+
 - Ajouter un contact quel qu'en soit le type
 - Modifier/Supprimer un Contact via son identifiant
 
