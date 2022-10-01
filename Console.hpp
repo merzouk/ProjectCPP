@@ -3,12 +3,9 @@
 #include "Annuaire.hpp"
 #include "AdressePostale.hpp"
 #include <vector>
-#include<string>
+#include <string>
 #include "ContactPrive.hpp"
 #include "ContactPrive.hpp"
-
-
-
 
 namespace Manage
 {
@@ -19,15 +16,20 @@ namespace Manage
               private:
                      Annuaire * annuaire;
                      string get_str_value();
+                      Utils * utils;
+
               public:
                      Console()
                      {
                             this->annuaire = new Annuaire();
+                            this->utils = new Utils();
                      }
                      ~Console()
                      {
                             delete this->annuaire;
                             this->annuaire = nullptr;
+                            delete this->utils;
+                            this->utils = nullptr;
                      }
                      Annuaire *get_annuaire()
                      {

@@ -4,6 +4,7 @@
 #include "Contact.hpp"
 #include "ContactPrive.hpp"
 #include "ContactProfessionel.hpp"
+#include "Utils.hpp"
 
 using namespace std;
 using namespace MapTools;
@@ -15,14 +16,14 @@ namespace Manage
        class Annuaire: public Tools<string, int, Contact>
        {
              private:
-
+                     Utils * utils;
 
               public:
-                     Annuaire(){}
-
+                     Annuaire(){ this->utils = new Utils();}
                      ~Annuaire()
                         {
-
+                               delete this->utils;
+                               this->utils = nullptr;
                         }
 
 

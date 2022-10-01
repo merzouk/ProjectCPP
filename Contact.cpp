@@ -12,18 +12,18 @@ namespace Heritage {
        }
 
        void Contact::set_nom(char *nom) {
-              int len = str_length(nom);
+              int len = utils->str_length(nom);
               if (len == 0 || len > 30)
                      throw ContactException(
                                    "\nLa longeueur du chmaps nom n'est pas correcte");
-              this->nom = to_upper_last_name(nom);
+              this->nom = utils->to_upper_last_name(nom);
        }
        void Contact::set_prenom(char *prenom) {
-              int len = str_length(prenom);
+              int len = utils->str_length(prenom);
               if (len == 0 || len > 30)
                      throw ContactException(
                                    "\nLa longeueur du chmaps prenom n'est pas correcte");
-              this->prenom = to_upper_first_name(prenom);
+              this->prenom = utils->to_upper_first_name(prenom);
        }
 
        string Contact::build_key() {

@@ -5,10 +5,6 @@
 #include <iostream>
 
 using namespace std;
-//using namespace Manage;
-
-
-
 
 namespace Manage
 {

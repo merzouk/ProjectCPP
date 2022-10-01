@@ -33,7 +33,7 @@ namespace Heritage
        }
 
        string ContactPrive::build_key()
-              {
+       {
                      string key = Contact::build_key();
                      string n = this->get_situation_familliale();
                      for ( int i = 0; i < int(n.size()); i++)
@@ -43,7 +43,7 @@ namespace Heritage
                      }
                      key += ':';
                      return key;
-              }
+       }
 
         void ContactPrive::afficher()
         {

@@ -5,8 +5,6 @@
 
 using namespace Errors;
 
-
-
 namespace Heritage
 {
        class DateNaissance
@@ -18,9 +16,9 @@ namespace Heritage
        public:
               DateNaissance(int jour, int mois, int annee)
               {
-                     if(jour < 0 || jour > 31)
+                     if(jour < 1 || jour > 31)
                             throw ContactException("\nLa valeur du champs jour de naissance n'est pas correcte");
-                      if(mois < 0 || mois > 12)
+                      if(mois < 1 || mois > 12)
                             throw ContactException("\nLa valeur du champs mois de naissance n'est pas correcte");
                       if(annee < 0 )
                             throw ContactException("\nLa valeur du champs annee de naissance n'est pas correcte");
@@ -34,12 +32,12 @@ namespace Heritage
               int get_annee(){return this->annee;}
 
               void set_jour(int jour){
-                     if(jour < 0 || jour > 31)
+                     if(jour < 1 || jour > 31)
                             throw ContactException("\nLa valeur du champs jour de naissance n'est pas correcte");
                      this->jour = jour;
               }
               void set_mois(int mois){
-                     if(mois < 0 || mois > 12)
+                     if(mois < 1 || mois > 12)
                             throw ContactException("\nLa valeur du champs mois de naissance n'est pas correcte");
                      this->mois = mois;
               }

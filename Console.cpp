@@ -11,24 +11,6 @@ using namespace std;
 
 namespace Manage {
 
-       char* to_upper_last_name(char *s) {
-              int i = 0;
-              while (*(s + i) != '\0') {
-                     s[i] = toupper(s[i]);
-                     i++;
-              }
-              return s;
-       }
-
-       char* str_to_char(string s, char *ptr) {
-              int n = s.length();
-              ptr = (char*) malloc((n + 1) * sizeof(char));
-              for (int i = 0; i < n; i++) {
-                     *(ptr + i) = s[i];
-              }
-              *(ptr + n) = '\0';
-              return ptr;
-       }
 
        int check_input_value() {
               int opc;
@@ -64,10 +46,10 @@ namespace Manage {
        void Console::rechercher_contact_nom() {
               cout << "Veuillez saisir le nom du contact" << endl;
               string nom = get_str_value();
-              char *ptr;
-              ptr = str_to_char(nom, ptr);
+              char *ptr = NULL;
+              ptr = utils->str_to_char(nom, ptr);
               vector<Contact*> vects = this->annuaire->get_list_elts_by_last_name(
-                            to_upper_last_name(ptr));
+                            utils->to_upper_last_name(ptr));
               if(vects.size() == 1)
                      vects[0]->infos();
               else
@@ -141,46 +123,8 @@ namespace Manage {
 
        }
 
-        int validate_sexe(string s)
+       void Console::modifier_contact_pid()
        {
-
-            cout << s << endl;
-            int x = s.compare("F");
-            if(x == 0) return 0;
-             x = s.compare("M");
-            if(x == 0) return 0;
-              return 1;
-       }
-
-       int validate_statut(string s){
-              int x = s.compare("Marie");
-            if(x == 0) return 0;
-              x = s.compare("Celibataire");
-            if(x == 0) return 0;
-              x = s.compare("Veuf");
-            if(x == 0) return 0;
-              x = s.compare("Veuve");
-            if(x == 0) return 0;
-               x = s.compare("Pasce");
-            if(x == 0) return 0;
-               x = s.compare("Autre");
-            if(x == 0) return 0;
-            return 1;
-       }
-       // SARL/SA/SAS/EURL
-        int validate_entreprise_name(string s){
-              int x = s.compare("SARL");
-            if(x == 0) return 0;
-              x = s.compare("SA");
-            if(x == 0) return 0;
-              x = s.compare("SAS");
-            if(x == 0) return 0;
-              x = s.compare("EURL");
-            if(x == 0) return 0;
-            return 1;
-       }
-
-       void Console::modifier_contact_pid() {
               cout << "Seule l'adresse postale sera modifiee " << endl;
               cout << "Veuillez saisir l'identifiant du contact " << endl;
               int pid = check_input_value();
@@ -251,14 +195,14 @@ namespace Manage {
                      cout << "Veuillez saisir le sexe (M/F): ";
                      cin.clear();
                      getline(cin, sexe);
-              }while(validate_sexe(sexe) == 1);
+              }while(utils->validate_sexe(sexe) == 1);
               do{
                      cout
-                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autre : "
+                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
                                    << endl;
                      cin.clear();
                      getline(cin, situation);
-              }while(validate_statut(situation) == 1);
+              }while(utils->validate_statut(situation) == 1);
               cout << "Veuillez saisir l'annee de naissance : " << endl;
               annee = check_input_value();
               cout << "Veuillez saisir le mois de naissance : " << endl;
@@ -268,10 +212,10 @@ namespace Manage {
 
               DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
               AdressePostale *adressePostale = new_adress();
-              char *n;
-              n = str_to_char(nom, n);
-              char *p;
-              p = str_to_char(prenom, p);
+              char *n = NULL;
+              n = utils->str_to_char(nom, n);
+              char *p = NULL;
+              p = utils->str_to_char(prenom, p);
               int identifiant = get_next_pid();
               ContactPrive *contactprive = new ContactPrive(dateNaissance, identifiant, n,
                             p, sexe, situation, adressePostale);
@@ -298,14 +242,14 @@ namespace Manage {
                      cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
                      cin.clear();
                      getline(cin, sexe);
-             }while(validate_sexe(sexe) == 1);
+             }while(utils->validate_sexe(sexe) == 1);
              do{
                      cout
-                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou autres : "
+                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
                                    << endl;
                      cin.clear();
                      getline(cin, situation);
-             }while(validate_statut(situation) == 1);
+             }while(utils->validate_statut(situation) == 1);
 
                      cout << "Veuillez saisir le nom de l'entreprise : " << endl;
                      cin.ignore();
@@ -317,21 +261,21 @@ namespace Manage {
                                    << endl;
                      cin.clear();
                      getline(cin, statut);
-              }while(validate_entreprise_name(statut) == 1);
+              }while(utils->validate_entreprise_name(statut) == 1);
               do {
                      cout << "Veuillez saisir une adresse  mail de contact valide : "
                                    << endl;
                      cin.clear();
                      getline(cin, email);
-              } while (!check_email(email));
+              } while (!utils->check_email(email));
 
               AdressePostale *adressePostale = new_adress();
-              char *n;
-              n = str_to_char(nom, n);
-              char *entr;
-              entr = str_to_char(nom, entr);
-              char *p;
-              p = str_to_char(prenom, p);
+              char *n = NULL;
+              n = utils->str_to_char(nom, n);
+              char *entr = NULL;
+              entr = utils->str_to_char(nom, entr);
+              char *p = NULL;
+              p = utils->str_to_char(prenom, p);
               int identifiant = get_next_pid();
               ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
                             email, identifiant, n, p, sexe, situation, adressePostale);
@@ -339,14 +283,8 @@ namespace Manage {
 
        }
 
-       bool Console::check_email(string email) {
-              const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-              return regex_match(email, pattern);
-       }
-
-       int Console::get_next_pid() {
-
+       int Console::get_next_pid()
+       {
               return this->annuaire->get_next_pid();
        }
-
 }
