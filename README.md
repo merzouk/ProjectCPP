@@ -78,21 +78,21 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 # Exemple de jeu de données :
 
-![My Image](liste.jpg)
+![My Image](./pictures/liste.jpg)
 
 # Exemple de fichiers de données chargés par le programme au démarrage :
 
 ## Fichier de données des contacts privés :
 
-![My Image](file_privates_contact.jpg)
+![My Image](./pictures/file_privates_contact.jpg)
 
 ## Fichier de données des contacts professionnels :
 
-![My Image](file_pros_contact.jpg)
+![My Image](./pictures/file_pros_contact.jpg)
 
 ## Affichage par le programme des données chargées :
 
-![My Image](affichage_données_chargées.jpg)
+![My Image](./pictures/affichage_données_chargées.jpg)
 
 # Diagramme de classe :
 
