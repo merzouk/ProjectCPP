@@ -3,7 +3,7 @@ Projet CPP pour la formation C/CPP embarqué
 
 
 
-Au travers de ce projet, vous reverrez beaucoup de points abordés au sein du cours C++. Il s'agit de créer un annuaire dans lequel seront stockés des contacts.
+Il s'agit de créer un annuaire dans lequel seront stockés des contacts.
 Le projet sera décomposé en plusieurs parties.
 
 ```
@@ -29,7 +29,7 @@ Le projet sera décomposé en plusieurs parties.
 - Adresse de l'entreprise
 - Adresse Mail (Chaîne contenant un @)
 ```
-Toute adresse est composée du Numéro, Rue, Complément, Code Postal et Ville. On considérera que l'ensemble des Contacts est Français.
+Toute adresse est composée du Numéro, Rue, Complément, Code Postal et Ville. On considérera que l'ensemble des Contacts sont Français.
 Créer dans un premier temps une application console vous permettant de tester la hiérarchie mise en place.
 Vous joindrez le diagramme de classes associé à votre hiérarchie.
 ```
@@ -39,11 +39,17 @@ De plus, vous constituerez une application console utilisant la hiérarchie pré
 Cette application offrira à l’utilisateur la possibilité de :
 - Lister les contacts privés et/ou professionnels en respectant certaines contraintes au niveau de l’affichage (cf. Annexe)
 - Recherche à partir de certains critères :
+
 o Par Numéro
+
 o Par Nom
+
 o Par Code Postal
+
 o Par Département
+
 o Par Ville
+
 - Ajouter un contact quel qu'en soit le type
 - Modifier/Supprimer un Contact via son identifiant
 
