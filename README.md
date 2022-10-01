@@ -96,7 +96,7 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 # Diagramme de classe :
 
-![My Image](diagramme.jpg)
+![My Image](./pictures/diagramme.jpg)
 
 
 # Note
