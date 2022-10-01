@@ -94,7 +94,7 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 
 ![My Image](affichage_données_chargées.jpg)
 
-# Diagramme de clsse :
+# Diagramme de classe :
 
 ![My Image](diagramme.jpg)
 
