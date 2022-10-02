@@ -554,7 +554,8 @@ namespace Manage
                      return;
               }
               string line = "";
-              while (getline(inputFile, line)) {
+              while (getline(inputFile, line))
+              {
                      if (line.size() == 0)
                             continue;
                      stringstream inputString(line);
@@ -590,7 +591,7 @@ namespace Manage
                      int zip_code = utils->str_to_int(code_postale);
 
                      AdressePostale *adressePostale = new AdressePostale(
-                                   stoi(numero.c_str()), rue, complement, zip_code, ville);
+                                   utils->str_to_int(numero), rue, complement, zip_code, ville);
                      char *n = NULL;
                      char *p = NULL;
                      n = utils->to_char(nom, n);

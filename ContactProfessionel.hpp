@@ -5,6 +5,9 @@
 
 #include "Contact.hpp"
 #include "AdressePostale.hpp"
+#include "Utils.hpp"
+
+using namespace Manage;
 
 namespace Heritage
 {
@@ -16,6 +19,7 @@ namespace Heritage
                      char *entreprise;
                      statut st;
                      string email;
+                     Utils *utils;
                      int str_length(char *s)
                      {
                                    if(!s) return 0;
@@ -23,30 +27,20 @@ namespace Heritage
                                    while(*(s+len) != '\0') len++;
                                    return len;
                      }
-
-                     bool check_email(string email)
-                     {
-                         const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");
-                         return regex_match(email,pattern);
-                     }
-
               public:
                      ContactProfessionel(char * entreprise, string statut,  string email, int identifiant , char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
                        :Contact(identifiant , nom, prenom, sexe, situation, adressePostale)
                        {
-                            int len = str_length(entreprise);
-                            if(len == 0 || len > 50)
-                                   throw ContactException("\nLe champs nom entreprise n'est pas correct");
-
-                            if(!check_email(email))
-                                   throw ContactException("\nLe champs addresse mail n'est pas correct");
-                            this->entreprise = entreprise;
+                            this->utils = new Utils();
+                            this->set_entreprise(entreprise);
                             set_statut(statut);
-                            this->email = email;
+                            set_email(email);
                      }
                      ~ContactProfessionel()
                      {
                             free(this->entreprise);
+                            delete this->utils;
+                            this->utils = nullptr;
                      }
                      char * get_entreprise(){return this->entreprise;}
                      string get_statut()
@@ -73,13 +67,13 @@ namespace Heritage
 
                      void set_entreprise(char * entreprise)
                      {
-                             int len = str_length(entreprise);
+                            int len = str_length(entreprise);
                             if(len == 0 || len > 50)
                                    throw ContactException("\nLe champs nom entreprise n'est pas correct");
                             this->entreprise = entreprise;
                      }
-                     void set_statut(string statut){
-
+                     void set_statut(string statut)
+                     {
                                    if(statut == "SARL")
                                           st = SARL;
                                    if(statut == "SA")
@@ -92,7 +86,7 @@ namespace Heritage
                      }
                      void set_email(string email)
                      {
-                             if(!check_email(email))
+                            if(!this->utils->check_email(email))
                                    throw ContactException("\nLe champs addresse mail n'est pas correct");
                             this->email = email;
                      }
