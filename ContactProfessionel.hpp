@@ -39,7 +39,7 @@ namespace Heritage
                                    throw ContactException("\nLe champs nom entreprise n'est pas correct");
 
                             if(!check_email(email))
-                                   throw ContactException("\nLe champs adresse mail n'est pas correct");
+                                   throw ContactException("\nLe champs addresse mail n'est pas correct");
                             this->entreprise = entreprise;
                             set_statut(statut);
                             this->email = email;
@@ -75,7 +75,7 @@ namespace Heritage
                      {
                              int len = str_length(entreprise);
                             if(len == 0 || len > 50)
-                                   throw ContactException("\nLe chmaps nom entreprise n'est pas correct");
+                                   throw ContactException("\nLe champs nom entreprise n'est pas correct");
                             this->entreprise = entreprise;
                      }
                      void set_statut(string statut){
@@ -93,7 +93,7 @@ namespace Heritage
                      void set_email(string email)
                      {
                              if(!check_email(email))
-                                   throw ContactException("\nLe chmaps adresse mail n'est pas correct");
+                                   throw ContactException("\nLe champs addresse mail n'est pas correct");
                             this->email = email;
                      }
                      void infos() override;

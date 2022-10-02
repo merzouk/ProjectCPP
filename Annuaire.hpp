@@ -49,7 +49,7 @@ namespace Manage
                      void load_annuaire_from_files(string fileContactPrivate, string fileContactPro);
                      void buildContactPro(string fileContactPro);
                      void buildContactPrive(string fileContactPro);
-                     DateNaissance *build(string dat);
+                     DateNaissance *build_date_naissance(string date_naissance_str);
                      int get_next_pid();
        };
 }

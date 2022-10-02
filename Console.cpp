@@ -95,7 +95,6 @@ namespace Manage {
               cout << "Veuillez saisir le prenom du contact : " << endl;
               string prenom = get_str_value();
               char *ptr = NULL;
-              //ptr = utils->str_to_char(prenom, ptr);
               vector<Contact*> vects = this->annuaire->get_list_elts_by_first_name(
                             utils->to_upper_first_name(utils->str_to_char(prenom, ptr)));
               if(vects.size() == 0)
@@ -145,7 +144,8 @@ namespace Manage {
                      this->annuaire->display(contacts);
        }
 
-       void Console::rechercher_contact_departement() {
+       void Console::rechercher_contact_departement()
+       {
               cout << "Veuillez saisir le code du departement du contact" << endl;
               int departement = check_input_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_department(
@@ -193,11 +193,17 @@ namespace Manage {
        {
               cout << "Veuillez saisir l'identifiant du contact" << endl;
               int pid = check_input_value();
-              try {
+              try
+              {
                      this->annuaire->delete_elt_by_id(pid);
-              } catch (const ContactException &ex) {
+                     cout << "La suppression du contact id : " << pid << " s'est correctement terminee" << endl;
+              }
+              catch (const ContactException &ex)
+              {
                      cout << "Suppression en echec : " << ex.what() << endl;
-              } catch (...) {
+              }
+              catch (...)
+              {
                      cout << "Erreur inattendue pendant la tentative de suppression du contact par son id "
                           << pid
                           << endl;
@@ -214,19 +220,25 @@ namespace Manage {
               if(contact)
               {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
-                     if (contact_prive) {
+                     if (contact_prive)
+                     {
                             this->annuaire->print_contact_prive(contact_prive);
 
-                     } else {
+                     }
+                     else
+                     {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(contact);
                             this->annuaire->print_contact_professionnel(contact_prof);
                      }
-                     try {
+                     try
+                     {
                             AdressePostale *adr = new_address();
                             contact->set_adressePostale(adr);
                             cout << "L'adresse postale du contact est modifiee avec succes" << endl;
-                     } catch (...) {
+                     }
+                     catch (...)
+                     {
                             cout << "Erreur inattendue s'est produite pendant la tentative de modification de l'adresse postale"
                                  << endl;
                      }
@@ -246,12 +258,12 @@ namespace Manage {
               int code_postale;
               string ville;
               try{
-                     cout << "Veuillez saisir un numero de rue : " << endl;
+                     cout << "Veuillez saisir le numero de la rue : " << endl;
                      numero = check_input_value();
                      cout << "Veuillez saisir le nom de la rue : " << endl;
                      cin.ignore();
                      getline(cin, rue);
-                     cout << "Veuillez saisir le complement, sinon un espace et validez: " << endl;
+                     cout << "Veuillez saisir le complement d'addresse, sinon un espace et validez: " << endl;
                      cin.ignore();
                      getline(cin, complement);
                      cout << "Veuillez saisir le code postale : " << endl;
@@ -287,7 +299,8 @@ namespace Manage {
               int mois;
               int jour;
               int annee;
-              try{
+              try
+              {
                      do{
                             cout << "Veuillez saisir le nom du contact : " << endl;
                             cin.clear();
@@ -304,7 +317,7 @@ namespace Manage {
                             getline(cin, sexe);
                      }while(utils->validate_sexe(sexe) == 1);
                      do{
-                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
+                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
                                  << endl;
                             cin.clear();
                             getline(cin, situation);
@@ -320,7 +333,7 @@ namespace Manage {
                      AdressePostale *adressePostale = new_address();
                      if(!adressePostale)
                      {
-                            cout << "Erreur inattendue pendant la tantative d'ajout du contact prive" << endl;
+                            cout << "Erreur inattendue pendant la tentative d'ajout du contact prive" << endl;
                             return;
                      }
                      char *n = NULL;
@@ -356,7 +369,8 @@ namespace Manage {
               string entreprise;
               string statut;
               string email;
-              try{
+              try
+              {
                      do{
                             cout << "Veuillez saisir le nom du contact : " << endl;
                             cin.clear();
@@ -400,7 +414,7 @@ namespace Manage {
                      AdressePostale *adressePostale = new_address();
                      if(!adressePostale)
                      {
-                            cout << "Erreur inattendue pendant la tantive d'ajout du contact professionnel" << endl;
+                            cout << "Erreur inattendue pendant la tentative d'ajout du contact professionnel" << endl;
                             return;
                      }
                      char *n = NULL;

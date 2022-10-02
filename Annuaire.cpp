@@ -18,7 +18,8 @@ using namespace std;
 using namespace Errors;
 using namespace Heritage;
 
-namespace Manage {
+namespace Manage
+{
 
        void Annuaire::add_new_elt(Contact *contact)
        {
@@ -42,7 +43,7 @@ namespace Manage {
                      delete this->map_annuaire[key];
                      this->map_annuaire.erase(key);
               } else {
-                     cout << "Cle de l'contact " << key << endl;
+                     cout << "Cle du contact " << key << endl;
                      throw ContactException(
                                    "\nSuppression impossible, la cle n'existe pas dans l'annuaire");
               }
@@ -50,29 +51,42 @@ namespace Manage {
 
        void Annuaire::delete_elt_by_id(int pid)
        {
+              if(pid <= 0)
+              {
+                     cout << "L'identifiant du contact "<< pid << " n'est pas valide " << endl;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               bool delete_contact = false;
-              for (; it != map_annuaire.end(); it++) {
-                     if (pid == it->second->get_identifiant()) {
+              for (; it != map_annuaire.end(); it++)
+              {
+                     if (pid == it->second->get_identifiant())
+                     {
                             string key = build_key(it->second);
                             delete this->map_annuaire[key];
                             this->map_annuaire.erase(key);
                             delete_contact = true;
                      }
               }
-              if (!delete_contact) {
+              if (!delete_contact)
+              {
                      cout << "pid : " << pid << endl;
                      throw ContactException(
                                    "\nSuppression contact par identifiant en echec, le pid n'existe pas dans l'annuaire");
               } else {
                      cout << "Le contact pid = " << pid
-                                   << " est supprime avec succes de l'annuaire" << endl;
+                                   << " est supprime de l'annuaire avec succes" << endl;
               }
 
        }
 
        Contact* Annuaire::get_elt_by_key(string key)
        {
+              int len = int(key.length());
+              if(len == 0)
+              {
+                     cout <<"La cle du contact "<< key << "n'est pas valide " << endl;
+                     return nullptr;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++) {
                      if (key == it->first)
@@ -84,7 +98,13 @@ namespace Manage {
        vector<Contact*> Annuaire::get_list_elts_by_keys(vector<string> keys)
        {
               vector<Contact*> contacts;
-              for (string key : keys) {
+              if(keys.size() == 1)
+              {
+                     cout << "Aucune cle renseignee, recherche impossible " << endl;
+                     return contacts;
+              }
+              for (string key : keys)
+              {
                      Contact *contact = get_elt_by_key(key);
                      if (contact)
                             contacts.push_back(contact);
@@ -99,8 +119,15 @@ namespace Manage {
 
        bool Annuaire::check_elt_by_key(string key)
        {
+              int len = int(key.length());
+              if(len == 0)
+              {
+                     cout <<"La cle du contact "<< key << "n'est pas valide " << endl;
+                     return false;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
-              for (; it != map_annuaire.end(); it++) {
+              for (; it != map_annuaire.end(); it++)
+              {
                      if (key == it->first)
                             return true;
               }
@@ -109,14 +136,25 @@ namespace Manage {
 
        string Annuaire::build_key(Contact *contact)
        {
+              if(!contact)
+              {
+                    cout << "LE contact n'est pas renseigne, impossible de construire la cle " << endl;
+                    return "";
+              }
               string key = contact->build_key();
               return key;
        }
 
        Contact* Annuaire::get_elt_by_id(int pid)
        {
+              if(pid <= 0)
+              {
+                     cout << "L'identifiant du contact "<< pid << " n'est pas valide " << endl;
+                     return nullptr;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
-              for (; it != map_annuaire.end(); it++) {
+              for (; it != map_annuaire.end(); it++)
+              {
                      if (pid == it->second->get_identifiant())
                             return it->second;
               }
@@ -141,13 +179,19 @@ namespace Manage {
               Contact *contact = get_elt_by_id(pid);
               if (contact)
               {
-                     cout << "This method not used, see Concole class" << endl;
+                     cout << "This method not used, see Console class" << endl;
               }
        }
 
        vector<Contact*> Annuaire::get_list_elts_by_last_name(string lastname)
        {
               vector<Contact*> contacts;
+              int len = int(lastname.length());
+              if(len == 0)
+              {
+                     cout << "Le nom " <<lastname << " n'est pas valide" << endl;
+                     return contacts;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -160,6 +204,12 @@ namespace Manage {
        vector<Contact*> Annuaire::get_list_elts_by_first_name(string firstname)
        {
               vector<Contact*> contacts;
+              int len = int(firstname.length());
+              if(len == 0)
+              {
+                     cout << "Le prenom " << firstname << " n'est pas valide" << endl;
+                     return contacts;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -172,6 +222,11 @@ namespace Manage {
        vector<Contact*> Annuaire::get_list_elts_by_zip_code(int zip_code)
        {
               vector<Contact*> contacts;
+              if(zip_code <= 1000)
+              {
+                     cout << "Le code postale " << zip_code << " n'est pas valide" << endl;
+                     return contacts;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -185,6 +240,11 @@ namespace Manage {
        vector<Contact*> Annuaire::get_list_elts_by_department(int departement)
        {
               vector<Contact*> contacts;
+               if(departement < 0 || departement > 100)
+              {
+                     cout << "Le code departement " << departement << " n'est pas valide" << endl;
+                     return contacts;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -199,6 +259,12 @@ namespace Manage {
        vector<Contact*> Annuaire::get_list_elts_by_town(string town)
        {
               vector<Contact*> contacts;
+              int len = int(town.length());
+              if(len == 0)
+              {
+                     cout << "Le nom de la ville " <<town << " n'est pas valide" << endl;
+                     return contacts;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -210,6 +276,17 @@ namespace Manage {
 
        Contact *Annuaire::get_elt_by_email(string email)
        {
+              int len = int(email.length());
+              if(len == 0)
+              {
+                     cout << "L'addresse mail " <<email << " n'est pas valide" << endl;
+                     return nullptr;
+              }
+              if(!utils->check_email(email))
+              {
+                     cout << "Le format de l'addresse mail " <<email << " n'est pas valide" << endl;
+                     return nullptr;
+              }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
@@ -228,7 +305,8 @@ namespace Manage {
        void Annuaire::display()
        {
               cout.fill(' ');
-              if (this->map_annuaire.size() == 0) {
+              if (this->map_annuaire.size() == 0)
+              {
                      cout << "Aucun contact dans l'annuaire" << endl << endl;
                      return;
               }
@@ -269,7 +347,8 @@ namespace Manage {
        void Annuaire::display(vector<Contact*> vects)
        {
               cout.fill(' ');
-              if (vects.size() == 0) {
+              if (vects.size() == 0)
+              {
                      cout << "Aucun contact dans l'annuaire" << endl << endl;
                      return;
               }
@@ -308,6 +387,11 @@ namespace Manage {
 
        string format_date(ContactPrive *contact_prive)
        {
+              if(!contact_prive)
+              {
+                     cout << "Le contact n'est pas renseigne construction date au format string impossible" << endl;
+                     return "";
+              }
               string date_naissance =    to_string(contact_prive->get_dateNaissance()->get_jour())
                                        + "/"
                                        + to_string(contact_prive->get_dateNaissance()->get_mois())
@@ -319,7 +403,10 @@ namespace Manage {
        void Annuaire::print_contact_prive(ContactPrive *contact_prive)
        {
               if (!contact_prive)
-                     return;
+              {
+                     cout << "Le contact prive n'est pas renseigne" << endl;
+                     return ;
+              }
               cout.fill(' ');
 
               cout << setw(5)   << contact_prive->get_identifiant()
@@ -341,7 +428,10 @@ namespace Manage {
        void Annuaire::print_contact_professionnel(ContactProfessionel *contact_prof)
        {
               if (!contact_prof)
-                     return;
+              {
+                     cout << "Le contact professionnel n'est pas renseigne" << endl;
+                     return ;
+              }
               cout.fill(' ');
               cout << setw(5)  << contact_prof->get_identifiant()
                    << setw(30) << contact_prof->get_nom()
@@ -369,9 +459,18 @@ namespace Manage {
        void Annuaire::buildContactPro(string fileContactPro)
        {
               ifstream inputFile;
-              inputFile.open(fileContactPro);
+              try
+              {
+                     inputFile.open(fileContactPro);
+              }
+              catch(const exception & ex)
+              {
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionel " << fileContactPro << ex.what() << endl;
+                     return;
+              }
               string line = "";
-              while (getline(inputFile, line)) {
+              while (getline(inputFile, line))
+              {
                      if (line.size() == 0)
                             continue;
                      stringstream inputString(line);
@@ -423,26 +522,37 @@ namespace Manage {
 
        }
 
-       DateNaissance* Annuaire::build(string dat)
+       DateNaissance* Annuaire::build_date_naissance(string date_naissance_str)
        {
-              stringstream inputString(dat);
+              stringstream inputString(date_naissance_str);
 
               string jour;
               string mois;
               string annee;
 
-              getline(inputString, jour, '/');
-              getline(inputString, mois, '/');
+              getline(inputString, jour,  '/');
+              getline(inputString, mois,  '/');
               getline(inputString, annee, '/');
-              DateNaissance *datenaissance = new DateNaissance(utils->str_to_int(jour),
-                            utils->str_to_int(mois), utils->str_to_int(annee));
+              DateNaissance *datenaissance = new DateNaissance(
+                                                               utils->str_to_int(jour),
+                                                               utils->str_to_int(mois),
+                                                               utils->str_to_int(annee)
+                                                               );
               return datenaissance;
        }
 
        void Annuaire::buildContactPrive(string fileContactPrivate)
        {
               ifstream inputFile;
-              inputFile.open(fileContactPrivate);
+              try
+              {
+                     inputFile.open(fileContactPrivate);
+              }
+              catch(const exception & ex)
+              {
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prive " << fileContactPrivate << ex.what() << endl;
+                     return;
+              }
               string line = "";
               while (getline(inputFile, line)) {
                      if (line.size() == 0)
@@ -475,7 +585,7 @@ namespace Manage {
                      getline(inputString, code_postale, ';');
                      getline(inputString, ville, ';');
                      getline(inputString, dat_naiss, ';');
-                     dat = build(dat_naiss);
+                     dat = build_date_naissance(dat_naiss);
 
                      int zip_code = utils->str_to_int(code_postale);
 
