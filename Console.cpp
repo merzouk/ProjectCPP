@@ -79,10 +79,13 @@ namespace Manage {
               ptr = utils->str_to_char(nom, ptr);
               vector<Contact*> vects = this->annuaire->get_list_elts_by_last_name(
                             utils->to_upper_last_name(ptr));
-              if(vects.size() == 1)
+              if(vects.size() == 0)
+                     cout << "Aucun contact trouve pour le nom : " << nom << endl;
+              else if(vects.size() == 1)
                      vects[0]->infos();
               else
                      this->annuaire->display(vects);
+              free(ptr);
        }
 
        void Console::rechercher_contact_prenom()
@@ -99,6 +102,7 @@ namespace Manage {
                      vects[0]->infos();
               else
                      this->annuaire->display(vects);
+              free(ptr);
        }
 
        void Console::afficher_annuaire()
@@ -118,9 +122,10 @@ namespace Manage {
               } else {
                      ContactProfessionel *contact_prof =
                                    dynamic_cast<ContactProfessionel*>(contact);
+                     if(contact_prof)
                          contact_prof->infos();
+                     cout << "Aucun contact trouve pour l'identifiant : " << pid << endl;
               }
-
        }
 
        void Console::rechercher_contact_code_postale()
@@ -130,7 +135,9 @@ namespace Manage {
               int zip_code = check_input_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_zip_code(
                             zip_code);
-              if(contacts.size() == 1)
+              if(contacts.size() == 0)
+                     cout << "Aucun contact trouve pour le code postale : " << zip_code << endl;
+              else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
                      this->annuaire->display(contacts);
@@ -141,7 +148,9 @@ namespace Manage {
               int departement = check_input_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_department(
                             departement);
-              if(contacts.size() == 1)
+               if(contacts.size() == 0)
+                     cout << "Aucun contact trouve pour le departement : " << departement << endl;
+              else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
                      this->annuaire->display(contacts);
@@ -152,7 +161,9 @@ namespace Manage {
               cout << "Veuillez saisir le nom de la ville du contact" << endl;
               string ville = get_str_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_town(ville);
-              if(contacts.size() == 1)
+              if(contacts.size() == 0)
+                     cout << "Aucun contact trouve pour la ville : " << ville << endl;
+              else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
                      this->annuaire->display(contacts);
@@ -352,6 +363,7 @@ namespace Manage {
               ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
                             email, identifiant, n, p, sexe, situation, adressePostale);
               this->annuaire->add_new_elt(contactpros);
+
 
        }
 
