@@ -32,7 +32,7 @@ namespace Manage
 	char * Utils::to_upper_first_name(char *s)
 	{
 		if(!s) return s;
-		s[0] = toupper(s[0]);
+		*s = toupper(*s);
 		return s;
 	}
 

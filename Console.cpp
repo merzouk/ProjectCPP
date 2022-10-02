@@ -274,7 +274,7 @@ namespace Manage {
               cin.ignore();
               getline(cin, nom);
               cout << "Veuillez saisir le prenom du contact : " << endl;
-              cin.ignore();
+              cin.clear();
               getline(cin, prenom);
               do{
                      cout << "Veuillez saisir le sexe (M/F): ";
@@ -304,6 +304,7 @@ namespace Manage {
               ContactPrive *contactprive = new ContactPrive(dateNaissance, identifiant, n,
                             p, sexe, situation, adressePostale);
               this->annuaire->add_new_elt(contactprive);
+              cout << "Le nouveau contact prive est ajoute a l'annuaire avec succes" << endl;
        }
 
        void Console::ajouter_contact_professionnel()
@@ -321,7 +322,7 @@ namespace Manage {
               getline(cin, nom);
 
               cout << "Veuillez saisir le prenom du contact : " << endl;
-              cin.ignore();
+              cin.clear();
               getline(cin, prenom);
               do{
                      cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
@@ -363,8 +364,7 @@ namespace Manage {
               ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
                             email, identifiant, n, p, sexe, situation, adressePostale);
               this->annuaire->add_new_elt(contactpros);
-
-
+              cout << "Le nouveau contact professionnel est ajoute a l'annuaire avec succes" << endl;
        }
 
        int Console::get_next_pid()
