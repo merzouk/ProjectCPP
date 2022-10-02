@@ -73,13 +73,29 @@ namespace Manage {
 
        void Console::rechercher_contact_nom()
        {
-              cout << "Veuillez saisir le nom du contact" << endl;
+              cout << "Veuillez saisir le nom du contact : " << endl;
               string nom = get_str_value();
               char *ptr = NULL;
               ptr = utils->str_to_char(nom, ptr);
               vector<Contact*> vects = this->annuaire->get_list_elts_by_last_name(
                             utils->to_upper_last_name(ptr));
               if(vects.size() == 1)
+                     vects[0]->infos();
+              else
+                     this->annuaire->display(vects);
+       }
+
+       void Console::rechercher_contact_prenom()
+       {
+              cout << "Veuillez saisir le prenom du contact : " << endl;
+              string prenom = get_str_value();
+              char *ptr = NULL;
+              //ptr = utils->str_to_char(prenom, ptr);
+              vector<Contact*> vects = this->annuaire->get_list_elts_by_first_name(
+                            utils->to_upper_first_name(utils->str_to_char(prenom, ptr)));
+              if(vects.size() == 0)
+                     cout << "Aucun contact trouve pour le prenom : " << prenom << endl;
+              else if(vects.size() == 1)
                      vects[0]->infos();
               else
                      this->annuaire->display(vects);

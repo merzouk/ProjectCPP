@@ -9,7 +9,7 @@ using namespace std;
 namespace Manage
 {
 
-       int Menu::check_input_value()
+       int Menu::check_input_value(int limit_inf, int limit_max)
        {
            int opc;
            bool aux = true;
@@ -17,7 +17,11 @@ namespace Manage
            do {
                      try
                      {
-                            cout << "Veuillez saisir un entier compris entre 0 et 11 :" << endl;
+                       cout << "Veuillez saisir un entier compris entre "
+                            << limit_inf
+                            << " et "
+                            << limit_max
+                            << endl;
                             cin >> opc;
                             aux = true;
                      }
@@ -29,7 +33,7 @@ namespace Manage
                             std::string tmp;
                             getline(cin, tmp);
                      }
-           } while (aux == false || (0 < opc && opc > 11));
+           } while (aux == false || (limit_inf < opc && opc > limit_max));
            return opc;
        }
 
@@ -50,16 +54,17 @@ namespace Manage
                          cout<<"3.  Ajouter un Contact professionnel a l'annuaire"               <<endl;
                          cout<<"4.  Rechercher un Contact par son numero unique"                 <<endl;
                          cout<<"5.  Rechercher un Contact par son nom"                           <<endl;
-                         cout<<"6.  Rechercher un Contact par son code postale"                  <<endl;
-                         cout<<"7.  Rechercher un contact par son Departement"                   <<endl;
-                         cout<<"8.  Rechercher un contact par sa ville"                          <<endl;
-                         cout<<"9.  Rechercher un contact par son email"                         <<endl;
-                         cout<<"10. Supprimer un contact par son identifiant"                    <<endl;
-                         cout<<"11. Modifier un contact par son identifiant"                     <<endl;
+                         cout<<"6.  Rechercher un Contact par son prenom"                        <<endl;
+                         cout<<"7.  Rechercher un Contact par son code postale"                  <<endl;
+                         cout<<"8.  Rechercher un contact par son Departement"                   <<endl;
+                         cout<<"9.  Rechercher un contact par sa ville"                          <<endl;
+                         cout<<"10. Rechercher un contact par son email"                         <<endl;
+                         cout<<"11. Supprimer un contact par son identifiant"                    <<endl;
+                         cout<<"12. Modifier un contact par son identifiant"                     <<endl;
                          cout<<"0.  Quitter"                                                     <<endl;
                          cout<<endl <<"Votre choix : "                                           <<endl;
 
-                         menu = check_input_value();
+                         menu = check_input_value(1, 12);
                          cout<<endl;
 
                          switch(menu)
@@ -81,22 +86,25 @@ namespace Manage
                             case 5 :
                                     console->rechercher_contact_nom();
                                 break;
-                            case 6 :
-                                    console->rechercher_contact_code_postale();
+                             case 6 :
+                                    console->rechercher_contact_prenom();
                                 break;
                             case 7 :
-                                   console->rechercher_contact_departement();
+                                    console->rechercher_contact_code_postale();
                                 break;
                             case 8 :
-                                   console->rechercher_contact_ville();
+                                   console->rechercher_contact_departement();
                                 break;
                             case 9 :
-                                   console->rechercher_contact_email();
+                                   console->rechercher_contact_ville();
                                 break;
                             case 10 :
-                                   console->supprimer_contact_pid();
+                                   console->rechercher_contact_email();
                                 break;
                             case 11 :
+                                   console->supprimer_contact_pid();
+                                break;
+                            case 12 :
                                     console->modifier_contact_pid();
                                 break;
                             }

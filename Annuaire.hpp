@@ -35,6 +35,7 @@ namespace Manage
                      /*virtual*/ vector<Contact*> get_list_elts_by_keys(vector<string> keys)  override;
                      /*virtual*/ Contact *get_elt_by_id(int pid) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_last_name(string lastname) override;
+                     /*virtual*/ vector<Contact*> get_list_elts_by_first_name(string firstname) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_zip_code(int zip_code) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_department(int departement) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_town(string town) override;

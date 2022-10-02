@@ -157,6 +157,18 @@ namespace Manage {
               return contacts;
        }
 
+       vector<Contact*> Annuaire::get_list_elts_by_first_name(string firstname)
+       {
+              vector<Contact*> contacts;
+              map<string, Contact*>::iterator it = this->map_annuaire.begin();
+              for (; it != map_annuaire.end(); it++)
+              {
+                     if (firstname == it->second->get_prenom())
+                            contacts.push_back(it->second);
+              }
+              return contacts;
+       }
+
        vector<Contact*> Annuaire::get_list_elts_by_zip_code(int zip_code)
        {
               vector<Contact*> contacts;
