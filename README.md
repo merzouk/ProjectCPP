@@ -29,9 +29,10 @@ Le projet sera décomposé en plusieurs parties.
 - Adresse de l'entreprise
 - Adresse Mail (Chaîne contenant un @)
 ```
-Toute adresse est composée du Numéro, Rue, Complément, Code Postal et Ville. On considérera que l'ensemble des Contacts sont Français.
-Créer dans un premier temps une application console vous permettant de tester la hiérarchie mise en place.
-Vous joindrez le diagramme de classes associé à votre hiérarchie.
+Toute adresse est composée du Numéro, Rue, Complément, Code Postal et Ville. On considérera 
+que l'ensemble des Contacts sont Français. Créer dans un premier temps une application console 
+vous permettant de tester la hiérarchie mise en place. Vous joindrez le diagramme de classes 
+associé à votre hiérarchie.
 ```
 
 # PARTIE 2 : CREATION DE L'INTERFACE CONSOLE
@@ -40,9 +41,11 @@ Cette application offrira à l’utilisateur la possibilité de :
 - Lister les contacts privés et/ou professionnels en respectant certaines contraintes au niveau de l’affichage (cf. Annexe)
 - Recherche à partir de certains critères :
 
-o Par Numéro
+o Par Identifiant
 
 o Par Nom
+
+o Par Prenom
 
 o Par Code Postal
 
@@ -58,7 +61,9 @@ o Par Email
 # Plus
 
 ```
-Si vous avez le temps, vous prévoirez l’exportation des contacts Pro et Privés vers des fichiers pros.dat et/ou privates.dat.
+Si vous avez le temps, vous prévoirez l’exportation des contacts Pro et Privés vers des fichiers 
+pros.dat et/ou privates.dat.
+
 Pour l’ensemble des fonctionnalités, vous afficherez un message d’erreur en cas d’échec.
 Constituez une interface simple et conviviale.
 ```
