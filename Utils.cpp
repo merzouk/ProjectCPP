@@ -116,6 +116,22 @@ namespace Manage
 		return 1;
 	}
 
+       bool Utils::validate_first_last_name(string s)
+       {
+              int n = s.length();
+              if(n == 0 || n > 30)
+                     return false;
+              return true;
+       }
+
+       bool Utils::validate_entreprise(string s)
+       {
+              int n = s.length();
+              if(n == 0 || n > 50)
+                     return false;
+              return true;
+       }
+
 	bool Utils::check_email(string email)
 	{
 		const regex pattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+");

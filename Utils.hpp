@@ -20,6 +20,8 @@ namespace Manage
                       int str_to_int(std::string s) ;
                       int validate_sexe(string s);
                       int validate_statut(string s);
+                      bool validate_first_last_name(string s);
+                      bool validate_entreprise(string s);
                       int validate_entreprise_name(string s);
                       bool check_email(string email);
                       char* to_upper_last_name(char *s) ;

@@ -4,6 +4,8 @@
 #include "ContactPrive.hpp"
 #include "ContactProfessionel.hpp"
 #include<regex>
+#include <fstream>
+#include <exception>
 
 using namespace Errors;
 
@@ -243,22 +245,37 @@ namespace Manage {
               string complement;
               int code_postale;
               string ville;
-              cout << "Veuillez saisir un numero de rue : " << endl;
-              numero = check_input_value();
-              cout << "Veuillez saisir le nom de la rue : " << endl;
-              cin.ignore();
-              getline(cin, rue);
-              cout << "Veuillez saisir le complement, sinon un espace et validez: " << endl;
-              cin.ignore();
-              getline(cin, complement);
-              cout << "Veuillez saisir le code postale : " << endl;
-              code_postale = check_input_value();
-              cout << "Veuillez saisir le nom de la ville : " << endl;
-              cin.ignore();
-              getline(cin, ville);
-              AdressePostale *adr = new AdressePostale(numero, rue, complement,
-                            code_postale, ville);
-              return adr;
+              try{
+                     cout << "Veuillez saisir un numero de rue : " << endl;
+                     numero = check_input_value();
+                     cout << "Veuillez saisir le nom de la rue : " << endl;
+                     cin.ignore();
+                     getline(cin, rue);
+                     cout << "Veuillez saisir le complement, sinon un espace et validez: " << endl;
+                     cin.ignore();
+                     getline(cin, complement);
+                     cout << "Veuillez saisir le code postale : " << endl;
+                     code_postale = check_input_value();
+                     cout << "Veuillez saisir le nom de la ville : " << endl;
+                     cin.ignore();
+                     getline(cin, ville);
+                     AdressePostale *adr = new AdressePostale(numero, rue, complement,
+                                   code_postale, ville);
+                     return adr;
+              }
+              catch(const std::ios_base::failure& ex)
+              {
+                       cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << ex.what() << endl;
+              }
+              catch (const exception& ex)
+              {
+                  cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << ex.what() << endl;
+              }
+              catch(...)
+              {
+                      cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << endl;
+              }
+              return nullptr;
        }
 
        void Console::ajouter_contact_prive()
@@ -270,41 +287,64 @@ namespace Manage {
               int mois;
               int jour;
               int annee;
-              cout << "Veuillez saisir le nom du contact : " << endl;
-              cin.ignore();
-              getline(cin, nom);
-              cout << "Veuillez saisir le prenom du contact : " << endl;
-              cin.clear();
-              getline(cin, prenom);
-              do{
-                     cout << "Veuillez saisir le sexe (M/F): ";
-                     cin.clear();
-                     getline(cin, sexe);
-              }while(utils->validate_sexe(sexe) == 1);
-              do{
-                     cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
-                          << endl;
-                     cin.clear();
-                     getline(cin, situation);
-              }while(utils->validate_statut(situation) == 1);
-              cout << "Veuillez saisir l'annee de naissance : " << endl;
-              annee = check_input_value();
-              cout << "Veuillez saisir le mois de naissance : " << endl;
-              mois = check_input_value(1, 12);
-              cout << "Veuillez saisir le jour de naissance : " << endl;
-              jour = check_input_value(1, 31);
+              try{
+                     do{
+                            cout << "Veuillez saisir le nom du contact : " << endl;
+                            cin.clear();
+                            getline(cin, nom);
+                     }while(utils->validate_first_last_name(nom) == false);
+                     do{
+                            cout << "Veuillez saisir le prenom du contact : " << endl;
+                            cin.clear();
+                            getline(cin, prenom);
+                     }while(utils->validate_first_last_name(nom) == false);
+                     do{
+                            cout << "Veuillez saisir le sexe (M/F): ";
+                            cin.clear();
+                            getline(cin, sexe);
+                     }while(utils->validate_sexe(sexe) == 1);
+                     do{
+                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
+                                 << endl;
+                            cin.clear();
+                            getline(cin, situation);
+                     }while(utils->validate_statut(situation) == 1);
+                     cout << "Veuillez saisir l'annee de naissance : " << endl;
+                     annee = check_input_value();
+                     cout << "Veuillez saisir le mois de naissance : " << endl;
+                     mois = check_input_value(1, 12);
+                     cout << "Veuillez saisir le jour de naissance : " << endl;
+                     jour = check_input_value(1, 31);
 
-              DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
-              AdressePostale *adressePostale = new_address();
-              char *n = NULL;
-              n = utils->str_to_char(nom, n);
-              char *p = NULL;
-              p = utils->str_to_char(prenom, p);
-              int identifiant = get_next_pid();
-              ContactPrive *contactprive = new ContactPrive(dateNaissance, identifiant, n,
-                            p, sexe, situation, adressePostale);
-              this->annuaire->add_new_elt(contactprive);
-              cout << "Le nouveau contact prive est ajoute a l'annuaire avec succes" << endl;
+                     DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
+                     AdressePostale *adressePostale = new_address();
+                     if(!adressePostale)
+                     {
+                            cout << "Erreur inattendue pendant la tantative d'ajout du contact prive" << endl;
+                            return;
+                     }
+                     char *n = NULL;
+                     n = utils->str_to_char(nom, n);
+                     char *p = NULL;
+                     p = utils->str_to_char(prenom, p);
+                     int identifiant = get_next_pid();
+                     ContactPrive *contactprive = new ContactPrive(dateNaissance, identifiant, n,
+                                   p, sexe, situation, adressePostale);
+                     this->annuaire->add_new_elt(contactprive);
+                     cout << "Le nouveau contact prive est ajoute a l'annuaire avec succes" << endl;
+              }
+              catch(const std::ios_base::failure& ex)
+              {
+                      cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << ex.what() << endl;
+              }
+              catch (const exception& ex)
+              {
+                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << ex.what() << endl;
+              }
+              catch(...)
+              {
+                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << endl;
+              }
        }
 
        void Console::ajouter_contact_professionnel()
@@ -316,55 +356,77 @@ namespace Manage {
               string entreprise;
               string statut;
               string email;
+              try{
+                     do{
+                            cout << "Veuillez saisir le nom du contact : " << endl;
+                            cin.clear();
+                            getline(cin, nom);
+                     }while(utils->validate_first_last_name(nom) == false);
+                     do{
+                            cout << "Veuillez saisir le prenom du contact : " << endl;
+                            cin.clear();
+                            getline(cin, prenom);
+                     }while(utils->validate_first_last_name(nom) == false);
+                     do{
+                            cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
+                            cin.clear();
+                            getline(cin, sexe);
+                    }while(utils->validate_sexe(sexe) == 1);
+                    do{
+                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
+                                 << endl;
+                            cin.clear();
+                            getline(cin, situation);
+                    }while(utils->validate_statut(situation) == 1);
+                    do{
+                            cout << "Veuillez saisir le nom d'entreprise valide : " << endl;
+                            cin.ignore();
+                            getline(cin, entreprise);
+                    }while(utils->validate_entreprise(entreprise) == false);
 
-              cout << "Veuillez saisir le nom du contact : " << endl;
-              cin.ignore();
-              getline(cin, nom);
+                     do{
+                            cout << "Veuillez saisir le statut juridique valide de l'entreprise (SARL/SA/SAS/EURL) : "
+                                 << endl;
+                            cin.clear();
+                            getline(cin, statut);
+                     }while(utils->validate_entreprise_name(statut) == 1);
+                     do {
+                            cout << "Veuillez saisir une adresse mail de contact valide : "
+                                 << endl;
+                            cin.clear();
+                            getline(cin, email);
+                     } while (!utils->check_email(email));
 
-              cout << "Veuillez saisir le prenom du contact : " << endl;
-              cin.clear();
-              getline(cin, prenom);
-              do{
-                     cout << "Veuillez saisir une valeur valide du sexe (M/F): ";
-                     cin.clear();
-                     getline(cin, sexe);
-             }while(utils->validate_sexe(sexe) == 1);
-             do{
-                     cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
-                          << endl;
-                     cin.clear();
-                     getline(cin, situation);
-             }while(utils->validate_statut(situation) == 1);
-
-                     cout << "Veuillez saisir le nom de l'entreprise : " << endl;
-                     cin.ignore();
-                     getline(cin, entreprise);
-
-              do{
-                     cout << "Veuillez saisir le statut juridique valide de l'entreprise (SARL/SA/SAS/EURL) : "
-                          << endl;
-                     cin.clear();
-                     getline(cin, statut);
-              }while(utils->validate_entreprise_name(statut) == 1);
-              do {
-                     cout << "Veuillez saisir une adresse mail de contact valide : "
-                          << endl;
-                     cin.clear();
-                     getline(cin, email);
-              } while (!utils->check_email(email));
-
-              AdressePostale *adressePostale = new_address();
-              char *n = NULL;
-              n = utils->str_to_char(nom, n);
-              char *entr = NULL;
-              entr = utils->str_to_char(nom, entr);
-              char *p = NULL;
-              p = utils->str_to_char(prenom, p);
-              int identifiant = get_next_pid();
-              ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
-                            email, identifiant, n, p, sexe, situation, adressePostale);
-              this->annuaire->add_new_elt(contactpros);
-              cout << "Le nouveau contact professionnel est ajoute a l'annuaire avec succes" << endl;
+                     AdressePostale *adressePostale = new_address();
+                     if(!adressePostale)
+                     {
+                            cout << "Erreur inattendue pendant la tantive d'ajout du contact professionnel" << endl;
+                            return;
+                     }
+                     char *n = NULL;
+                     n = utils->str_to_char(nom, n);
+                     char *entr = NULL;
+                     entr = utils->str_to_char(nom, entr);
+                     char *p = NULL;
+                     p = utils->str_to_char(prenom, p);
+                     int identifiant = get_next_pid();
+                     ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
+                                   email, identifiant, n, p, sexe, situation, adressePostale);
+                     this->annuaire->add_new_elt(contactpros);
+                     cout << "Le nouveau contact professionnel est ajoute a l'annuaire avec succes" << endl;
+              }
+              catch(const std::ios_base::failure& ex)
+              {
+                      cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << ex.what() << endl;
+              }
+              catch (const exception& ex)
+              {
+                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << ex.what() << endl;
+              }
+              catch(...)
+              {
+                       cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << endl;
+              }
        }
 
        int Console::get_next_pid()
