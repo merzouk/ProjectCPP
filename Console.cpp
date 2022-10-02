@@ -12,6 +12,31 @@ using namespace std;
 namespace Manage {
 
 
+       int check_input_value(int limit_inf, int limit_max)
+       {
+              int opc;
+              bool aux = true;
+              cin.exceptions(std::istream::failbit);
+              do {
+                     try {
+                            cout << "Veuillez saisir un entier positif compris entre "
+                                 << limit_inf
+                                 << " et "
+                                 << limit_max
+                                 << endl;
+                            cin >> opc;
+                            aux = true;
+                     } catch (std::ios_base::failure &fail) {
+                            aux = false;
+                            cout << "Veuillez saisir un entier valide." << endl;
+                            cin.clear();
+                            std::string tmp;
+                            getline(cin, tmp);
+                     }
+              } while (aux == false || (opc < limit_inf || opc > limit_max));
+              return opc;
+       }
+
        int check_input_value()
        {
               int opc;
@@ -29,7 +54,7 @@ namespace Manage {
                             std::string tmp;
                             getline(cin, tmp);
                      }
-              } while (aux == false || opc < 0);
+              } while (aux == false || (opc < 0));
               return opc;
        }
 
@@ -238,9 +263,9 @@ namespace Manage {
               cout << "Veuillez saisir l'annee de naissance : " << endl;
               annee = check_input_value();
               cout << "Veuillez saisir le mois de naissance : " << endl;
-              mois = check_input_value();
+              mois = check_input_value(1, 12);
               cout << "Veuillez saisir le jour de naissance : " << endl;
-              jour = check_input_value();
+              jour = check_input_value(1, 31);
 
               DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
               AdressePostale *adressePostale = new_address();
