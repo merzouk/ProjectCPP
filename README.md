@@ -41,9 +41,11 @@ Cette application offrira à l’utilisateur la possibilité de :
 - Lister les contacts privés et/ou professionnels en respectant certaines contraintes au niveau de l’affichage (cf. Annexe)
 - Recherche à partir de certains critères :
 
-o Par Numéro
+o Par Identifiant
 
 o Par Nom
+
+o Par Prenom
 
 o Par Code Postal
 
