@@ -20,13 +20,6 @@ namespace Heritage
                      statut st;
                      string email;
                      Utils *utils;
-                     int str_length(char *s)
-                     {
-                                   if(!s) return 0;
-                                   int len = 0;
-                                   while(*(s+len) != '\0') len++;
-                                   return len;
-                     }
               public:
                      ContactProfessionel(char * entreprise, string statut,  string email, int identifiant , char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
                        :Contact(identifiant , nom, prenom, sexe, situation, adressePostale)
@@ -67,7 +60,7 @@ namespace Heritage
 
                      void set_entreprise(char * entreprise)
                      {
-                            int len = str_length(entreprise);
+                            int len = this->utils->str_length(entreprise);
                             if(len == 0 || len > 50)
                                    throw ContactException("\nLe champs nom entreprise n'est pas correct");
                             this->entreprise = entreprise;
