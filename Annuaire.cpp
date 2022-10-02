@@ -20,7 +20,8 @@ using namespace Heritage;
 
 namespace Manage {
 
-       void Annuaire::add_new_elt(Contact *contact) {
+       void Annuaire::add_new_elt(Contact *contact)
+       {
               if (!contact) {
                      throw ContactException(
                                    "\nAjout impossible, le contact n'est pas renseigne");
@@ -35,7 +36,8 @@ namespace Manage {
 
        }
 
-       void Annuaire::delete_elt_by_key(string key) {
+       void Annuaire::delete_elt_by_key(string key)
+       {
               if (this->check_elt_by_key(key)) {
                      delete this->map_annuaire[key];
                      this->map_annuaire.erase(key);
@@ -46,7 +48,8 @@ namespace Manage {
               }
        }
 
-       void Annuaire::delete_elt_by_id(int pid) {
+       void Annuaire::delete_elt_by_id(int pid)
+       {
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               bool delete_contact = false;
               for (; it != map_annuaire.end(); it++) {
@@ -68,7 +71,8 @@ namespace Manage {
 
        }
 
-       Contact* Annuaire::get_elt_by_key(string key) {
+       Contact* Annuaire::get_elt_by_key(string key)
+       {
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++) {
                      if (key == it->first)
@@ -77,7 +81,8 @@ namespace Manage {
               return nullptr;
        }
 
-       vector<Contact*> Annuaire::get_list_elts_by_keys(vector<string> keys) {
+       vector<Contact*> Annuaire::get_list_elts_by_keys(vector<string> keys)
+       {
               vector<Contact*> contacts;
               for (string key : keys) {
                      Contact *contact = get_elt_by_key(key);
@@ -87,11 +92,13 @@ namespace Manage {
               return contacts;
        }
 
-       int Annuaire::size_list() {
+       int Annuaire::size_list()
+       {
               return this->map_annuaire.size();
        }
 
-       bool Annuaire::check_elt_by_key(string key) {
+       bool Annuaire::check_elt_by_key(string key)
+       {
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++) {
                      if (key == it->first)
@@ -100,12 +107,14 @@ namespace Manage {
               return false;
        }
 
-       string Annuaire::build_key(Contact *contact) {
+       string Annuaire::build_key(Contact *contact)
+       {
               string key = contact->build_key();
               return key;
        }
 
-       Contact* Annuaire::get_elt_by_id(int pid) {
+       Contact* Annuaire::get_elt_by_id(int pid)
+       {
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++) {
                      if (pid == it->second->get_identifiant())
@@ -114,10 +123,12 @@ namespace Manage {
               return nullptr;
        }
 
-       int Annuaire::get_next_pid() {
+       int Annuaire::get_next_pid()
+       {
               int pid = 0;
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
-              for (; it != map_annuaire.end(); it++) {
+              for (; it != map_annuaire.end(); it++)
+              {
                      if (pid < it->second->get_identifiant())
                             pid = it->second->get_identifiant();
               }
@@ -125,10 +136,12 @@ namespace Manage {
               return pid;
        }
 
-       void Annuaire::update_elt_by_id(int pid) {
+       void Annuaire::update_elt_by_id(int pid)
+       {
               Contact *contact = get_elt_by_id(pid);
-              if (contact) {
-                     cout << "update " << endl;
+              if (contact)
+              {
+                     cout << "This method not used, see Concole class" << endl;
               }
        }
 
@@ -200,10 +213,11 @@ namespace Manage {
               return nullptr;
        }
 
-       void Annuaire::display() {
+       void Annuaire::display()
+       {
               cout.fill(' ');
               if (this->map_annuaire.size() == 0) {
-                     cout << "Aucun contact dans la liste" << endl << endl;
+                     cout << "Aucun contact dans l'annuaire" << endl << endl;
                      return;
               }
                           cout << setw(5)   << "Id"
@@ -223,7 +237,8 @@ namespace Manage {
                             << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
-              for (; it != this->map_annuaire.end(); it++) {
+              for (; it != this->map_annuaire.end(); it++)
+              {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(it->second);
                      if (contact_prive) {
                             print_contact_prive(contact_prive);
@@ -262,9 +277,11 @@ namespace Manage {
               cout
                             << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
-              for (Contact *contact : vects) {
+              for (Contact *contact : vects)
+              {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
-                     if (contact_prive) {
+                     if (contact_prive)
+                     {
                             print_contact_prive(contact_prive);
                      } else {
                             ContactProfessionel *contact_prof =
@@ -395,7 +412,8 @@ namespace Manage {
 
        }
 
-       DateNaissance* Annuaire::build(string dat) {
+       DateNaissance* Annuaire::build(string dat)
+       {
               stringstream inputString(dat);
 
               string jour;
@@ -410,7 +428,8 @@ namespace Manage {
               return datenaissance;
        }
 
-       void Annuaire::buildContactPrive(string fileContactPrivate) {
+       void Annuaire::buildContactPrive(string fileContactPrivate)
+       {
               ifstream inputFile;
               inputFile.open(fileContactPrivate);
               string line = "";

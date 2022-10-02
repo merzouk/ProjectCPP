@@ -47,7 +47,7 @@ namespace Manage
                      void supprimer_contact_pid();
                      void modifier_contact_pid();
                      void load_datas(string fileContactPrivate, string fileContactPro);
-                     AdressePostale *new_adress();
+                     AdressePostale *new_address();
                      int get_next_pid();
                      bool check_email(string email);
        };

@@ -12,7 +12,8 @@ using namespace std;
 namespace Manage {
 
 
-       int check_input_value() {
+       int check_input_value()
+       {
               int opc;
               bool aux = true;
               cin.exceptions(std::istream::failbit);
@@ -32,18 +33,21 @@ namespace Manage {
               return opc;
        }
 
-       string Console::get_str_value() {
+       string Console::get_str_value()
+       {
               string str;
               cin >> str;
               return str;
        }
 
-       void Console::load_datas(string fileContactPrivate, string fileContactPro) {
+       void Console::load_datas(string fileContactPrivate, string fileContactPro)
+       {
               this->annuaire->load_annuaire_from_files(fileContactPrivate,
                             fileContactPro);
        }
 
-       void Console::rechercher_contact_nom() {
+       void Console::rechercher_contact_nom()
+       {
               cout << "Veuillez saisir le nom du contact" << endl;
               string nom = get_str_value();
               char *ptr = NULL;
@@ -56,11 +60,13 @@ namespace Manage {
                      this->annuaire->display(vects);
        }
 
-       void Console::afficher_annuaire() {
+       void Console::afficher_annuaire()
+       {
               this->annuaire->display();
        }
 
-       void Console::rechercher_contact_pid() {
+       void Console::rechercher_contact_pid()
+       {
 
               cout << "Veuillez saisir l'identifiant du contact" << endl;
               int pid = check_input_value();
@@ -76,8 +82,10 @@ namespace Manage {
 
        }
 
-       void Console::rechercher_contact_code_postale() {
-              cout << "Veuillez saisir le code postale du contact" << endl;
+       void Console::rechercher_contact_code_postale()
+       {
+              cout << "Veuillez saisir le code postale du contact"
+                   << endl;
               int zip_code = check_input_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_zip_code(
                             zip_code);
@@ -98,7 +106,8 @@ namespace Manage {
                      this->annuaire->display(contacts);
        }
 
-       void Console::rechercher_contact_ville() {
+       void Console::rechercher_contact_ville()
+       {
               cout << "Veuillez saisir le nom de la ville du contact" << endl;
               string ville = get_str_value();
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_town(ville);
@@ -121,10 +130,13 @@ namespace Manage {
               if(contact)
                      contact->infos();
               else
-                     cout << "Aucun contact trouve dans l'annuaire pour l'adresse mail : "<<email << endl;
+                     cout << "Aucun contact trouve dans l'annuaire pour l'adresse mail : "
+                          << email
+                          << endl;
        }
 
-       void Console::supprimer_contact_pid() {
+       void Console::supprimer_contact_pid()
+       {
               cout << "Veuillez saisir l'identifiant du contact" << endl;
               int pid = check_input_value();
               try {
@@ -132,9 +144,9 @@ namespace Manage {
               } catch (const ContactException &ex) {
                      cout << "Suppression en echec : " << ex.what() << endl;
               } catch (...) {
-                     cout
-                                   << "Erreur inattendue pendant la tentative de suppression du contact par son id "
-                                   << pid << endl;
+                     cout << "Erreur inattendue pendant la tentative de suppression du contact par son id "
+                          << pid
+                          << endl;
               }
 
        }
@@ -145,29 +157,35 @@ namespace Manage {
               cout << "Veuillez saisir l'identifiant du contact " << endl;
               int pid = check_input_value();
               Contact *contact = this->annuaire->get_elt_by_id(pid);
+              if(contact)
+              {
+                     ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
+                     if (contact_prive) {
+                            this->annuaire->print_contact_prive(contact_prive);
 
-              ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
-              if (contact_prive) {
-                     this->annuaire->print_contact_prive(contact_prive);
-
-              } else {
-                     ContactProfessionel *contact_prof =
-                                   dynamic_cast<ContactProfessionel*>(contact);
-                     this->annuaire->print_contact_professionnel(contact_prof);
+                     } else {
+                            ContactProfessionel *contact_prof =
+                                          dynamic_cast<ContactProfessionel*>(contact);
+                            this->annuaire->print_contact_professionnel(contact_prof);
+                     }
+                     try {
+                            AdressePostale *adr = new_address();
+                            contact->set_adressePostale(adr);
+                            cout << "L'adresse postale du contact est modifiee avec succes" << endl;
+                     } catch (...) {
+                            cout << "Erreur inattendue s'est produite pendant la tentative de modification de l'adresse postale"
+                                 << endl;
+                     }
               }
-              try {
-                     AdressePostale *adr = new_adress();
-                     contact->set_adressePostale(adr);
-                     cout << "L'adresse postale du contact est modifiee avec succes" << endl;
-              } catch (...) {
-                     cout
-                                   << "Erreur inattendue s'est produite pendant la tentative de modification de l'adresse postale"
-                                   << endl;
+              else
+              {
+                  cout << "Aucun contact trouve dans l'annuaire pour l'identifiant : " << pid << endl;
               }
 
        }
 
-       AdressePostale* Console::new_adress() {
+       AdressePostale* Console::new_address()
+       {
               int numero;
               string rue;
               string complement;
@@ -178,12 +196,10 @@ namespace Manage {
               cout << "Veuillez saisir le nom de la rue : " << endl;
               cin.ignore();
               getline(cin, rue);
-              cout << "Veuillez saisir le complement, sinon un espace et validez: "
-                            << endl;
+              cout << "Veuillez saisir le complement, sinon un espace et validez: " << endl;
               cin.ignore();
               getline(cin, complement);
               cout << "Veuillez saisir le code postale : " << endl;
-              ;
               code_postale = check_input_value();
               cout << "Veuillez saisir le nom de la ville : " << endl;
               cin.ignore();
@@ -193,7 +209,8 @@ namespace Manage {
               return adr;
        }
 
-       void Console::ajouter_contact_prive() {
+       void Console::ajouter_contact_prive()
+       {
               string nom;
               string prenom;
               string sexe;
@@ -213,9 +230,8 @@ namespace Manage {
                      getline(cin, sexe);
               }while(utils->validate_sexe(sexe) == 1);
               do{
-                     cout
-                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
-                                   << endl;
+                     cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
+                          << endl;
                      cin.clear();
                      getline(cin, situation);
               }while(utils->validate_statut(situation) == 1);
@@ -227,7 +243,7 @@ namespace Manage {
               jour = check_input_value();
 
               DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
-              AdressePostale *adressePostale = new_adress();
+              AdressePostale *adressePostale = new_address();
               char *n = NULL;
               n = utils->str_to_char(nom, n);
               char *p = NULL;
@@ -238,7 +254,8 @@ namespace Manage {
               this->annuaire->add_new_elt(contactprive);
        }
 
-       void Console::ajouter_contact_professionnel() {
+       void Console::ajouter_contact_professionnel()
+       {
               string nom;
               string prenom;
               string sexe;
@@ -260,9 +277,8 @@ namespace Manage {
                      getline(cin, sexe);
              }while(utils->validate_sexe(sexe) == 1);
              do{
-                     cout
-                                   << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres : "
-                                   << endl;
+                     cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
+                          << endl;
                      cin.clear();
                      getline(cin, situation);
              }while(utils->validate_statut(situation) == 1);
@@ -272,20 +288,19 @@ namespace Manage {
                      getline(cin, entreprise);
 
               do{
-                     cout
-                                   << "Veuillez saisir le statut juridique valide de l'entreprise SARL/SA/SAS/EURL : "
-                                   << endl;
+                     cout << "Veuillez saisir le statut juridique valide de l'entreprise (SARL/SA/SAS/EURL) : "
+                          << endl;
                      cin.clear();
                      getline(cin, statut);
               }while(utils->validate_entreprise_name(statut) == 1);
               do {
-                     cout << "Veuillez saisir une adresse  mail de contact valide : "
-                                   << endl;
+                     cout << "Veuillez saisir une adresse mail de contact valide : "
+                          << endl;
                      cin.clear();
                      getline(cin, email);
               } while (!utils->check_email(email));
 
-              AdressePostale *adressePostale = new_adress();
+              AdressePostale *adressePostale = new_address();
               char *n = NULL;
               n = utils->str_to_char(nom, n);
               char *entr = NULL;

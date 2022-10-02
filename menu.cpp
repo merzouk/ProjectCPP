@@ -44,7 +44,7 @@ namespace Manage
                do
                {
                   menu = -1;
-                         cout << endl << " ----------------------- MENU -----------------------" <<endl <<endl;
+                         cout<<  endl << " ----------------------- MENU -----------------------" <<endl <<endl;
                          cout<<"1.  Voir le contenu de l'annuaire "                              <<endl;
                          cout<<"2.  Ajouter un Contact prive a l'annuaire"                       <<endl;
                          cout<<"3.  Ajouter un Contact professionnel a l'annuaire"               <<endl;
