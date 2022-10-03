@@ -28,13 +28,15 @@ namespace Manage
                                    "\nAjout impossible, le contact n'est pas renseigne");
               }
               string key = contact->build_key();
-              if (!this->check_elt_by_key(key)) {
+              if (!this->check_elt_by_key(key))
+              {
                      this->map_annuaire[key] = contact;
-              } else {
+              }
+              else
+              {
                      cout << "Cle contact " << key << endl;
                      throw ContactException("\nAjout impossible, la cle existe dans l'annuaire");
               }
-
        }
 
        void Annuaire::delete_elt_by_key(string key)
@@ -72,7 +74,9 @@ namespace Manage
                      cout << "pid : " << pid << endl;
                      throw ContactException(
                                    "\nSuppression contact par identifiant en echec, le pid n'existe pas dans l'annuaire");
-              } else {
+              }
+              else
+              {
                      cout << "Le contact pid = " << pid
                                    << " est supprime de l'annuaire avec succes" << endl;
               }
@@ -88,7 +92,8 @@ namespace Manage
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
-              for (; it != map_annuaire.end(); it++) {
+              for (; it != map_annuaire.end(); it++)
+              {
                      if (key == it->first)
                             return it->second;
               }
@@ -138,7 +143,7 @@ namespace Manage
        {
               if(!contact)
               {
-                    cout << "LE contact n'est pas renseigne, impossible de construire la cle " << endl;
+                    cout << "Le contact n'est pas renseigne, impossible de construire la cle " << endl;
                     return "";
               }
               string key = contact->build_key();
@@ -240,7 +245,7 @@ namespace Manage
        vector<Contact*> Annuaire::get_list_elts_by_department(int departement)
        {
               vector<Contact*> contacts;
-               if(departement < 0 || departement > 100)
+              if(departement < 0 || departement > 100)
               {
                      cout << "Le code departement " << departement << " n'est pas valide" << endl;
                      return contacts;
@@ -248,9 +253,9 @@ namespace Manage
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
-                     int depart = (int) (float(
+                     int departmt = (int) (float(
                                    it->second->get_adressePostale()->get_code_postale()) / 1000.0);
-                     if (departement == depart)
+                     if (departement == departmt)
                             contacts.push_back(it->second);
               }
               return contacts;
@@ -330,9 +335,12 @@ namespace Manage
               for (; it != this->map_annuaire.end(); it++)
               {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(it->second);
-                     if (contact_prive) {
+                     if (contact_prive)
+                     {
                             print_contact_prive(contact_prive);
-                     } else {
+                     }
+                     else
+                     {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(it->second);
                             print_contact_professionnel(contact_prof);
@@ -341,7 +349,6 @@ namespace Manage
                                    << "*********************************************************************************************************************************************************************************************************************************"
                                    << endl;
               }
-
        }
 
        void Annuaire::display(vector<Contact*> vects)
@@ -374,7 +381,9 @@ namespace Manage
                      if (contact_prive)
                      {
                             print_contact_prive(contact_prive);
-                     } else {
+                     }
+                     else
+                     {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(contact);
                             print_contact_professionnel(contact_prof);
@@ -463,9 +472,19 @@ namespace Manage
               {
                      inputFile.open(fileContactPro);
               }
+              catch (const ifstream::failure& e)
+              {
+                      cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << "  " <<  fileContactPro << e.what() << endl;
+                      return;
+              }
               catch(const exception & ex)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionel " << fileContactPro << ex.what() << endl;
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << fileContactPro << "  " << ex.what() << endl;
+                     return;
+              }
+              catch(...)
+              {
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << fileContactPro << endl;
                      return;
               }
               string line = "";
@@ -519,7 +538,6 @@ namespace Manage
                                    id, n, p, sexe, situation, adressePostale);
                      this->add_new_elt(pro);
               }
-
        }
 
        DateNaissance* Annuaire::build_date_naissance(string date_naissance_str)
@@ -548,9 +566,19 @@ namespace Manage
               {
                      inputFile.open(fileContactPrivate);
               }
+              catch (const ifstream::failure& e)
+              {
+                      cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << "  " <<  fileContactPrivate << e.what() << endl;
+                      return;
+              }
               catch(const exception & ex)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prive " << fileContactPrivate << ex.what() << endl;
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << fileContactPrivate << "  " << ex.what() << endl;
+                     return;
+              }
+              catch(...)
+              {
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << fileContactPrivate << endl;
                      return;
               }
               string line = "";
