@@ -463,8 +463,6 @@ namespace Manage
               buildContactPrive(fileContactPrivate);
        }
 
-
-
        void Annuaire::buildContactPro(string fileContactPro)
        {
               ifstream inputFile;
