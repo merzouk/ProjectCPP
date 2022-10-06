@@ -2,8 +2,6 @@
 #define CONSOLE_H_FILE
 #include "Annuaire.hpp"
 #include "AdressePostale.hpp"
-#include <vector>
-#include <string>
 #include "ContactPrive.hpp"
 #include "ContactPrive.hpp"
 

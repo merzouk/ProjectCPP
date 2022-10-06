@@ -3,13 +3,12 @@
 #include <string.h>
 #include "ContactException.hpp"
 #include "AdressePostale.hpp"
-
-using namespace std;
-
 #include <iomanip>
 #include <ctime>
 #include <vector>
 #include "Utils.hpp"
+
+using namespace std;
 
 using namespace Manage;
 
