@@ -2,17 +2,21 @@
 
 OS=linux
 
-ifeq ($(OS), linux)
-	DELETE=rm
-else
-	DELETE=del
-endif
+
 
 CC = g++ -g -Wall -ansi -pedantic -std=c++20
 
 PROG=manage_prj
 ARCHIVE=sortie.zip
 TARGET_ARCHIVE=*.cpp *.hpp Makefile
+
+ifeq ($(OS), linux)
+	DELETE=rm -rf $(PROG) $(ARCHIVE)
+	ZIP=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE) 
+	CLEAN=rm -rf *.o
+else
+	DELETE=del $(PROG) $(ARCHIVE)
+endif
 
 #Identifier tous les fichiers .c de mon programme
 SRC = $(wildcard *.cpp)
@@ -31,12 +35,12 @@ $(PROG): $(OBJ)
 
 clean:
 	@echo "Suppresion des fichiers .o : " 
-	$(DELETE) -rf *.o
+	$(CLEAN)
 
 mrproper: clean
 	@echo "Suppresion du programme executable \"$(PROG)\" et du fichier archive \"$(ARCHIVE)\" : " 
-	$(DELETE) -rf $(PROG) $(ARCHIVE)
+	$(DELETE)
 
 zip:
 	@echo "Generation du fichier archive \"$(ARCHIVE)\" : " 
-	tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE) 
+	$(ZIP) 
