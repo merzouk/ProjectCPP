@@ -8,7 +8,7 @@ CC = g++ -g -Wall -ansi -pedantic -std=c++0x
 
 PROG=manage_prj
 ARCHIVE=sortie.zip
-TARGET_ARCHIVE=*.cpp *.hpp Makefile
+TARGET_ARCHIVE=sources/*.cpp header/*.hpp Makefile
 
 ifeq ($(OS), linux)
 	DELETE=rm -rf $(PROG) $(ARCHIVE)
