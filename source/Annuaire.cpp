@@ -1,8 +1,9 @@
-#include "Annuaire.hpp"
-#include "Contact.hpp"
-#include "ContactException.hpp"
-#include "ContactProfessionel.hpp"
-#include "ContactPrive.hpp"
+#include "../header/AdressePostale.hpp"
+#include "../header/Contact.hpp"
+#include "../header/ContactException.hpp"
+#include "../header/ContactProfessionel.hpp"
+#include "../header/ContactPrive.hpp"
+#include "../header/Annuaire.hpp"
 
 #include <iostream>
 #include <fstream>

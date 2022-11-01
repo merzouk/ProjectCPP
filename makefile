@@ -4,7 +4,7 @@ OS=linux
 
 
 
-CC = g++ -g -Wall -ansi -pedantic -std=c++20
+CC = g++ -g -Wall -ansi -pedantic -std=c++0x
 
 PROG=manage_prj
 ARCHIVE=sortie.zip
@@ -13,13 +13,13 @@ TARGET_ARCHIVE=*.cpp *.hpp Makefile
 ifeq ($(OS), linux)
 	DELETE=rm -rf $(PROG) $(ARCHIVE)
 	ZIP=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE) 
-	CLEAN=rm -rf *.o
+	CLEAN=rm -rf source/*.o
 else
 	DELETE=del $(PROG) $(ARCHIVE)
 endif
 
 #Identifier tous les fichiers .c de mon programme
-SRC = $(wildcard *.cpp)
+SRC = $(wildcard source/*.cpp)
 
 #Créer une liste des fichiers .o liés aux fichiers .c
 OBJ = $(SRC:.cpp=.o)

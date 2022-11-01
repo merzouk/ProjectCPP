@@ -1,9 +1,9 @@
-using namespace std;
+#include "../header/Utils.hpp"
+
 #include <iostream>
 #include <stdlib.h>
 #include <string>
 #include <regex>
-#include "Utils.hpp"
 
 using namespace std;
 

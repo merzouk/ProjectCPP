@@ -1,4 +1,4 @@
-#include "Contact.hpp"
+#include "../header/Contact.hpp"
 
 namespace Heritage {
 

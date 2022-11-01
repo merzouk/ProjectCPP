@@ -1,4 +1,4 @@
-#include "ContactPrive.hpp"
+#include "../header/ContactPrive.hpp"
 #include <ctime>
 
 namespace Heritage

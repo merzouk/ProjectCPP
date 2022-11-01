@@ -1,8 +1,9 @@
-#include "Console.hpp"
-#include "ContactException.hpp"
-#include "AdressePostale.hpp"
-#include "ContactPrive.hpp"
-#include "ContactProfessionel.hpp"
+#include "../header/Console.hpp"
+#include "../header/ContactException.hpp"
+#include "../header/AdressePostale.hpp"
+#include "../header/ContactPrive.hpp"
+#include "../header/ContactProfessionel.hpp"
+
 #include<regex>
 #include <fstream>
 #include <exception>

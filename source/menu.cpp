@@ -1,6 +1,6 @@
-#include "Menu.hpp"
+#include "../header/Menu.hpp"
 
-#include "Console.hpp"
+#include "../header/Console.hpp"
 
 namespace Manage
 {
