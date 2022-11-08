@@ -7,5 +7,5 @@ docs/
 *.o
 *.exe
 *.zip
-
+*.dat
 manage_prj
