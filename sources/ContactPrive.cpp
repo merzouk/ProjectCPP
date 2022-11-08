@@ -3,8 +3,6 @@
 
 namespace Heritage
 {
-
-
        bool anniversaire(int jour, int mois)
        {
               time_t now = time(0);
