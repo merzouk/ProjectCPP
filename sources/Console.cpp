@@ -64,7 +64,8 @@ namespace Manage {
        string Console::get_str_value()
        {
               string str;
-              cin.getline(cin, str);
+              getline(cin, str);
+              cin.ignore();
               return str;
        }
 
