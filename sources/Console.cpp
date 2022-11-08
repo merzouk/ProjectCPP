@@ -61,11 +61,19 @@ namespace Manage {
               return opc;
        }
 
-       string Console::get_str_value()
+       string Console::get_str_value(string key)
        {
               string str;
-              cin.ignore();
-              getline(cin, str);
+              try
+              {
+                     cin.ignore();
+                     getline(cin, str);
+              }
+              catch(exception & ex)
+              {
+                     cout << "Erreur lors de la saisie de la valeur de " << key << endl;
+                     str = "";
+              }
               return str;
        }
 
@@ -78,7 +86,7 @@ namespace Manage {
        void Console::rechercher_contact_nom()
        {
               cout << "Veuillez saisir le nom du contact : " << endl;
-              string nom = get_str_value();
+              string nom = get_str_value("Nom");
               char *ptr = NULL;
               ptr = utils->str_to_char(nom, ptr);
               vector<Contact*> vects = this->annuaire->get_list_elts_by_last_name(
@@ -95,7 +103,7 @@ namespace Manage {
        void Console::rechercher_contact_prenom()
        {
               cout << "Veuillez saisir le prenom du contact : " << endl;
-              string prenom = get_str_value();
+              string prenom = get_str_value("Prenom");
               char *ptr = NULL;
               vector<Contact*> vects = this->annuaire->get_list_elts_by_first_name(
                             utils->to_upper_first_name(utils->str_to_char(prenom, ptr)));
@@ -163,7 +171,7 @@ namespace Manage {
        void Console::rechercher_contact_ville()
        {
               cout << "Veuillez saisir le nom de la ville du contact" << endl;
-              string ville = get_str_value();
+              string ville = get_str_value("Ville");
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_town(ville);
               if(contacts.size() == 0)
                      cout << "Aucun contact trouve pour la ville : " << ville << endl;

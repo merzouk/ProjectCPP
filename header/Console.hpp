@@ -13,7 +13,7 @@ namespace Manage
 
               private:
                      Annuaire * annuaire;
-                     string get_str_value();
+                     string get_str_value(string key);
                       Utils * utils;
 
               public:
