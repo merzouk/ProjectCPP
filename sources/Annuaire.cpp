@@ -329,7 +329,7 @@ namespace Manage
 				   << setw(20)  << "Ville"
                                << setw(14)  << "Date Naiss"
                                << setw(30)  << "Email"								<< endl;
-              cout
+                     cout
                             << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -567,8 +567,8 @@ namespace Manage
               }
               catch (const ifstream::failure& e)
               {
-                      cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << "  " <<  fileContactPrivate << e.what() << endl;
-                      return;
+                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << "  " <<  fileContactPrivate << e.what() << endl;
+                     return;
               }
               catch(const exception & ex)
               {
