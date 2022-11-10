@@ -3,7 +3,8 @@
 
 #pragma once
 
-#include <iostream>
+#include <iostream>     // std::cout, std::ostream, std::ios
+#include <fstream>
 
 #include <ctime>
 #include <string>
@@ -58,6 +59,15 @@ namespace Manage
                         else                              return "\033[0;34m[INFO ]\033[0;0m"    + msg_logger;
                      }
 
+                     string static prepare_message_logger_file(int level_logger, string msg_logger)
+                     {
+                             if (level_logger == INFO)    return "[INFO ]"    + msg_logger;
+                        else if (level_logger == ERROR)   return "[ERROR ]"   + msg_logger;
+                        else if (level_logger == WARNING) return "[WARNING ]" + msg_logger;
+                        else if (level_logger == DEBUG)   return "[DEBUG ]"   + msg_logger;
+                        else                              return "[INFO ]"    + msg_logger;
+                     }
+
               public:
                      Logger(){}
                      ~Logger(){}
@@ -66,6 +76,28 @@ namespace Manage
                      {
                            message_logger = " [" + prepare_time_logger() + "] " + message_logger + "\n";
                            cout << prepare_message_logger(level_logger, message_logger);
+                     }
+
+                     void static log(int level_logger, string message_logger, string path_logger_file)
+                     {
+                           message_logger = " [" + prepare_time_logger() + "] " + message_logger + "\n";
+                           string msg_file = prepare_message_logger_file(level_logger, message_logger);
+                           fstream filestr;
+                           try
+                           {
+                                 filestr.open (path_logger_file, fstream::in | fstream::out | fstream::app);
+                                 filestr << msg_file;
+                                 filestr.close();
+                           }
+                           catch(exception & ex)
+                           {
+                                   cout << "Error during open in writing log file " << path_logger_file << endl;
+                                   cout << ex.what() << endl;
+                                   if(filestr)
+                                   {
+                                          filestr.close();
+                                   }
+                           }
                      }
        };
 }
