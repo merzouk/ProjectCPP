@@ -1,7 +1,7 @@
 #ifndef LOGGER_H_FILE
 #define LOGGER_H_FILE
 
-//#pragma once
+#pragma once
 
 #include <iostream>
 
