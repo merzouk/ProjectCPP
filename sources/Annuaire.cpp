@@ -56,7 +56,7 @@ namespace Manage
        {
               if(pid <= 0)
               {
-                     cout << "L'identifiant du contact "<< pid << " n'est pas valide " << endl;
+                     Logger::log(1,  "L'identifiant du contact "+ to_string(pid) + " n'est pas valide ");
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               bool delete_contact = false;
@@ -78,8 +78,8 @@ namespace Manage
               }
               else
               {
-                     cout << "Le contact pid = " << pid
-                                   << " est supprime de l'annuaire avec succes" << endl;
+                     Logger::log(1,  "Le contact pid = " + to_string(pid) +
+                                    " est supprime de l'annuaire avec succes");
               }
 
        }
@@ -89,7 +89,7 @@ namespace Manage
               int len = int(key.length());
               if(len == 0)
               {
-                     cout <<"La cle du contact "<< key << "n'est pas valide " << endl;
+                     Logger::log(1, "La cle du contact "+ key + "n'est pas valide ");
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -106,7 +106,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(keys.size() == 1)
               {
-                     cout << "Aucune cle renseignee, recherche impossible " << endl;
+                     Logger::log(1,  "Aucune cle renseignee, recherche impossible ");
                      return contacts;
               }
               for (string key : keys)
@@ -128,7 +128,7 @@ namespace Manage
               int len = int(key.length());
               if(len == 0)
               {
-                     cout <<"La cle du contact "<< key << "n'est pas valide " << endl;
+                     Logger::log(1, "La cle du contact "+ key + "n'est pas valide ");
                      return false;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -144,7 +144,7 @@ namespace Manage
        {
               if(!contact)
               {
-                    cout << "Le contact n'est pas renseigne, impossible de construire la cle " << endl;
+                    Logger::log(1,  "Le contact n'est pas renseigne, impossible de construire la cle ");
                     return "";
               }
               string key = contact->build_key();
@@ -155,7 +155,7 @@ namespace Manage
        {
               if(pid <= 0)
               {
-                     cout << "L'identifiant du contact "<< pid << " n'est pas valide " << endl;
+                     Logger::log(1,  "L'identifiant du contact "+to_string(pid) + " n'est pas valide ");
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -185,7 +185,7 @@ namespace Manage
               Contact *contact = get_elt_by_id(pid);
               if (contact)
               {
-                     cout << "This method not used, see Console class" << endl;
+                     Logger::log(1,  "This method not used, see Console class");
               }
        }
 
@@ -195,7 +195,7 @@ namespace Manage
               int len = int(lastname.length());
               if(len == 0)
               {
-                     cout << "Le nom " <<lastname << " n'est pas valide" << endl;
+                     Logger::log(1,  "Le nom " +lastname + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -213,7 +213,7 @@ namespace Manage
               int len = int(firstname.length());
               if(len == 0)
               {
-                     cout << "Le prenom " << firstname << " n'est pas valide" << endl;
+                     Logger::log(1,  "Le prenom " +firstname + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -230,7 +230,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(zip_code <= 1000)
               {
-                     cout << "Le code postale " << zip_code << " n'est pas valide" << endl;
+                     Logger::log(1,  "Le code postale " + to_string(zip_code) + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -248,7 +248,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(departement < 0 || departement > 100)
               {
-                     cout << "Le code departement " << departement << " n'est pas valide" << endl;
+                     Logger::log(1,  "Le code departement " + to_string(departement) + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -268,7 +268,7 @@ namespace Manage
               int len = int(town.length());
               if(len == 0)
               {
-                     cout << "Le nom de la ville " <<town << " n'est pas valide" << endl;
+                     Logger::log(1,  "Le nom de la ville " +town + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -285,7 +285,7 @@ namespace Manage
               int len = int(email.length());
               if(len == 0)
               {
-                     cout << "L'addresse mail " <<email << " n'est pas valide" << endl;
+                     Logger::log(1, "L'addresse mail " +email + " n'est pas valide");
                      return nullptr;
               }
               if(!utils->check_email(email))
@@ -313,7 +313,7 @@ namespace Manage
               cout.fill(' ');
               if (this->map_annuaire.size() == 0)
               {
-                     cout << "Aucun contact dans l'annuaire" << endl << endl;
+                     Logger::log(1,  "Aucun contact dans l'annuaire");
                      return;
               }
                           cout << setw(5)   << "Id"
@@ -357,7 +357,7 @@ namespace Manage
               cout.fill(' ');
               if (vects.size() == 0)
               {
-                     cout << "Aucun contact dans l'annuaire" << endl << endl;
+                     Logger::log(1,  "Aucun contact dans l'annuaire");
                      return;
               }
                    cout        << setw(5)   << "Id"
@@ -399,7 +399,7 @@ namespace Manage
        {
               if(!contact_prive)
               {
-                     cout << "Le contact n'est pas renseigne construction date au format string impossible" << endl;
+                     Logger::log(1, "Le contact n'est pas renseigne construction date au format string impossible");
                      return "";
               }
               string date_naissance =    to_string(contact_prive->get_dateNaissance()->get_jour())
@@ -414,7 +414,7 @@ namespace Manage
        {
               if (!contact_prive)
               {
-                     cout << "Le contact prive n'est pas renseigne" << endl;
+                     Logger::log(1,  "Le contact prive n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -439,7 +439,7 @@ namespace Manage
        {
               if (!contact_prof)
               {
-                     cout << "Le contact professionnel n'est pas renseigne" << endl;
+                     Logger::log(1, "Le contact professionnel n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -473,18 +473,18 @@ namespace Manage
               }
               catch (const ifstream::failure& e)
               {
-                      cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << "  " <<  fileContactPro << e.what() << endl;
+                      Logger::log(2,"Echec lors de la tentative d'ouverture du fichier des contacts professionnels " + fileContactPro +"  " + e.what());
                       return;
               }
               catch(const exception & ex)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << fileContactPro << "  " << ex.what() << endl;
-                     return;
+                      Logger::log(2, "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " + fileContactPro +"  "+ ex.what());
+                      return;
               }
               catch(...)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " << fileContactPro << endl;
-                     return;
+                      Logger::log(2, "Echec lors de la tentative d'ouverture du fichier des contacts professionnels " + fileContactPro );
+                      return;
               }
               string line = "";
               while (getline(inputFile, line))
@@ -567,17 +567,17 @@ namespace Manage
               }
               catch (const ifstream::failure& e)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << "  " <<  fileContactPrivate << e.what() << endl;
+                     Logger::log(2, "Echec lors de la tentative d'ouverture du fichier des contacts prives " + fileContactPrivate + "  "+e.what());
                      return;
               }
               catch(const exception & ex)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << fileContactPrivate << "  " << ex.what() << endl;
+                     Logger::log(2, "Echec lors de la tentative d'ouverture du fichier des contacts prives " + fileContactPrivate + "  "+ex.what());
                      return;
               }
               catch(...)
               {
-                     cout << "Echec lors de la tentative d'ouverture du fichier des contacts prives " << fileContactPrivate << endl;
+                     Logger::log(2, "Echec lors de la tentative d'ouverture du fichier des contacts prives " + fileContactPrivate);
                      return;
               }
               string line = "";

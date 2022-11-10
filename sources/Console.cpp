@@ -4,9 +4,18 @@
 #include "../header/ContactPrive.hpp"
 #include "../header/ContactProfessionel.hpp"
 
-#include<regex>
-#include <fstream>
+
+#include <regex>
 #include <exception>
+
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cstring>
+#include <vector>
+#include <sstream>
+#include <cstring>
+#include <bits/stdc++.h>
 
 using namespace Errors;
 
@@ -71,7 +80,7 @@ namespace Manage {
               }
               catch(exception & ex)
               {
-                     cout << "Erreur lors de la saisie de la valeur de " << key << endl;
+                      Logger::log(2, "Erreur lors de la saisie de la valeur de " +key );
                      str = "";
               }
               return str;
@@ -92,7 +101,7 @@ namespace Manage {
               vector<Contact*> vects = this->annuaire->get_list_elts_by_last_name(
                             utils->to_upper_last_name(ptr));
               if(vects.size() == 0)
-                     cout << "Aucun contact trouve pour le nom : " << nom << endl;
+                      Logger::log(1, "Aucun contact trouve pour le nom : " + nom );
               else if(vects.size() == 1)
                      vects[0]->infos();
               else
@@ -108,7 +117,7 @@ namespace Manage {
               vector<Contact*> vects = this->annuaire->get_list_elts_by_first_name(
                             utils->to_upper_first_name(utils->str_to_char(prenom, ptr)));
               if(vects.size() == 0)
-                     cout << "Aucun contact trouve pour le prenom : " << prenom << endl;
+                     Logger::log(1, "Aucun contact trouve pour le prenom : " + prenom);
               else if(vects.size() == 1)
                      vects[0]->infos();
               else
@@ -135,7 +144,7 @@ namespace Manage {
                                    dynamic_cast<ContactProfessionel*>(contact);
                      if(contact_prof)
                          contact_prof->infos();
-                     cout << "Aucun contact trouve pour l'identifiant : " << pid << endl;
+                      Logger::log(1, "Aucun contact trouve pour l'identifiant : " +to_string(pid));
               }
        }
 
@@ -147,7 +156,7 @@ namespace Manage {
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_zip_code(
                             zip_code);
               if(contacts.size() == 0)
-                     cout << "Aucun contact trouve pour le code postale : " << zip_code << endl;
+                      Logger::log(1,"Aucun contact trouve pour le code postale : " + zip_code);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -161,7 +170,7 @@ namespace Manage {
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_department(
                             departement);
                if(contacts.size() == 0)
-                     cout << "Aucun contact trouve pour le departement : " << departement << endl;
+                      Logger::log(1, "Aucun contact trouve pour le departement : " +departement);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -174,7 +183,7 @@ namespace Manage {
               string ville = get_str_value("Ville");
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_town(ville);
               if(contacts.size() == 0)
-                     cout << "Aucun contact trouve pour la ville : " << ville << endl;
+                      Logger::log(1, "Aucun contact trouve pour la ville : " + ville);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -194,9 +203,7 @@ namespace Manage {
               if(contact)
                      contact->infos();
               else
-                     cout << "Aucun contact trouve dans l'annuaire pour l'adresse mail : "
-                          << email
-                          << endl;
+                      Logger::log(1, "Aucun contact trouve dans l'annuaire pour l'adresse mail : " + email);
        }
 
        void Console::supprimer_contact_pid()
@@ -206,17 +213,17 @@ namespace Manage {
               try
               {
                      this->annuaire->delete_elt_by_id(pid);
-                     cout << "La suppression du contact id : " << pid << " s'est correctement terminee" << endl;
+                      Logger::log(1,  "La suppression du contact id : " + to_string(pid) + " s'est correctement terminee");
               }
               catch (const ContactException &ex)
               {
-                     cout << "Suppression en echec : " << ex.what() << endl;
+                      Logger::log(2,  "Suppression en echec : " );
+                      Logger::log(2, ex.what());
               }
               catch (...)
               {
-                     cout << "Erreur inattendue pendant la tentative de suppression du contact par son id "
-                          << pid
-                          << endl;
+                     Logger::log(2, "Erreur inattendue pendant la tentative de suppression du contact par son id "+
+                          to_string(pid));
               }
 
        }
@@ -245,17 +252,16 @@ namespace Manage {
                      {
                             AdressePostale *adr = new_address();
                             contact->set_adressePostale(adr);
-                            cout << "L'adresse postale du contact est modifiee avec succes" << endl;
+                            Logger::log(1, "L'adresse postale du contact est modifiee avec succes");
                      }
                      catch (...)
                      {
-                            cout << "Erreur inattendue s'est produite pendant la tentative de modification de l'adresse postale"
-                                 << endl;
+                           Logger::log(2, "Erreur inattendue s'est produite pendant la tentative de modification de l'adresse postale");
                      }
               }
               else
               {
-                  cout << "Aucun contact trouve dans l'annuaire pour l'identifiant : " << pid << endl;
+                  Logger::log(1,"Aucun contact trouve dans l'annuaire pour l'identifiant : " +to_string(pid));
               }
 
        }
@@ -287,15 +293,17 @@ namespace Manage {
               }
               catch(const std::ios_base::failure& ex)
               {
-                       cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << ex.what() << endl;
+                       Logger::log(2, "Erreur inattendue durant la tentative de modification de l'addresse postale ");
+                       Logger::log(2, ex.what());
               }
               catch (const exception& ex)
               {
-                  cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << ex.what() << endl;
+                  Logger::log(2, "Erreur inattendue durant la tentative de modification de l'addresse postale ");
+                  Logger::log(2, ex.what());
               }
               catch(...)
               {
-                      cout << "Erreur inattendue durant la tentative de modification de l'addresse postale" << endl;
+                      Logger::log(2, "Erreur inattendue durant la tentative de modification de l'addresse postale");
               }
               return nullptr;
        }
@@ -343,7 +351,7 @@ namespace Manage {
                      AdressePostale *adressePostale = new_address();
                      if(!adressePostale)
                      {
-                            cout << "Erreur inattendue pendant la tentative d'ajout du contact prive" << endl;
+                            Logger::log(2, "Erreur inattendue pendant la tentative d'ajout du contact prive");
                             return;
                      }
                      char *n = NULL;
@@ -354,19 +362,21 @@ namespace Manage {
                      ContactPrive *contactprive = new ContactPrive(dateNaissance, identifiant, n,
                                    p, sexe, situation, adressePostale);
                      this->annuaire->add_new_elt(contactprive);
-                     cout << "Le nouveau contact prive est ajoute a l'annuaire avec succes" << endl;
+                     Logger::log(1, "Le nouveau contact prive est ajoute a l'annuaire avec succes");
               }
-              catch(const std::ios_base::failure& ex)
+              catch( std::ios_base::failure& ex)
               {
-                      cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << ex.what() << endl;
+                      Logger::log(2, "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive ") ;
+                      Logger::log(2, ex.what());
               }
-              catch (const exception& ex)
+              catch ( exception& ex)
               {
-                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << ex.what() << endl;
+                     Logger::log(2, "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive ") ;
+                     Logger::log(2, ex.what());
               }
               catch(...)
               {
-                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive" << endl;
+                     Logger::log(2, "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive");
               }
        }
 
@@ -424,7 +434,7 @@ namespace Manage {
                      AdressePostale *adressePostale = new_address();
                      if(!adressePostale)
                      {
-                            cout << "Erreur inattendue pendant la tentative d'ajout du contact professionnel" << endl;
+                            Logger::log(2,"Erreur inattendue pendant la tentative d'ajout du contact professionnel");
                             return;
                      }
                      char *n = NULL;
@@ -437,19 +447,21 @@ namespace Manage {
                      ContactProfessionel *contactpros = new ContactProfessionel(entr, statut,
                                    email, identifiant, n, p, sexe, situation, adressePostale);
                      this->annuaire->add_new_elt(contactpros);
-                     cout << "Le nouveau contact professionnel est ajoute a l'annuaire avec succes" << endl;
+                     Logger::log(1,  "Le nouveau contact professionnel est ajoute a l'annuaire avec succes");
               }
               catch(const std::ios_base::failure& ex)
               {
-                      cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << ex.what() << endl;
+                      Logger::log(2,  "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel ") ;
+                      Logger::log(2, ex.what());
               }
-              catch (const exception& ex)
+              catch (const exception & ex)
               {
-                     cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << ex.what() << endl;
+                     Logger::log(2,  "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel ") ;
+                     Logger::log(2, ex.what());
               }
               catch(...)
               {
-                       cout << "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel" << endl;
+                     Logger::log(2,  "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel");
               }
        }
 

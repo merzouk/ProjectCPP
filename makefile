@@ -4,7 +4,7 @@ OS=linux
 
 
 
-CC = g++ -g -Wall -ansi -pedantic -std=c++0x
+CC = g++ -Wall -ansi -pedantic -std=c++0x
 
 PROG=manage_prj
 ARCHIVE=sortie.zip

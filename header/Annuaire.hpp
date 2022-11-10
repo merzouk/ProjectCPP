@@ -5,6 +5,7 @@
 #include "ContactPrive.hpp"
 #include "ContactProfessionel.hpp"
 #include "Utils.hpp"
+#include "Logger.hpp"
 
 using namespace std;
 using namespace MapTools;

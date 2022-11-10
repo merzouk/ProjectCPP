@@ -5,6 +5,10 @@
 #include "ContactPrive.hpp"
 #include "ContactPrive.hpp"
 
+#include <string>
+
+using namespace std;
+
 namespace Manage
 {
 
