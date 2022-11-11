@@ -105,7 +105,7 @@ namespace Manage
 
 
 
-                     void static check_file_size(std::string filename, std::string path_file_archive)
+                     void static check_file_size(std::string filename, std::string path_file_archive, long limit_size_file_log)
                      {
                          try
                          {
@@ -113,7 +113,7 @@ namespace Manage
                                 //std::cout << "The size of : " << p.u8string() << " is " << std::filesystem::file_size(p) << " bytes.\n";
                                 long size_file = std::filesystem::file_size(p);
 
-                                if(size_file >= 15000)
+                                if(size_file >= limit_size_file_log)
                                 {
                                        string file_to_archive = path_file_archive + prepare_file_logger_archive();
                                        try
@@ -142,9 +142,9 @@ namespace Manage
                            cout << prepare_message_logger(level_logger, message_logger);
                      }
 
-                     void static log(int level_logger, string message_logger, string path_logger_file , std::string path_file_archive)
+                     void static log(int level_logger, string message_logger, string path_logger_file , std::string path_file_archive, long limit_size_file_log)
                      {
-                           check_file_size(path_logger_file, path_file_archive);
+                           check_file_size(path_logger_file, path_file_archive, limit_size_file_log);
                            message_logger = " [" + prepare_time_logger() + "] " + message_logger + "\n";
                            string msg_file = prepare_message_logger_file(level_logger, message_logger);
                            fstream filestr;
