@@ -10,8 +10,6 @@
 #include <ctime>
 #include <string>
 
-#include <filesystem>
-
 using namespace std;
 
 namespace Manage
@@ -53,7 +51,7 @@ namespace Manage
                         return date_str;
                      }
 
-                     string static prepare_file_logger_archive()
+                     string static prepare_file_logger_archive(int size_file)
                      {
                         // current date/time based on current system
                         time_t now = time(0);
@@ -81,7 +79,7 @@ namespace Manage
                         (ltm->tm_mday < 10) ? (str_day = "0"+to_string(ltm->tm_mday)) : (str_day = to_string(ltm->tm_mday));
 
                         string date_str = str_year +"_"+ str_month + "_" + str_day + "_"
-                                          + str_hour+"_"+str_minute+"_"+str_seconde;
+                                          + str_hour+"_"+str_minute+"_"+str_seconde +"_"+to_string(size_file);
                         return date_str;
                      }
 
@@ -103,26 +101,26 @@ namespace Manage
                         else                              return "[INFO ]"    + msg_logger;
                      }
 
-
-
-                     void static check_file_size(std::string filename, std::string path_file_archive, long limit_size_file_log)
+                     void static check_file_size(std::string filename, std::string path_file_archive, int limit_size_file_log, string shell_file_mv)
                      {
                          try
                          {
-                                std::filesystem::path p{filename};
-                                //std::cout << "The size of : " << p.u8string() << " is " << std::filesystem::file_size(p) << " bytes.\n";
-                                long size_file = std::filesystem::file_size(p);
+                                ifstream in_file(filename, ios::binary);
+                                in_file.seekg(0, ios::end);
+                                int size_file = in_file.tellg();
 
                                 if(size_file >= limit_size_file_log)
                                 {
-                                       string file_to_archive = path_file_archive + prepare_file_logger_archive();
+                                       string file_to_archive = path_file_archive + prepare_file_logger_archive(size_file);
                                        try
                                        {
-                                              std::filesystem::rename(filename, file_to_archive);
+                                             string command = shell_file_mv + "  " + filename + " " +file_to_archive;
+                                             system(command.c_str());
                                        }
-                                       catch (std::filesystem::filesystem_error& e)
+                                       catch (exception & e)
                                        {
-                                              std::cout << "Error during move file \"" << filename << "\" to \"" << file_to_archive << "\""<< e.what() << std::endl;
+                                              std::cout << "Error during move file \"" << filename << "\" to \"" << file_to_archive << "\""<< std::endl;
+                                              std::cout << "Details : " << e.what() << std::endl;
                                        }
                                 }
                          }
@@ -142,22 +140,22 @@ namespace Manage
                            cout << prepare_message_logger(level_logger, message_logger);
                      }
 
-                     void static log(int level_logger, string message_logger, string path_logger_file , std::string path_file_archive, long limit_size_file_log)
+                     void static log(int level_logger, string message_logger, string path_logger_file , std::string path_file_archive, int limit_size_file_log, string shell_file_mv)
                      {
-                           check_file_size(path_logger_file, path_file_archive, limit_size_file_log);
+                           check_file_size(path_logger_file, path_file_archive, limit_size_file_log, shell_file_mv);
                            message_logger = " [" + prepare_time_logger() + "] " + message_logger + "\n";
-                           string msg_file = prepare_message_logger_file(level_logger, message_logger);
+                           message_logger = prepare_message_logger_file(level_logger, message_logger);
                            fstream filestr;
                            try
                            {
                                  filestr.open (path_logger_file, fstream::in | fstream::out | fstream::app);
-                                 filestr << msg_file;
+                                 filestr << message_logger;
                                  filestr.close();
                            }
                            catch(exception & ex)
                            {
-                                 cout << "Error during open in writing log file " << path_logger_file << endl;
-                                 cout << ex.what() << endl;
+                                 cout << "Error during open in writing log file : " << path_logger_file << endl;
+                                 cout << "Details : " << ex.what() << endl;
                                  if(filestr)
                                  {
                                       filestr.close();
