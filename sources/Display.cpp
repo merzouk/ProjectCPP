@@ -3,6 +3,24 @@
 
 namespace Manage
 {
+       void display_header_table()
+       {
+              cout.fill(' ');
+                          cout << setw(5)   << "Id"
+                               << setw(30)  << "Nom"
+                               << setw(30)  << "Prenom"
+				   << setw(6)   << "Sexe"
+				   << setw(10)  << "Entre"
+				   << setw(6)   << "Stat"
+				   << setw(5)   << "Num"
+				   << setw(40)  << "Rue"
+				   << setw(15)  << "Compl"
+				   << setw(6)   << "C_P"
+				   << setw(20)  << "Ville"
+                               << setw(14)  << "Date Naiss"
+                               << setw(30)  << "Email"
+                               << endl;
+       }
 
        string format_date(ContactPrive *contact_prive)
        {
@@ -75,19 +93,7 @@ namespace Manage
                      Logger::log(1,  "Aucun contact dans l'annuaire");
                      return;
               }
-                   cout        << setw(5)   << "Id"
-                               << setw(30)  << "Nom"
-                               << setw(30)  << "Prenom"
-				   << setw(6)   << "Sexe"
-				   << setw(10)  << "Entre"
-				   << setw(6)   << "Stat"
-				   << setw(5)   << "Num"
-				   << setw(40)  << "Rue"
-				   << setw(15)  << "Compl"
-				   << setw(6)   << "C_P"
-				   << setw(20)  << "Ville"
-				   << setw(14)  << "Date Naiss"
-                               << setw(30)  << "Email"								<< endl;
+              display_header_table();
               cout
                             << "*********************************************************************************************************************************************************************************************************************************"
                             << endl;
@@ -112,28 +118,16 @@ namespace Manage
 
        void Display::display(map<string, Contact*> map_annuaire)
        {
-              cout.fill(' ');
+
               if (map_annuaire.size() == 0)
               {
                      Logger::log(1,  "Aucun contact dans l'annuaire");
                      return;
               }
-                          cout << setw(5)   << "Id"
-                               << setw(30)  << "Nom"
-                               << setw(30)  << "Prenom"
-				   << setw(6)   << "Sexe"
-				   << setw(10)  << "Entre"
-				   << setw(6)   << "Stat"
-				   << setw(5)   << "Num"
-				   << setw(40)  << "Rue"
-				   << setw(15)  << "Compl"
-				   << setw(6)   << "C_P"
-				   << setw(20)  << "Ville"
-                               << setw(14)  << "Date Naiss"
-                               << setw(30)  << "Email"								<< endl;
-                     cout
-                            << "*********************************************************************************************************************************************************************************************************************************"
-                            << endl;
+              display_header_table();
+              cout
+                  << "*********************************************************************************************************************************************************************************************************************************"
+                  << endl;
               map<string, Contact*>::iterator it = map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
