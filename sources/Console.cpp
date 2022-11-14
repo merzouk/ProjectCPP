@@ -105,7 +105,7 @@ namespace Manage {
               else if(vects.size() == 1)
                      vects[0]->infos();
               else
-                     this->annuaire->display(vects);
+                     this->display->display(vects);
               free(ptr);
        }
 
@@ -121,13 +121,14 @@ namespace Manage {
               else if(vects.size() == 1)
                      vects[0]->infos();
               else
-                     this->annuaire->display(vects);
+                     this->display->display(vects);
               free(ptr);
        }
 
        void Console::afficher_annuaire()
        {
-              this->annuaire->display();
+              map<string, Contact*> map_annuaire = this->annuaire->get_map_annuaire();
+              this->display->display(map_annuaire);
        }
 
        void Console::rechercher_contact_pid()
@@ -160,7 +161,7 @@ namespace Manage {
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
-                     this->annuaire->display(contacts);
+                     this->display->display(contacts);
        }
 
        void Console::rechercher_contact_departement()
@@ -174,7 +175,7 @@ namespace Manage {
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
-                     this->annuaire->display(contacts);
+                     this->display->display(contacts);
        }
 
        void Console::rechercher_contact_ville()
@@ -187,7 +188,7 @@ namespace Manage {
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
-                     this->annuaire->display(contacts);
+                     this->display->display(contacts);
        }
 
        void Console::rechercher_contact_email()
@@ -239,14 +240,14 @@ namespace Manage {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
                      if (contact_prive)
                      {
-                            this->annuaire->print_contact_prive(contact_prive);
+                            this->display->print_contact_prive(contact_prive);
 
                      }
                      else
                      {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(contact);
-                            this->annuaire->print_contact_professionnel(contact_prof);
+                            this->display->print_contact_professionnel(contact_prof);
                      }
                      try
                      {

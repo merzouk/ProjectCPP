@@ -4,6 +4,9 @@
 #include "AdressePostale.hpp"
 #include "ContactPrive.hpp"
 #include "ContactPrive.hpp"
+#include "Display.hpp"
+#include "Contact.hpp"
+#include <map>
 
 #include <string>
 
@@ -19,12 +22,14 @@ namespace Manage
                      Annuaire * annuaire;
                      string get_str_value(string key);
                       Utils * utils;
+                      Display * display;
 
               public:
                      Console()
                      {
                             this->annuaire = new Annuaire();
                             this->utils = new Utils();
+                            this->display = new Display();
                      }
                      ~Console()
                      {
@@ -32,6 +37,8 @@ namespace Manage
                             this->annuaire = nullptr;
                             delete this->utils;
                             this->utils = nullptr;
+                            delete this->display;
+                            this->display = nullptr;
                      }
                      Annuaire *get_annuaire()
                      {

@@ -6,6 +6,7 @@
 #include "ContactProfessionel.hpp"
 #include "Utils.hpp"
 #include "Logger.hpp"
+#include "Display.hpp"
 
 using namespace std;
 using namespace MapTools;
@@ -18,13 +19,17 @@ namespace Manage
        {
              private:
                      Utils * utils;
+                     Display *display_;
 
               public:
-                     Annuaire(){ this->utils = new Utils();}
+                     Annuaire(){ this->utils = new Utils(); this->display_ = new Display();}
                      ~Annuaire()
                         {
                                delete this->utils;
                                this->utils = nullptr;
+
+                               delete this->display_;
+                               this->display_ = nullptr;
                         }
 
                      /*virtual*/ void add_new_elt(Contact *contact)  override;
@@ -40,17 +45,18 @@ namespace Manage
                      /*virtual*/ vector<Contact*> get_list_elts_by_zip_code(int zip_code) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_department(int departement) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_town(string town) override;
-                     /*virtual*/ void display()  override;
-                     /*virtual*/ void display(vector<Contact *> vects) override;
+                     /*virtual*/ //void display()  override;
+
                      /*virtual*/ int size_list()  override;
                      /*virtual*/ bool check_elt_by_key(string key)  override;
                      /*virtual*/ string build_key(Contact *contact)  override;
-                     void print_contact_professionnel(ContactProfessionel *contact_prof );
-                     void print_contact_prive(ContactPrive *contact_prive );
+
                      void load_annuaire_from_files(string fileContactPrivate, string fileContactPro);
                      void buildContactPro(string fileContactPro);
                      void buildContactPrive(string fileContactPro);
                      DateNaissance *build_date_naissance(string date_naissance_str);
+                     map<string, Contact*> get_map_annuaire();
+
                      int get_next_pid();
        };
 }
