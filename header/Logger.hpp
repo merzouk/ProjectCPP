@@ -119,14 +119,14 @@ namespace Manage
                                        }
                                        catch (exception & e)
                                        {
-                                              std::cout << "Error during move file \"" << filename << "\" to \"" << file_to_archive << "\""<< std::endl;
-                                              std::cout << "Details : " << e.what() << std::endl;
+                                              std::cerr << "Error during move file \"" << filename << "\" to \"" << file_to_archive << "\""<< std::endl;
+                                              std::cerr << "Details : " << e.what() << std::endl;
                                        }
                                 }
                          }
                          catch(exception & ex)
                          {
-                                cout << ex.what() << endl;
+                                cerr << ex.what() << endl;
                          }
                      }
 
@@ -154,8 +154,8 @@ namespace Manage
                            }
                            catch(exception & ex)
                            {
-                                 cout << "Error during open in writing log file : " << path_logger_file << endl;
-                                 cout << "Details : " << ex.what() << endl;
+                                 cerr << "Error during open in writing log file : " << path_logger_file << endl;
+                                 cerr << "Details : " << ex.what() << endl;
                                  if(filestr)
                                  {
                                       filestr.close();
