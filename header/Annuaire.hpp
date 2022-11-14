@@ -6,7 +6,6 @@
 #include "ContactProfessionel.hpp"
 #include "Utils.hpp"
 #include "Logger.hpp"
-#include "Display.hpp"
 
 using namespace std;
 using namespace MapTools;
@@ -19,17 +18,13 @@ namespace Manage
        {
              private:
                      Utils * utils;
-                     Display *display_;
 
               public:
-                     Annuaire(){ this->utils = new Utils(); this->display_ = new Display();}
+                     Annuaire(){ this->utils = new Utils();}
                      ~Annuaire()
                         {
                                delete this->utils;
                                this->utils = nullptr;
-
-                               delete this->display_;
-                               this->display_ = nullptr;
                         }
 
                      /*virtual*/ void add_new_elt(Contact *contact)  override;
@@ -45,7 +40,6 @@ namespace Manage
                      /*virtual*/ vector<Contact*> get_list_elts_by_zip_code(int zip_code) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_department(int departement) override;
                      /*virtual*/ vector<Contact*> get_list_elts_by_town(string town) override;
-                     /*virtual*/ //void display()  override;
 
                      /*virtual*/ int size_list()  override;
                      /*virtual*/ bool check_elt_by_key(string key)  override;
