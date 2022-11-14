@@ -80,7 +80,7 @@ namespace Manage {
               }
               catch(exception & ex)
               {
-                      Logger::log(2, "Erreur lors de la saisie de la valeur de " +key );
+                     Logger::log(2, "Erreur lors de la saisie de la valeur de " +key );
                      str = "";
               }
               return str;
@@ -145,7 +145,7 @@ namespace Manage {
                                    dynamic_cast<ContactProfessionel*>(contact);
                      if(contact_prof)
                          contact_prof->infos();
-                      Logger::log(1, "Aucun contact trouve pour l'identifiant : " +to_string(pid));
+                      Logger::log(3, "Aucun contact trouve pour l'identifiant : " +to_string(pid));
               }
        }
 
@@ -157,7 +157,7 @@ namespace Manage {
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_zip_code(
                             zip_code);
               if(contacts.size() == 0)
-                      Logger::log(1,"Aucun contact trouve pour le code postale : " + zip_code);
+                      Logger::log(3,"Aucun contact trouve pour le code postale : " + zip_code);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -171,7 +171,7 @@ namespace Manage {
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_department(
                             departement);
                if(contacts.size() == 0)
-                      Logger::log(1, "Aucun contact trouve pour le departement : " +departement);
+                      Logger::log(3, "Aucun contact trouve pour le departement : " +departement);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -184,7 +184,7 @@ namespace Manage {
               string ville = get_str_value("Ville");
               vector<Contact*> contacts = this->annuaire->get_list_elts_by_town(ville);
               if(contacts.size() == 0)
-                      Logger::log(1, "Aucun contact trouve pour la ville : " + ville);
+                      Logger::log(3, "Aucun contact trouve pour la ville : " + ville);
               else if(contacts.size() == 1)
                      contacts[0]->infos();
               else
@@ -204,7 +204,7 @@ namespace Manage {
               if(contact)
                      contact->infos();
               else
-                      Logger::log(1, "Aucun contact trouve dans l'annuaire pour l'adresse mail : " + email);
+                      Logger::log(3, "Aucun contact trouve dans l'annuaire pour l'adresse mail : " + email);
        }
 
        void Console::supprimer_contact_pid()
@@ -262,7 +262,7 @@ namespace Manage {
               }
               else
               {
-                  Logger::log(1,"Aucun contact trouve dans l'annuaire pour l'identifiant : " +to_string(pid));
+                  Logger::log(3,"Aucun contact trouve dans l'annuaire pour l'identifiant : " +to_string(pid));
               }
 
        }

@@ -40,20 +40,21 @@ namespace Manage
               }
               else
               {
-                     cout << "Cle contact " << key << endl;
-                     throw ContactException("\nAjout impossible, la cle existe dans l'annuaire");
+                     throw ContactException("Cle contact " +key+"\nAjout impossible, la cle existe dans l'annuaire");
               }
        }
 
        void Annuaire::delete_elt_by_key(string key)
        {
-              if (this->check_elt_by_key(key)) {
+              if (this->check_elt_by_key(key))
+              {
                      delete this->map_annuaire[key];
                      this->map_annuaire.erase(key);
-              } else {
-                     cout << "Cle du contact " << key << endl;
+              }
+              else
+              {
                      throw ContactException(
-                                   "\nSuppression impossible, la cle n'existe pas dans l'annuaire");
+                                   "Cle du contact " + key +"\nSuppression impossible, la cle n'existe pas dans l'annuaire");
               }
        }
 
@@ -61,7 +62,8 @@ namespace Manage
        {
               if(pid <= 0)
               {
-                     Logger::log(1,  "L'identifiant du contact "+ to_string(pid) + " n'est pas valide ");
+                     Logger::log(3,  "L'identifiant du contact "+ to_string(pid) + " n'est pas valide ");
+                     return;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               bool delete_contact = false;
@@ -77,9 +79,8 @@ namespace Manage
               }
               if (!delete_contact)
               {
-                     cout << "pid : " << pid << endl;
                      throw ContactException(
-                                   "\nSuppression contact par identifiant en echec, le pid n'existe pas dans l'annuaire");
+                                 "pid : " + to_string(pid) +  "\nSuppression contact par identifiant en echec, le pid n'existe pas dans l'annuaire");
               }
               else
               {
@@ -94,7 +95,7 @@ namespace Manage
               int len = int(key.length());
               if(len == 0)
               {
-                     Logger::log(1, "La cle du contact "+ key + "n'est pas valide ");
+                     Logger::log(3, "La cle du contact "+ key + "n'est pas valide ");
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -111,7 +112,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(keys.size() == 1)
               {
-                     Logger::log(1,  "Aucune cle renseignee, recherche impossible ");
+                     Logger::log(3,  "Aucune cle renseignee, recherche impossible ");
                      return contacts;
               }
               for (string key : keys)
@@ -133,7 +134,7 @@ namespace Manage
               int len = int(key.length());
               if(len == 0)
               {
-                     Logger::log(1, "La cle du contact "+ key + "n'est pas valide ");
+                     Logger::log(3, "La cle du contact "+ key + "n'est pas valide ");
                      return false;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -149,7 +150,7 @@ namespace Manage
        {
               if(!contact)
               {
-                    Logger::log(1,  "Le contact n'est pas renseigne, impossible de construire la cle ");
+                    Logger::log(3,  "Le contact n'est pas renseigne, impossible de construire la cle ");
                     return "";
               }
               string key = contact->build_key();
@@ -160,7 +161,7 @@ namespace Manage
        {
               if(pid <= 0)
               {
-                     Logger::log(1,  "L'identifiant du contact "+to_string(pid) + " n'est pas valide ");
+                     Logger::log(3,  "L'identifiant du contact "+to_string(pid) + " n'est pas valide ");
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -190,7 +191,7 @@ namespace Manage
               Contact *contact = get_elt_by_id(pid);
               if (contact)
               {
-                     Logger::log(1,  "This method not used, see Console class");
+                     Logger::log(3,  "This method not used, see Console class");
               }
        }
 
@@ -200,7 +201,7 @@ namespace Manage
               int len = int(lastname.length());
               if(len == 0)
               {
-                     Logger::log(1,  "Le nom " +lastname + " n'est pas valide");
+                     Logger::log(3,  "Le nom " +lastname + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -218,7 +219,7 @@ namespace Manage
               int len = int(firstname.length());
               if(len == 0)
               {
-                     Logger::log(1,  "Le prenom " +firstname + " n'est pas valide");
+                     Logger::log(3,  "Le prenom " +firstname + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -235,7 +236,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(zip_code <= 1000)
               {
-                     Logger::log(1,  "Le code postale " + to_string(zip_code) + " n'est pas valide");
+                     Logger::log(3,  "Le code postale " + to_string(zip_code) + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -253,7 +254,7 @@ namespace Manage
               vector<Contact*> contacts;
               if(departement < 0 || departement > 100)
               {
-                     Logger::log(1,  "Le code departement " + to_string(departement) + " n'est pas valide");
+                     Logger::log(3,  "Le code departement " + to_string(departement) + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -273,7 +274,7 @@ namespace Manage
               int len = int(town.length());
               if(len == 0)
               {
-                     Logger::log(1,  "Le nom de la ville " +town + " n'est pas valide");
+                     Logger::log(3,  "Le nom de la ville " +town + " n'est pas valide");
                      return contacts;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
@@ -290,12 +291,12 @@ namespace Manage
               int len = int(email.length());
               if(len == 0)
               {
-                     Logger::log(1, "L'addresse mail " +email + " n'est pas valide");
+                     Logger::log(3, "L'addresse mail " +email + " n'est pas valide");
                      return nullptr;
               }
               if(!utils->check_email(email))
               {
-                     cout << "Le format de l'addresse mail " <<email << " n'est pas valide" << endl;
+                     Logger::log(3, "Le format de l'addresse mail " +email + " n'est pas valide");
                      return nullptr;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
