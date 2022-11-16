@@ -32,7 +32,7 @@ namespace MapTools
                      virtual vector<V*> get_list_elts_by_town(U town) = 0;
                      virtual vector<V*> get_list_elts_by_keys(vector<U> keys) = 0;
                      virtual T size_list() = 0;
-                     virtual bool check_elt_by_key(U u) = 0;
+                     virtual T check_elt_by_key(U u) = 0;
                      virtual U build_key(V *v) = 0;
        };
 }

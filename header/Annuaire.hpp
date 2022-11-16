@@ -42,7 +42,7 @@ namespace Manage
                      /*virtual*/ vector<Contact*> get_list_elts_by_town(string town) override;
 
                      /*virtual*/ int size_list()  override;
-                     /*virtual*/ bool check_elt_by_key(string key)  override;
+                     /*virtual*/ int check_elt_by_key(string key)  override;
                      /*virtual*/ string build_key(Contact *contact)  override;
 
                      void load_annuaire_from_files(string fileContactPrivate, string fileContactPro);

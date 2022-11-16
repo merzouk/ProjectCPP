@@ -34,7 +34,7 @@ namespace Manage
                                    "\nAjout impossible, le contact n'est pas renseigne");
               }
               string key = contact->build_key();
-              if (!this->check_elt_by_key(key))
+              if (this->check_elt_by_key(key) == 1)
               {
                      this->map_annuaire[key] = contact;
               }
@@ -46,7 +46,7 @@ namespace Manage
 
        void Annuaire::delete_elt_by_key(string key)
        {
-              if (this->check_elt_by_key(key))
+              if (this->check_elt_by_key(key) == 0)
               {
                      //delete this->map_annuaire[key];
                      this->map_annuaire.erase(key);
@@ -129,21 +129,21 @@ namespace Manage
               return this->map_annuaire.size();
        }
 
-       bool Annuaire::check_elt_by_key(string key)
+       int Annuaire::check_elt_by_key(string key)
        {
               int len = int(key.length());
               if(len == 0)
               {
                      Logger::log(3, "La cle du contact "+ key + "n'est pas valide ");
-                     return false;
+                     return 1;
               }
               map<string, Contact*>::iterator it = this->map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
                      if (key == it->first)
-                            return true;
+                            return 0;
               }
-              return false;
+              return 1;
        }
 
        string Annuaire::build_key(Contact *contact)
