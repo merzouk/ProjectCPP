@@ -63,11 +63,11 @@ namespace Manage
 	{
 		try
 		{
-			return stoi(s.c_str());
+                  return stoi(s.c_str());
 		}
 		catch (...)
 		{
-			std::cout << "Erreur de conversion string vers int " << s << std::endl;
+                  Logger::log(2, "Erreur de conversion string vers int " +s);
 		}
 		return -1;
 	}

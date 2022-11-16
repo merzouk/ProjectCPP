@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
+#include "Logger.hpp"
 
 
 using namespace std;

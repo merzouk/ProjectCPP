@@ -48,7 +48,7 @@ namespace Manage
        {
               if (this->check_elt_by_key(key))
               {
-                     delete this->map_annuaire[key];
+                     //delete this->map_annuaire[key];
                      this->map_annuaire.erase(key);
               }
               else
@@ -72,7 +72,7 @@ namespace Manage
                      if (pid == it->second->get_identifiant())
                      {
                             string key = build_key(it->second);
-                            delete this->map_annuaire[key];
+                            //delete this->map_annuaire[key];
                             this->map_annuaire.erase(key);
                             delete_contact = true;
                      }
