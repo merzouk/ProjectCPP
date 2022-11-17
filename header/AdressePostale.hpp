@@ -11,9 +11,9 @@ namespace Heritage
        {
              private:
                      int numero;
+                     int code_postale;
                      string rue;
                      string complement;
-                     int code_postale;
                      string ville;
              public:
                      AdressePostale(int numero, string rue, string complement, int code_postale, string ville)
@@ -28,15 +28,15 @@ namespace Heritage
                      ~AdressePostale(){}
 
                      int get_numero(){return this->numero;}
+                     int get_code_postale(){return this->code_postale;}
                      string get_rue(){return this->rue;}
                      string get_complement(){return this->complement;}
-                     int get_code_postale(){return this->code_postale;}
                      string get_ville(){return this->ville;}
 
                      void set_numero(int numero){this->numero = numero;}
+                     void set_code_postale(int ){this->code_postale = code_postale;}
                      void set_rue(string rue){this->rue = rue;}
                      void set_complement(string complement){this->complement = complement;}
-                     void set_code_postale(int ){this->code_postale = code_postale;}
                      void set_ville(string ville){this->ville = ville;}
                      void infos();
        };
