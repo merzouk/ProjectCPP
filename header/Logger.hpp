@@ -19,6 +19,32 @@ namespace Manage
               private:
                      enum LEVEL { INFO = 1 , ERROR = 2, WARNING = 3, DEBUG = 4 };
 
+                     string static convertToString(char * a)
+                     {
+                         string s = "";
+                         if(!a) return s;
+                         int i = 0;
+                         while(*(a + i) != '\0')
+                         {
+                             s = s + *(a + i);
+                             i++;
+                         }
+                         return s;
+                     }
+
+                     string static constConvertToString(const char * a)
+                     {
+                         string s = "";
+                         if(!a) return s;
+                         int i = 0;
+                         while(*(a + i) != '\0')
+                         {
+                             s = s + *(a+i);
+                             i++;
+                         }
+                         return s;
+                     }
+
                      string static prepare_time_logger()
                      {
                         // current date/time based on current system
@@ -140,6 +166,36 @@ namespace Manage
                            cout << prepare_message_logger(level_logger, message_logger);
                      }
 
+                     void static log(int level_logger, string message_logger, const char * ptr)
+                     {
+                           message_logger = " [" + prepare_time_logger() + "] " + message_logger + " " + constConvertToString(ptr)+ "\n";
+                           cout << prepare_message_logger(level_logger, message_logger);
+                     }
+
+                     void static log(int level_logger, string message_logger, char * ptr)
+                     {
+                           message_logger = " [" + prepare_time_logger() + "] " + message_logger + " "+convertToString(ptr) +"\n";
+                           cout << prepare_message_logger(level_logger, message_logger);
+                     }
+
+                     void static log(int level_logger, char* message_logger)
+                     {
+                           string msg_logger = " [" + prepare_time_logger() + "] " + convertToString(message_logger) + "\n";
+                           cout << prepare_message_logger(level_logger, msg_logger);
+                     }
+
+                     void static log(int level_logger, const char* message_logger)
+                     {
+                           string msg_logger = " [" + prepare_time_logger() + "] " + constConvertToString(message_logger) + "\n";
+                           cout << prepare_message_logger(level_logger, msg_logger);
+                     }
+
+                     void static log(int level_logger, int msg)
+                     {
+                           string message_logger = " [" + prepare_time_logger() + "] " + to_string(msg) + "\n";
+                           cout << prepare_message_logger(level_logger, message_logger);
+                     }
+
                      void static log(int level_logger, string message_logger, string path_logger_file , std::string path_file_archive, int limit_size_file_log, string shell_file_mv)
                      {
                            check_file_size(path_logger_file, path_file_archive, limit_size_file_log, shell_file_mv);
@@ -156,6 +212,14 @@ namespace Manage
                            {
                                  cerr << "Error during open in writing log file : " << path_logger_file << endl;
                                  cerr << "Details : " << ex.what() << endl;
+                                 if(filestr)
+                                 {
+                                      filestr.close();
+                                 }
+                           }
+                           catch(...)
+                           {
+                                 cerr << "Error during open in writing log file : " << path_logger_file << endl;
                                  if(filestr)
                                  {
                                       filestr.close();
