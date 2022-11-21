@@ -128,7 +128,19 @@ namespace Manage {
        void Console::afficher_annuaire()
        {
               map<string, Contact*> map_annuaire = this->annuaire->get_map_annuaire();
-              this->display->display(map_annuaire);
+              this->display->display(map_annuaire, 0);
+       }
+
+       void Console::afficher_annuaire_prive()
+       {
+              map<string, Contact*> map_annuaire = this->annuaire->get_map_annuaire();
+              this->display->display(map_annuaire, 1);
+       }
+
+       void Console::afficher_annuaire_pros()
+       {
+              map<string, Contact*> map_annuaire = this->annuaire->get_map_annuaire();
+              this->display->display(map_annuaire, 2);
        }
 
        void Console::rechercher_contact_pid()
@@ -367,7 +379,7 @@ namespace Manage {
               }
               catch( std::ios_base::failure& ex)
               {
-                      Logger::log(ERROR, "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive ") ;
+                      Logger::log(ERROR, "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact prive") ;
                       Logger::log(ERROR, ex.what());
               }
               catch ( exception& ex)
@@ -435,7 +447,7 @@ namespace Manage {
                      AdressePostale *adressePostale = new_address();
                      if(!adressePostale)
                      {
-                            Logger::log(ERROR,"Erreur inattendue pendant la tentative d'ajout du contact professionnel");
+                            Logger::log(ERROR, "Erreur inattendue pendant la tentative d'ajout du contact professionnel");
                             return;
                      }
                      char *n = NULL;
@@ -453,12 +465,12 @@ namespace Manage {
               catch(const std::ios_base::failure& ex)
               {
                       Logger::log(ERROR,  "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel ") ;
-                      Logger::log(ERROR, ex.what());
+                      Logger::log(ERROR,  ex.what());
               }
               catch (const exception & ex)
               {
                      Logger::log(ERROR,  "Erreur inattendue durant la tentative d'ajout a l'annuaire du nouveau contact professionnel ") ;
-                     Logger::log(ERROR, ex.what());
+                     Logger::log(ERROR,  ex.what());
               }
               catch(...)
               {

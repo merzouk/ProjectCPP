@@ -28,7 +28,7 @@ namespace Manage
        {
               if(!contact_prive)
               {
-                     Logger::log(INFO, "Le contact n'est pas renseigne construction date au format string impossible");
+                     Logger::log(INFO, "Le contact n'est pas renseigne, construction date au format string impossible");
                      return "";
               }
               string date_naissance =    to_string(contact_prive->get_dateNaissance()->get_jour())
@@ -43,7 +43,7 @@ namespace Manage
        {
               if (!contact_prive)
               {
-                     Logger::log(INFO,  "Le contact prive n'est pas renseigne");
+                     //Logger::log(INFO,  "Le contact prive n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -68,7 +68,7 @@ namespace Manage
        {
               if (!contact_prof)
               {
-                     Logger::log(INFO, "Le contact professionnel n'est pas renseigne");
+                     //Logger::log(INFO, "Le contact professionnel n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -96,27 +96,27 @@ namespace Manage
                      return;
               }
               display_header_table();
-              cout << delimiter
-                   << endl;
+              cout << delimiter << endl;
               for (Contact *contact : vects)
               {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(contact);
                      if (contact_prive)
                      {
                             print_contact_prive(contact_prive);
+                            cout << delimiter << endl;
                      }
                      else
                      {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(contact);
                             print_contact_professionnel(contact_prof);
+                            cout << delimiter << endl;
                      }
-                     cout << delimiter
-                          << endl;
+
               }
        }
 
-       void Display::display(map<string, Contact*> map_annuaire)
+       void Display::display(map<string, Contact*> map_annuaire, int mode)
        {
 
               if (map_annuaire.size() == 0)
@@ -125,24 +125,27 @@ namespace Manage
                      return;
               }
               display_header_table();
-              cout << delimiter
-                   << endl;
+              cout << delimiter << endl;
               map<string, Contact*>::iterator it = map_annuaire.begin();
               for (; it != map_annuaire.end(); it++)
               {
                      ContactPrive *contact_prive = dynamic_cast<ContactPrive*>(it->second);
-                     if (contact_prive)
+                     if (contact_prive && (mode == 0 || mode == 1))
                      {
                             print_contact_prive(contact_prive);
+                            cout << delimiter << endl;
                      }
-                     else
+                     else if(mode == 0 || mode == 2)
                      {
                             ContactProfessionel *contact_prof =
                                           dynamic_cast<ContactProfessionel*>(it->second);
-                            print_contact_professionnel(contact_prof);
+                            if(contact_prof)
+                            {
+                                   print_contact_professionnel(contact_prof);
+                                   cout << delimiter << endl;
+                            }
                      }
-                     cout << delimiter
-                          << endl;
+
               }
        }
 }

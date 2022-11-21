@@ -45,6 +45,8 @@ namespace Manage
                             return this->annuaire;
                      }
                      void afficher_annuaire();
+                     void afficher_annuaire_prive();
+                     void afficher_annuaire_pros();
                      void ajouter_contact_prive();
                      void ajouter_contact_professionnel();
                      void rechercher_contact_pid();

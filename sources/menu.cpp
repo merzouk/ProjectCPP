@@ -46,17 +46,19 @@ namespace Manage
                   menu = -1;
                          cout<<  endl << " ----------------------- MENU -----------------------" <<endl <<endl;
                          cout<<"1.  Voir le contenu de l'annuaire "                              <<endl;
-                         cout<<"2.  Ajouter un Contact prive a l'annuaire"                       <<endl;
-                         cout<<"3.  Ajouter un Contact professionnel a l'annuaire"               <<endl;
-                         cout<<"4.  Rechercher un Contact par son numero unique"                 <<endl;
-                         cout<<"5.  Rechercher un Contact par son nom"                           <<endl;
-                         cout<<"6.  Rechercher un Contact par son prenom"                        <<endl;
-                         cout<<"7.  Rechercher un Contact par son code postale"                  <<endl;
-                         cout<<"8.  Rechercher un contact par son Departement"                   <<endl;
-                         cout<<"9.  Rechercher un contact par sa ville"                          <<endl;
-                         cout<<"10. Rechercher un contact par son email"                         <<endl;
-                         cout<<"11. Supprimer un contact par son identifiant"                    <<endl;
-                         cout<<"12. Modifier un contact par son identifiant"                     <<endl;
+                         cout<<"2.  Voir le contenu de l'annuaire prive"                         <<endl;
+                         cout<<"3.  Voir le contenu de l'annuaire pro"                           <<endl;
+                         cout<<"4.  Ajouter un Contact prive a l'annuaire"                       <<endl;
+                         cout<<"5.  Ajouter un Contact professionnel a l'annuaire"               <<endl;
+                         cout<<"6.  Rechercher un Contact par son numero unique"                 <<endl;
+                         cout<<"7.  Rechercher un Contact par son nom"                           <<endl;
+                         cout<<"8.  Rechercher un Contact par son prenom"                        <<endl;
+                         cout<<"9.  Rechercher un Contact par son code postale"                  <<endl;
+                         cout<<"10. Rechercher un contact par son Departement"                   <<endl;
+                         cout<<"11. Rechercher un contact par sa ville"                          <<endl;
+                         cout<<"12. Rechercher un contact par son email"                         <<endl;
+                         cout<<"13. Supprimer un contact par son identifiant"                    <<endl;
+                         cout<<"14. Modifier un contact par son identifiant"                     <<endl;
                          cout<<"0.  Quitter"                                                     <<endl;
                          cout<<endl <<"Votre choix : "                                           <<endl;
 
@@ -70,37 +72,43 @@ namespace Manage
                             case 1 :
                                    console->afficher_annuaire();
                                 break;
-                            case 2 :
-                                   console->ajouter_contact_prive();
+                             case 2 :
+                                   console->afficher_annuaire_prive();
                                 break;
-                            case 3 :
-                                    console->ajouter_contact_professionnel();
+                             case 3 :
+                                   console->afficher_annuaire_pros();
                                 break;
                             case 4 :
-                                   console->rechercher_contact_pid();
+                                   console->ajouter_contact_prive();
                                 break;
                             case 5 :
-                                    console->rechercher_contact_nom();
+                                    console->ajouter_contact_professionnel();
                                 break;
-                             case 6 :
-                                    console->rechercher_contact_prenom();
+                            case 6 :
+                                   console->rechercher_contact_pid();
                                 break;
                             case 7 :
-                                    console->rechercher_contact_code_postale();
+                                    console->rechercher_contact_nom();
                                 break;
-                            case 8 :
-                                   console->rechercher_contact_departement();
+                             case 8 :
+                                    console->rechercher_contact_prenom();
                                 break;
                             case 9 :
-                                   console->rechercher_contact_ville();
+                                    console->rechercher_contact_code_postale();
                                 break;
                             case 10 :
-                                   console->rechercher_contact_email();
+                                   console->rechercher_contact_departement();
                                 break;
                             case 11 :
-                                   console->supprimer_contact_pid();
+                                   console->rechercher_contact_ville();
                                 break;
                             case 12 :
+                                   console->rechercher_contact_email();
+                                break;
+                            case 13 :
+                                   console->supprimer_contact_pid();
+                                break;
+                            case 14 :
                                     console->modifier_contact_pid();
                                 break;
                             }

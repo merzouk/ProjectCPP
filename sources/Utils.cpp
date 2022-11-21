@@ -20,6 +20,7 @@ namespace Manage
 
 	char * Utils::to_upper_last_name(char *s)
 	{
+	       if(!s) return s;
 		int i = 0;
 		while(*(s + i) != '\0')
 		{
@@ -40,7 +41,8 @@ namespace Manage
 	{
 		int n = s.length();
 		ptr = (char*) malloc((n + 1) * sizeof(char));
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < n; i++)
+              {
 			*(ptr + i) = s[i];
 		}
 		*(ptr + n) = '\0';
@@ -67,7 +69,7 @@ namespace Manage
 		}
 		catch (...)
 		{
-                  Logger::log(2, "Erreur de conversion string vers int " +s);
+                  Logger::log(2, "Erreur de conversion de string vers int " +s);
 		}
 		return -1;
 	}
