@@ -28,7 +28,7 @@ namespace Manage
        {
               if(!contact_prive)
               {
-                     Logger::log(1, "Le contact n'est pas renseigne construction date au format string impossible");
+                     Logger::log(INFO, "Le contact n'est pas renseigne construction date au format string impossible");
                      return "";
               }
               string date_naissance =    to_string(contact_prive->get_dateNaissance()->get_jour())
@@ -43,7 +43,7 @@ namespace Manage
        {
               if (!contact_prive)
               {
-                     Logger::log(1,  "Le contact prive n'est pas renseigne");
+                     Logger::log(INFO,  "Le contact prive n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -68,7 +68,7 @@ namespace Manage
        {
               if (!contact_prof)
               {
-                     Logger::log(1, "Le contact professionnel n'est pas renseigne");
+                     Logger::log(INFO, "Le contact professionnel n'est pas renseigne");
                      return ;
               }
               cout.fill(' ');
@@ -92,7 +92,7 @@ namespace Manage
               cout.fill(' ');
               if (vects.size() == 0)
               {
-                     Logger::log(1,  "Aucun contact dans l'annuaire");
+                     Logger::log(INFO,  "Aucun contact dans l'annuaire");
                      return;
               }
               display_header_table();
@@ -121,7 +121,7 @@ namespace Manage
 
               if (map_annuaire.size() == 0)
               {
-                     Logger::log(1,  "Aucun contact dans l'annuaire");
+                     Logger::log(INFO,  "Aucun contact dans l'annuaire");
                      return;
               }
               display_header_table();

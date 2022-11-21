@@ -9,6 +9,7 @@
 
 #include <ctime>
 #include <string>
+#include "Level.hpp"
 
 using namespace std;
 
@@ -17,7 +18,7 @@ namespace Manage
        class Logger
        {
               private:
-                     enum LEVEL { INFO = 1 , ERROR = 2, WARNING = 3, DEBUG = 4 };
+                     //enum LEVEL { INFO = 1 , ERROR = 2, WARNING = 3, DEBUG = 4 };
 
                      string static convertToString(char * a)
                      {
