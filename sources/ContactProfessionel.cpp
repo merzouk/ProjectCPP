@@ -18,7 +18,7 @@ namespace Heritage
        }
 
        string ContactProfessionel::build_key()
-              {
+       {
                      string key = Contact::build_key();
                      string n = this->get_email();
                      for ( int i = 0; i < int(n.size()); i++)
@@ -28,10 +28,10 @@ namespace Heritage
                      }
                      key += ':';
                      return key;
-              }
+       }
 
-               void ContactProfessionel::afficher()
-              {
+       void ContactProfessionel::afficher()
+       {
 
-              }
+       }
 }
