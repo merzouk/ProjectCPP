@@ -347,6 +347,7 @@ namespace Manage
               string line = "";
               while (getline(inputFile, line))
               {
+                     //Logger::log(INFO, line);
                      if (line.size() == 0)
                             continue;
                      stringstream inputString(line);

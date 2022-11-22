@@ -63,6 +63,8 @@ namespace Manage
 
 	int Utils::str_to_int(std::string s)
 	{
+	       int len = s.size();
+	       if(len == 0) return 0;
 		try
 		{
                   return stoi(s.c_str());
