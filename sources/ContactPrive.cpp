@@ -15,7 +15,7 @@ namespace Heritage
        {
               cout.fill('0');
               cout << "Particlier:"   << setw(5) << this->get_identifiant() << endl;
-              cout <<"              " << this->get_nom() <<" " << this->get_prenom() << endl;
+              cout <<"              " << this->get_filiation() << ". " << this->get_prenom() << " " << this->get_nom() << endl;
               this->get_adressePostale()->infos();
               cout <<"              " <<  "Situation Familliale : " << this->get_situation_familliale() << endl;
               DateNaissance *date_naiss = this->get_dateNaissance();
