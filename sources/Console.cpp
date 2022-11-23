@@ -156,8 +156,9 @@ namespace Manage {
                      ContactProfessionel *contact_prof =
                                    dynamic_cast<ContactProfessionel*>(contact);
                      if(contact_prof)
-                         contact_prof->infos();
-                      Logger::log(WARNING, "Aucun contact trouve pour l'identifiant : " +to_string(pid));
+                            contact_prof->infos();
+                     else
+                            Logger::log(WARNING, "Aucun contact trouve pour l'identifiant : " +to_string(pid));
               }
        }
 
