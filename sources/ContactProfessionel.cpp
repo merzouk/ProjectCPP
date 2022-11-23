@@ -9,9 +9,11 @@ namespace Heritage
        void ContactProfessionel::infos()
        {
            cout.fill('0');
-           cout << "Professionel : "<< setw(5) << this->get_identifiant() << endl;
-           cout <<"              Societe " <<this->get_entreprise() <<endl;
-           cout <<"              Contact : " << this->get_filiation() <<" "<<this->get_nom() <<"  "<<this->get_prenom() <<endl;
+           cout << "Professionel : " << setw(5)  << this->get_identifiant() << endl;
+           cout << "              Societe "      << this->get_entreprise()  << endl;
+           cout << "              Contact : "    << this->get_filiation()   << "  "
+                << this->get_prenom()            << " "                     << this->get_nom()
+                << endl;
            this->get_adressePostale()->infos();
            cout << endl << endl;
            cout <<"              Mail : " << this->get_email() << endl;
