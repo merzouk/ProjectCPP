@@ -32,18 +32,13 @@ namespace Heritage
        public:
               Contact(int identifiant , char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
               {
-                     int len = utils->str_length(nom);
-                     if(len == 0 || len > 30)
-                           throw ContactException("\nLa longueur du champs nom n'est pas correcte");
-                     len = utils->str_length(prenom);
-                     if(len == 0 || len > 30)
-                           throw ContactException("\nLa longueur du champs prenom n'est pas correcte");
+                     this->set_nom(nom);
+                     this->set_prenom(prenom);
                      this->nom = utils->to_upper_last_name(nom);
                      this->prenom = utils->to_upper_first_name(prenom);
                      this->identifiant = identifiant;
-                     this->s = s;
-                     this->f = f;
                      this->set_sexe(sexe);
+                     this->set_situation(situation);
                      this->adressePostale = adressePostale;
                      this->utils = new Utils();
               }
