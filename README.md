@@ -18,6 +18,10 @@ Pour créer l'exécutable, lancer la commande suivante :
 ```
 make
 ```
+Génération du zip des sources
+```
+make zip OS=linux
+```
 pour nettoyer sous linux on lance la commande 
 
 ```
