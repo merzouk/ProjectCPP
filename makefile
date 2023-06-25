@@ -1,10 +1,9 @@
 #Manage cpp project by Makefile
 
-OS=linux
-
 CC = g++ -Wall -ansi -pedantic -std=c++0x
 
 PROG=manage_prj
+PROG_WIN=manage_prj.exe
 ARCHIVE=sortie.zip
 TARGET_ARCHIVE=sources/*.cpp header/*.hpp Makefile
 
@@ -13,7 +12,8 @@ ifeq ($(OS), linux)
 	ZIP=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN=rm -rf sources/*.o
 else
-	DELETE=del $(PROG) $(ARCHIVE)
+	DELETE=del $(ARCHIVE) $(PROG_WIN)
+	CLEAN=del sources\*.o
 endif
 
 #Identifier tous les fichiers .c de mon programme
