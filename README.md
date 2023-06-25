@@ -21,8 +21,8 @@ make
 pour nettoyer sous linux on lance la commande 
 
 ```
-- make clean OS=Linux
-- make mrproper OS=Linux
+- make clean OS=linux
+- make mrproper OS=linux
 ```
 pour nettoyer sous windows on lance la commande 
 
