@@ -2,7 +2,9 @@ bin/
 obj/
 docs/
 .vs/
-.idea/
+.settings/
+.project
+.cproject
 *.cbp
 *.depend
 *.layout
