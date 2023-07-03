@@ -5,6 +5,7 @@ docs/
 .settings/
 .project
 .cproject
+.idea/
 *.cbp
 *.depend
 *.layout
