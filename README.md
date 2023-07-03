@@ -11,6 +11,30 @@ Le projet sera décomposé en plusieurs parties.
 - PARTIE 2 : CREATION DE L'INTERFACE
 ```
 
+
+# Build et clean
+Pour créer l'exécutable, lancer la commande suivante : 
+
+```
+make
+```
+Génération du zip des sources
+```
+make zip OS=linux
+```
+pour nettoyer sous linux on lance la commande 
+
+```
+- make clean OS=linux
+- make mrproper OS=linux
+```
+pour nettoyer sous windows on lance la commande 
+
+```
+- make clean OS=win
+- make mrproper OS=win
+```
+
 # PARTIE 1 : GESTION DES CONTACTS
 ## On distingue différents types de contacts :
 - Des contacts « Privés »
