@@ -20,19 +20,19 @@ make
 ```
 Génération du zip des sources
 ```
-make zip OS=linux
+make zip os=linux
 ```
 pour nettoyer sous linux on lance la commande 
 
 ```
-- make clean OS=linux
-- make mrproper OS=linux
+- make clean os=linux
+- make mrproper os=linux
 ```
 pour nettoyer sous windows on lance la commande 
 
 ```
-- make clean OS=win
-- make mrproper OS=win
+- make clean os=win
+- make mrproper os=win
 ```
 
 # PARTIE 1 : GESTION DES CONTACTS

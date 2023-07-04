@@ -8,13 +8,13 @@ ARCHIVE=sortie.zip
 TARGET_ARCHIVE=sources/*.cpp header/*.hpp *.dat makefile
 TARGET_ARCHIVE_WIN=sources\*.cpp header\*.hpp *.dat makefile
 
-ifeq ($(OS), linux)
+ifeq ($(os), linux)
 	DELETE=rm -rf $(PROG) $(ARCHIVE)
 	ZIP=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN=rm -rf sources/*.o
 endif
 
-ifeq ($(OS), win)
+ifeq ($(os), win)
 	DELETE=del $(ARCHIVE) $(PROG_WIN)
 	CLEAN=del sources\*.o
 	ZIP=7z d  $(ARCHIVE) $(TARGET_ARCHIVE_WIN) -r
