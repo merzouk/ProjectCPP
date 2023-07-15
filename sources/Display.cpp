@@ -3,19 +3,19 @@
 
 namespace Manage
 {
-       string delimiter = "******************************************************************************************************************************************************************************************************************";
+       string delimiter = "*****************************************************************************************************************************************************************************************************";
 
        void display_header_table()
        {
               cout.fill(' ');
                           cout << setw(5)   << "Id"
-                               << setw(25)  << "Nom"
-                               << setw(25)  << "Prenom"
+                               << setw(20)  << "Nom"
+                               << setw(20)  << "Prenom"
 				   << setw(6)   << "Sexe"
 				   << setw(10)  << "Entre"
 				   << setw(6)   << "Stat"
 				   << setw(5)   << "Num"
-				   << setw(40)  << "Rue"
+				   << setw(30)  << "Rue"
 				   << setw(15)  << "Compl"
 				   << setw(6)   << "C_P"
 				   << setw(20)  << "Ville"
@@ -49,13 +49,13 @@ namespace Manage
               cout.fill(' ');
 
               cout << setw(5)   << contact_prive->get_identifiant()
-                   << setw(25)  << contact_prive->get_nom()
-                   << setw(25)  << contact_prive->get_prenom()
+                   << setw(20)  << contact_prive->get_nom()
+                   << setw(20)  << contact_prive->get_prenom()
 		     << setw(6)   << contact_prive->get_sexe()
                    << setw(10)  << " "
                    << setw(6)   << " "
                    << setw(5)   << contact_prive->get_adressePostale()->get_numero()
-                   << setw(40)  << contact_prive->get_adressePostale()->get_rue()
+                   << setw(30)  << contact_prive->get_adressePostale()->get_rue()
                    << setw(15)  << contact_prive->get_adressePostale()->get_complement()
                    << setw(6)   << contact_prive->get_adressePostale()->get_code_postale()
                    << setw(20)  << contact_prive->get_adressePostale()->get_ville()
@@ -73,13 +73,13 @@ namespace Manage
               }
               cout.fill(' ');
               cout << setw(5)  << contact_prof->get_identifiant()
-                   << setw(25) << contact_prof->get_nom()
-                   << setw(25) << contact_prof->get_prenom()
+                   << setw(20) << contact_prof->get_nom()
+                   << setw(20) << contact_prof->get_prenom()
                    << setw(6)  << contact_prof->get_sexe()
                    << setw(10) << contact_prof->get_entreprise()
 		     << setw(6)  << contact_prof->get_statut()
 		     << setw(5)  << contact_prof->get_adressePostale()->get_numero()
-		     << setw(40) << contact_prof->get_adressePostale()->get_rue()
+		     << setw(30) << contact_prof->get_adressePostale()->get_rue()
 		     << setw(15) << contact_prof->get_adressePostale()->get_complement()
                    << setw(6)  << contact_prof->get_adressePostale()->get_code_postale()
                    << setw(20) << contact_prof->get_adressePostale()->get_ville()
