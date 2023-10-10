@@ -1,48 +1,71 @@
 #Manage cpp project by Makefile
 
-CC = g++ -Wall -ansi -pedantic -std=c++0x
-
-PROG=manage_prj
-PROG_WIN=manage_prj.exe
-ARCHIVE=sortie.zip
-TARGET_ARCHIVE=sources/*.cpp header/*.hpp *.dat makefile
-TARGET_ARCHIVE_WIN=sources\*.cpp header\*.hpp *.dat makefile
-
-ifeq ($(os), linux)
-	DELETE=rm -rf $(PROG) $(ARCHIVE)
-	ZIP=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
-	CLEAN=rm -rf sources/*.o
+OSFLAG 				:=
+OS_DETAILS          :=
+ifeq ($(OS),Windows_NT)
+	OSFLAG := WIN
+	ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+		OS_DETAILS:=WIN_AMD64
+	endif
+	ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+		OS_DETAILS:=WIN_X86
+	endif
+else
+	OSFLAG := $(shell uname -s | tr A-Z a-z)
+	OS_DETAILS := $(OSFLAG)
 endif
 
-ifeq ($(os), win)
-	DELETE=del $(ARCHIVE) $(PROG_WIN)
-	CLEAN=del sources\*.o
-	ZIP=7z d  $(ARCHIVE) $(TARGET_ARCHIVE_WIN) -r
+CC := g++ -Wall -ansi -pedantic -std=c++0x
+
+ifeq ($(OSFLAG), linux)
+	PROG:=smart_ptr
+	ARCHIVE:=sortie.zip
+	TARGET_ARCHIVE:=sources/*.cpp header/*.hpp  makefile
+	DELETE:=rm -rf $(PROG) $(ARCHIVE)
+	ZIP:=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
+	CLEAN:=rm -rf sources/*.o
+	MSG_CLEAN:="Suppresion du programme executable \"$(PROG)\" et du fichier archive \"$(ARCHIVE)\" : "
+	MSG_BUILD_ZIP:="Generation du fichier archive \"$(ARCHIVE)\" : "
+	MSG_BUILD_END:="Fin build des fichiers .o et generation du fichier executable ==> \"$(PROG)\" : "
+	MSG_CLEAN_O_FILE:="Suppresion des fichiers .o : "
+endif
+ifeq ($(OSFLAG), WIN)
+	PROG:=smart_ptr.exe
+	ARCHIVE:=sortie.zip
+	TARGET_ARCHIVE:=sources\*.cpp header\*.hpp  makefile
+	DELETE:=del $(ARCHIVE) $(PROG)
+	CLEAN:=del sources\*.o
+	ZIP:=7za a -t7z  $(ARCHIVE) $(TARGET_ARCHIVE) -r
+	MSG_CLEAN:="Suppresion du programme executable \"$(PROG)\" et du fichier archive \"$(ARCHIVE)\" : "
+	MSG_BUILD_ZIP:="Generation du fichier archive \"$(ARCHIVE)\" : "
+	MSG_BUILD_END:="Fin build des fichiers .o et generation du fichier executable ==> \"$(PROG)\" : "
+	MSG_CLEAN_O_FILE:="Suppresion des fichiers .o : "
 endif
 
 #Identifier tous les fichiers .c de mon programme
-SRC = $(wildcard sources/*.cpp)
+SRC := $(wildcard sources/*.cpp)
 
 #Créer une liste des fichiers .o liés aux fichiers .c
-OBJ = $(SRC:.cpp=.o)
+OBJ := $(SRC:.cpp=.o)
 
 all: $(PROG)
 
 $(PROG): $(OBJ)
-	@echo "Fin build des fichiers .o et generation du fichier executable ==> \"$(PROG)\" : "
+	@echo "OS_DETAILS = $(OS_DETAILS)"
+	@echo $(MSG_BUILD_END)
 	$(CC) -o $@  $^
 
 %.o : %.c
 	$(CC) -o $@ -c $<
 
 clean:
-	@echo "Suppresion des fichiers .o : "
+	@echo $(MSG_CLEAN_O_FILE)
 	$(CLEAN)
 
 mrproper: clean
-	@echo "Suppresion du programme executable \"$(PROG)\" et du fichier archive \"$(ARCHIVE)\" : "
+	@echo $(MSG_CLEAN)
 	$(DELETE)
 
 zip:
-	@echo "Generation du fichier archive \"$(ARCHIVE)\" : "
+	@echo $(MSG_BUILD_ZIP)
 	$(ZIP)
