@@ -20,19 +20,19 @@ make
 ```
 Génération du zip des sources
 ```
-make zip os=linux
+make zip 
 ```
 pour nettoyer sous linux on lance la commande 
 
 ```
-- make clean os=linux
-- make mrproper os=linux
+- make clean 
+- make mrproper 
 ```
 pour nettoyer sous windows on lance la commande 
 
 ```
-- make clean os=win
-- make mrproper os=win
+- make clean
+- make mrproper
 ```
 
 # PARTIE 1 : GESTION DES CONTACTS
@@ -134,4 +134,6 @@ D’un point de vue technique, on devra retrouver, au sein de votre code, les co
 Les développements et les tests sont réalisés en totalité sous codeBlocks pour windows 10
 
 Les tests en ligne de commande sont réalisés sous Debian 11
+
+Le Makefile detecte le type de système et crée les cibles en fonction du système
 ```
