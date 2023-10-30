@@ -14,13 +14,13 @@ namespace Manage
 {
        class Display
        {
-           public:
-              Display(){}
-              ~Display(){}
-              void print_contact_professionnel(ContactProfessionel *contact_prof );
-              void print_contact_prive(ContactPrive *contact_prive );
-              void display(vector<Contact*> vects);
-              void display(map<string, Contact*> map_annuaire, int mode);
+       public:
+              Display() {}
+              ~Display() {}
+              void print_contact_professionnel(ContactProfessionel *contact_prof);
+              void print_contact_prive(ContactPrive *contact_prive);
+              void display(vector<Contact *> vects);
+              void display(map<string, Contact *> map_annuaire, int mode);
        };
 }
 

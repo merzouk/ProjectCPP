@@ -16,8 +16,19 @@ using namespace Errors;
 
 namespace Heritage
 {
-       enum sexe { M , F };
-       enum situation {Marie, Celibataire, Veuf, Pacse, Autres};
+       enum sexe
+       {
+              M,
+              F
+       };
+       enum situation
+       {
+              Marie,
+              Celibataire,
+              Veuf,
+              Pacse,
+              Autres
+       };
        class Contact
        {
        private:
@@ -27,10 +38,10 @@ namespace Heritage
               sexe s;
               situation f;
               AdressePostale *adressePostale;
-              Utils * utils;
+              Utils *utils;
 
        public:
-              Contact(int identifiant , char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
+              Contact(int identifiant, char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
               {
                      this->set_nom(nom);
                      this->set_prenom(prenom);
@@ -44,17 +55,17 @@ namespace Heritage
               }
               ~Contact()
               {
-                    free(this->nom);
-                    free(this->prenom);
-                    delete this->adressePostale;
-                    this->adressePostale = nullptr;
-                    delete this->utils;
-                    this->utils = nullptr;
+                     free(this->nom);
+                     free(this->prenom);
+                     delete this->adressePostale;
+                     this->adressePostale = nullptr;
+                     delete this->utils;
+                     this->utils = nullptr;
               }
-              AdressePostale *get_adressePostale(){return this->adressePostale;};
-              int get_identifiant(){return this->identifiant;}
-              char * get_nom(){return this->nom;}
-              char * get_prenom(){return this->prenom;}
+              AdressePostale *get_adressePostale() { return this->adressePostale; };
+              int get_identifiant() { return this->identifiant; }
+              char *get_nom() { return this->nom; }
+              char *get_prenom() { return this->prenom; }
               char get_sexe()
               {
                      char se;
@@ -82,7 +93,6 @@ namespace Heritage
                             break;
                      }
                      return se;
-
               }
               string get_situation_familliale()
               {
@@ -90,56 +100,56 @@ namespace Heritage
                      switch (this->f)
                      {
                      case 0:
-                           if(this->get_sexe() == 'M')
-                                situ_famille = "Marie";
+                            if (this->get_sexe() == 'M')
+                                   situ_famille = "Marie";
                             else
-                                situ_famille = "Mariee";
+                                   situ_famille = "Mariee";
                             break;
                      case 1:
                             situ_famille = "Celibataire";
                             break;
                      case 2:
-                            if(this->get_sexe() == 'M')
-                                situ_famille = "Veuf";
+                            if (this->get_sexe() == 'M')
+                                   situ_famille = "Veuf";
                             else
-                                situ_famille = "Veuve";
+                                   situ_famille = "Veuve";
                             break;
-                      case 3:
-                            if(this->get_sexe() == 'M')
-                                situ_famille = "Pacse";
+                     case 3:
+                            if (this->get_sexe() == 'M')
+                                   situ_famille = "Pacse";
                             else
-                                situ_famille = "Pacsee";
+                                   situ_famille = "Pacsee";
                             break;
-                      case 4:
+                     case 4:
                             situ_famille = "Autres";
                      }
                      return situ_famille;
-               }
+              }
 
-              void set_adressePostale(AdressePostale *adressePostale){this->adressePostale = adressePostale;}
-              void set_identifiant(int identifiant){this->identifiant = identifiant;}
-              void set_nom(char * nom);
+              void set_adressePostale(AdressePostale *adressePostale) { this->adressePostale = adressePostale; }
+              void set_identifiant(int identifiant) { this->identifiant = identifiant; }
+              void set_nom(char *nom);
               void set_prenom(char *prenom);
 
               void set_sexe(string sex)
               {
                      int x = sex.compare("M");
-                     if(x == 0)
-                        this->s = M;
+                     if (x == 0)
+                            this->s = M;
                      else
-                         this->s = F;
+                            this->s = F;
               }
               void set_situation(string situa)
               {
-                     if(situa == "Marie" || situa == "Mariee")
-                            this->f =  Marie;
-                     if(situa == "Celibataire")
+                     if (situa == "Marie" || situa == "Mariee")
+                            this->f = Marie;
+                     if (situa == "Celibataire")
                             this->f = Celibataire;
-                     if(situa == "Veuf" || situa == "Veuve")
+                     if (situa == "Veuf" || situa == "Veuve")
                             this->f = Veuf;
-                     if(situa == "Pacse" || situa == "Pacsee")
+                     if (situa == "Pacse" || situa == "Pacsee")
                             this->f = Pacse;
-                     if(situa == "Autres")
+                     if (situa == "Autres")
                             this->f = Autres;
               }
 

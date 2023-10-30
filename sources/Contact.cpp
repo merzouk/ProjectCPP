@@ -5,11 +5,13 @@ namespace Heritage
        void Contact::infos()
        {
               if (this->get_sexe() == 0)
-                     cout << "M." << " " << this->get_nom() << " " << this->get_prenom()
-                                   << endl;
+                     cout << "M."
+                          << " " << this->get_nom() << " " << this->get_prenom()
+                          << endl;
               else
-                     cout << "Mme." << " " << this->get_nom() << " " << this->get_prenom()
-                                   << endl;
+                     cout << "Mme."
+                          << " " << this->get_nom() << " " << this->get_prenom()
+                          << endl;
        }
 
        void Contact::set_nom(char *nom)
@@ -17,7 +19,7 @@ namespace Heritage
               int len = utils->str_length(nom);
               if (len == 0 || len > 30)
                      throw ContactException(
-                                   "\nLa longeueur du chmaps nom n'est pas correcte");
+                         "\nLa longeueur du chmaps nom n'est pas correcte");
               this->nom = utils->to_upper_last_name(nom);
        }
 
@@ -26,7 +28,7 @@ namespace Heritage
               int len = utils->str_length(prenom);
               if (len == 0 || len > 30)
                      throw ContactException(
-                                   "\nLa longeueur du chmaps prenom n'est pas correcte");
+                         "\nLa longeueur du chmaps prenom n'est pas correcte");
               this->prenom = utils->to_upper_first_name(prenom);
        }
 

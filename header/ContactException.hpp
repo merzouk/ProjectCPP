@@ -8,23 +8,23 @@ using namespace std;
 
 namespace Errors
 {
-	class ContactException: public exception
+	class ContactException : public exception
 	{
 
-		private:
-			string cause;
+	private:
+		string cause;
 
-		public:
-			ContactException(string cause):cause(cause) {}
-			~ContactException() throw()
-			{
-				//cout << endl << "Destroy ContactException Object" << this << endl;
-			}
+	public:
+		ContactException(string cause) : cause(cause) {}
+		~ContactException() throw()
+		{
+			// cout << endl << "Destroy ContactException Object" << this << endl;
+		}
 
-			const char * what() const throw()
-			{
-				return cause.c_str();
-			}
+		const char *what() const throw()
+		{
+			return cause.c_str();
+		}
 	};
 
 }

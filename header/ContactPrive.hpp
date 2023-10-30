@@ -7,30 +7,28 @@
 
 namespace Heritage
 {
-       class ContactPrive: public Contact
+       class ContactPrive : public Contact
        {
        private:
-
               DateNaissance *dateNaissance;
 
        public:
-            ContactPrive(DateNaissance *dateNaissance, int identifiant , char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
-            : Contact(identifiant , nom, prenom, sexe, situation, adressePostale), dateNaissance(dateNaissance)
-            {
-            }
+              ContactPrive(DateNaissance *dateNaissance, int identifiant, char *nom, char *prenom, string sexe, string situation, AdressePostale *adressePostale)
+                  : Contact(identifiant, nom, prenom, sexe, situation, adressePostale), dateNaissance(dateNaissance)
+              {
+              }
 
-            ~ContactPrive()
-            {
+              ~ContactPrive()
+              {
                      delete dateNaissance;
                      dateNaissance = nullptr;
-            }
+              }
 
-              DateNaissance * get_dateNaissance(){return this->dateNaissance;}
+              DateNaissance *get_dateNaissance() { return this->dateNaissance; }
               string build_key() override;
 
-
-            void infos() override;
-            void afficher() override;
+              void infos() override;
+              void afficher() override;
        };
 }
 #endif // CONTACT_PRIVE_H_FILE
