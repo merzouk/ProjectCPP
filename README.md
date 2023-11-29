@@ -5,7 +5,6 @@ Projet CPP pour la formation C/CPP embarqué
 ![Java](https://img.shields.io/badge/CPP-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
 
-
 Il s'agit de créer un annuaire dans lequel seront stockés des contacts.
 Le projet sera décomposé en plusieurs parties.
 
