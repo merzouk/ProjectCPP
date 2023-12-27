@@ -18,6 +18,7 @@ endif
 CC := g++ -Wall -ansi -pedantic -std=c++0x
 
 ifeq ($(OSFLAG), linux)
+	COMPIL:="compilation sous Linux"
 	PROG:=manage_prg
 	ARCHIVE:=sortie.zip
 	TARGET_ARCHIVE:=sources/*.cpp header/*.hpp  makefile
@@ -30,6 +31,7 @@ ifeq ($(OSFLAG), linux)
 	MSG_CLEAN_O_FILE:="Suppresion des fichiers .o : "
 endif
 ifeq ($(OSFLAG), WIN)
+	COMPIL:="compilation sous windows"
 	PROG:=manage_prg.exe
 	ARCHIVE:=sortie.zip
 	TARGET_ARCHIVE:=sources\*.cpp header\*.hpp  makefile
@@ -51,6 +53,7 @@ OBJ := $(SRC:.cpp=.o)
 all: $(PROG)
 
 $(PROG): $(OBJ)
+	@echo $(COMPIL)
 	@echo "OS_DETAILS = $(OS_DETAILS)"
 	@echo $(MSG_BUILD_END)
 	$(CC) -o $@  $^
