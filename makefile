@@ -18,7 +18,7 @@ endif
 CC := g++ -Wall -ansi -pedantic -std=c++0x
 
 ifeq ($(OSFLAG), linux)
-	PROG:=smart_ptr
+	PROG:=manage_prg
 	ARCHIVE:=sortie.zip
 	TARGET_ARCHIVE:=sources/*.cpp header/*.hpp  makefile
 	DELETE:=rm -rf $(PROG) $(ARCHIVE)
@@ -30,7 +30,7 @@ ifeq ($(OSFLAG), linux)
 	MSG_CLEAN_O_FILE:="Suppresion des fichiers .o : "
 endif
 ifeq ($(OSFLAG), WIN)
-	PROG:=smart_ptr.exe
+	PROG:=manage_prg.exe
 	ARCHIVE:=sortie.zip
 	TARGET_ARCHIVE:=sources\*.cpp header\*.hpp  makefile
 	DELETE:=del $(ARCHIVE) $(PROG)
