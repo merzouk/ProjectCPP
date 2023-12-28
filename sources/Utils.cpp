@@ -27,7 +27,7 @@ namespace Manage
 		int i = 0;
 		while (*(s + i) != '\0')
 		{
-			s[i] = toupper(s[i]);
+			*(s + i) = toupper(*(s + i));
 			i++;
 		}
 		return s;

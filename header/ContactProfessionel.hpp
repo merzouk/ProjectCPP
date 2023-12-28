@@ -6,24 +6,17 @@
 #include "Contact.hpp"
 #include "AdressePostale.hpp"
 #include "Utils.hpp"
+#include "Status.hpp"
 
 using namespace Manage;
 
 namespace Heritage
 {
-       enum statut
-       {
-              SARL = 0,
-              SA = 1,
-              SAS = 2,
-              EURL = 3
-       };
-
        class ContactProfessionel : public Contact
        {
        private:
               char *entreprise;
-              statut st;
+              STATUS status;
               string email;
               Utils *utils;
 
@@ -46,7 +39,7 @@ namespace Heritage
               string get_statut()
               {
                      string stt;
-                     switch (this->st)
+                     switch (this->status)
                      {
                      case 0:
                             stt = "SARL";
@@ -68,25 +61,26 @@ namespace Heritage
               void set_entreprise(char *entreprise)
               {
                      int len = this->utils->str_length(entreprise);
+                     string s = entreprise;
                      if (len == 0 || len > 50)
-                            throw ContactException("\nLe champs nom entreprise n'est pas correct");
+                            throw ContactException("\nLe champs nom entreprise n'est pas correct : "+s);
                      this->entreprise = entreprise;
               }
               void set_statut(string statut)
               {
                      if (statut == "SARL")
-                            st = SARL;
+                            this->status = SARL;
                      if (statut == "SA")
-                            st = SA;
+                            this->status = SA;
                      if (statut == "SAS")
-                            st = SAS;
+                            this->status = SAS;
                      if (statut == "EURL")
-                            st = EURL;
+                            this->status = EURL;
               }
               void set_email(string email)
               {
                      if (!this->utils->check_email(email))
-                            throw ContactException("\nLe champs addresse mail n'est pas correct");
+                            throw ContactException("\nLe champs addresse mail n'est pas correct : "+email);
                      this->email = email;
               }
               void infos() override;
