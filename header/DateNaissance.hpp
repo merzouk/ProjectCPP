@@ -21,7 +21,7 @@ namespace Heritage
                             throw ContactException("\nLa valeur du champs jour de naissance n'est pas correcte");
                      if (mois < 1 || mois > 12)
                             throw ContactException("\nLa valeur du champs mois de naissance n'est pas correcte");
-                     if (annee < 0)
+                     if (annee <= 0)
                             throw ContactException("\nLa valeur du champs annee de naissance n'est pas correcte");
                      this->jour = jour;
                      this->mois = mois;
