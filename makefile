@@ -44,10 +44,10 @@ ifeq ($(OSFLAG), WIN)
 	MSG_CLEAN_O_FILE:="Suppresion des fichiers .o : "
 endif
 
-#Identifier tous les fichiers .c de mon programme
+#Identifier tous les fichiers .cpp de mon programme
 SRC := $(wildcard sources/*.cpp)
 
-#Créer une liste des fichiers .o liés aux fichiers .c
+#Créer une liste des fichiers .o liés aux fichiers .cpp
 OBJ := $(SRC:.cpp=.o)
 
 all: $(PROG)
