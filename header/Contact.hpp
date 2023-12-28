@@ -7,6 +7,8 @@
 #include <ctime>
 #include <vector>
 #include "Utils.hpp"
+#include "Sexe.hpp"
+#include "Situation.hpp"
 
 using namespace std;
 
@@ -16,27 +18,14 @@ using namespace Errors;
 
 namespace Heritage
 {
-       enum sexe
-       {
-              M,
-              F
-       };
-       enum situation
-       {
-              Marie,
-              Celibataire,
-              Veuf,
-              Pacse,
-              Autres
-       };
        class Contact
        {
        private:
               int identifiant;
               char *nom;
               char *prenom;
-              sexe s;
-              situation f;
+              SEXE sexe;
+              SITUATION situation;
               AdressePostale *adressePostale;
               Utils *utils;
 
@@ -69,7 +58,7 @@ namespace Heritage
               char get_sexe()
               {
                      char se;
-                     switch (this->s)
+                     switch (this->sexe)
                      {
                      case 0:
                             se = 'M';
@@ -83,7 +72,7 @@ namespace Heritage
               string get_filiation()
               {
                      string se;
-                     switch (this->s)
+                     switch (this->sexe)
                      {
                      case 0:
                             se = "Mr";
@@ -97,7 +86,7 @@ namespace Heritage
               string get_situation_familliale()
               {
                      string situ_famille;
-                     switch (this->f)
+                     switch (this->situation)
                      {
                      case 0:
                             if (this->get_sexe() == 'M')
@@ -135,22 +124,22 @@ namespace Heritage
               {
                      int x = sex.compare("M");
                      if (x == 0)
-                            this->s = M;
+                            this->sexe = M;
                      else
-                            this->s = F;
+                            this->sexe = F;
               }
               void set_situation(string situa)
               {
                      if (situa == "Marie" || situa == "Mariee")
-                            this->f = Marie;
+                            this->situation = Marie;
                      if (situa == "Celibataire")
-                            this->f = Celibataire;
+                            this->situation = Celibataire;
                      if (situa == "Veuf" || situa == "Veuve")
-                            this->f = Veuf;
+                            this->situation = Veuf;
                      if (situa == "Pacse" || situa == "Pacsee")
-                            this->f = Pacse;
+                            this->situation = Pacse;
                      if (situa == "Autres")
-                            this->f = Autres;
+                            this->situation = Autres;
               }
 
               virtual string build_key() = 0;
