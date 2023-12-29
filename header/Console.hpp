@@ -12,6 +12,13 @@
 
 using namespace std;
 
+typedef struct
+{
+       int year;
+       int month;
+       int day;
+} dat_naiss;
+
 namespace Manage
 {
        class Console
@@ -57,6 +64,7 @@ namespace Manage
               void rechercher_contact_ville();
               void supprimer_contact_pid();
               void modifier_contact_pid();
+              dat_naiss saisir_date_naissance();
               void load_datas(string fileContactPrivate, string fileContactPro);
               AdressePostale *new_address();
               int get_next_pid();

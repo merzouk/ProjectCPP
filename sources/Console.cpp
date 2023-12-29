@@ -3,6 +3,8 @@
 #include "../header/AdressePostale.hpp"
 #include "../header/ContactPrive.hpp"
 #include "../header/ContactProfessionel.hpp"
+#include "../header/Date.hpp"
+#include "../header/Datas.hpp"
 
 #include <regex>
 #include <exception>
@@ -15,6 +17,10 @@
 #include <sstream>
 #include <cstring>
 #include <bits/stdc++.h>
+
+#include "../header/Date.hpp"
+
+using namespace ToolsDate;
 
 using namespace Errors;
 
@@ -330,6 +336,21 @@ namespace Manage
               return nullptr;
        }
 
+       dat_naiss Console::saisir_date_naissance()
+       {
+              int mois;
+              int jour;
+              int annee;
+              dat_naiss dat;
+              cout << "Veuillez saisir l'annee de naissance : " << endl;
+              dat.year = check_input_value();
+              cout << "Veuillez saisir le mois de naissance : " << endl;
+              dat.month = check_input_value(1, 12);
+              cout << "Veuillez saisir le jour de naissance : " << endl;
+              dat.day = check_input_value(1, 31);
+              return dat;
+       }
+
        void Console::ajouter_contact_prive()
        {
               string nom;
@@ -366,12 +387,27 @@ namespace Manage
                             cin.clear();
                             getline(cin, situation);
                      } while (utils->validate_statut(situation) == 1);
-                     cout << "Veuillez saisir l'annee de naissance : " << endl;
-                     annee = check_input_value();
-                     cout << "Veuillez saisir le mois de naissance : " << endl;
-                     mois = check_input_value(1, 12);
-                     cout << "Veuillez saisir le jour de naissance : " << endl;
-                     jour = check_input_value(1, 31);
+                     bool dat_naiss_ok = false;
+                     while (dat_naiss_ok == false)
+                     {
+                            try
+                            {      dat_naiss dat = saisir_date_naissance();
+                                   Date d3(dat.year, dat.month, dat.day);
+                                   dat_naiss_ok = true;
+                                   annee = dat.year;
+                                   mois = dat.month;
+                                   jour = dat.day;
+
+                            }
+                            catch (invalid_argument &ex)
+                            {
+                                   cout << "Erreur saisi date de naissance : " << endl
+                                        << "Error: Invalid day (1-28|29|30|31)! " << endl
+                                        << ex.what() << endl
+                                        << "Veuillez recommencer SVP ! " << endl; // 
+                                   dat_naiss_ok = false;
+                            }
+                     }
 
                      DateNaissance *dateNaissance = new DateNaissance(jour, mois, annee);
                      AdressePostale *adressePostale = new_address();
