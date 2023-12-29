@@ -1,5 +1,5 @@
-#ifndef MAGASIN_H_FILE
-#define MAGASIN_H_FILE
+#ifndef ANNUAIRE_H_FILE
+#define ANNUAIRE_H_FILE
 #include "Tools.hpp"
 #include "Contact.hpp"
 #include "ContactPrive.hpp"
@@ -53,4 +53,4 @@ namespace Manage
               int get_next_pid();
        };
 }
-#endif // MAGASIN_H_FILE
+#endif // ANNUAIRE_H_FILE
