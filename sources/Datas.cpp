@@ -122,10 +122,6 @@ namespace ToolsDate
 		}
 		size_t pos_start = 0, pos_end, delim_len = delimiter.length();
 		std::string token;
-		int day = 0;
-		int month = 0;
-		int year = 0;
-
 		int i = 0;
 		while ((pos_end = s.find(delimiter, pos_start)) != std::string::npos)
 		{
@@ -133,18 +129,15 @@ namespace ToolsDate
 			pos_start = pos_end + delim_len;
 			if (i == 0)
 			{
-				day = stoi(token);
+				this->day = stoi(token);
 				i++;
 			}
 			if (i == 1)
 			{
-				month = stoi(token);
+				this->month = stoi(token);
 			}
 		}
-		year = stoi(s.substr(pos_start));
-		this->day = day;
-		this->month = month;
-		this->year = year;
+		this->year = stoi(s.substr(pos_start));
 	}
 
 	// for string delimiter
@@ -167,10 +160,6 @@ namespace ToolsDate
 		}
 		size_t pos_start = 0, pos_end, delim_len = delimiter.length();
 		std::string token;
-		int day = 0;
-		int month = 0;
-		int year = 0;
-
 		int i = 0;
 		while ((pos_end = s.find(delimiter, pos_start)) != std::string::npos)
 		{
@@ -178,19 +167,17 @@ namespace ToolsDate
 			pos_start = pos_end + delim_len;
 			if (i == 0)
 			{
-				day = stoi(token);
+				this->day = stoi(token);
 				i++;
 			}
 			if (i == 1)
 			{
-				month = stoi(token);
+				this->month = stoi(token);
 			}
 		}
-		year = stoi(s.substr(pos_start));
-		this->day = day;
-		this->month = month;
-		this->year = year;
+		this->year = stoi(s.substr(pos_start));
 	}
+
 	void Datas::buildDate(std::string s)
 	{
 		this->split(s);
