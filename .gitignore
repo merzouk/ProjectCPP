@@ -13,5 +13,6 @@ docs/
 *.exe
 *.zip
 *.dat
+*.log
 manage_prj
 toto
