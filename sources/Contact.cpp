@@ -19,7 +19,7 @@ namespace Heritage
               int len = utils->str_length(nom);
               if (len == 0 || len > 30)
                      throw ContactException(
-                         "\nLa longeueur du chmaps nom n'est pas correcte");
+                         "\nLa longueur du champs nom n'est pas correcte");
               this->nom = utils->to_upper_last_name(nom);
        }
 
@@ -28,7 +28,7 @@ namespace Heritage
               int len = utils->str_length(prenom);
               if (len == 0 || len > 30)
                      throw ContactException(
-                         "\nLa longeueur du chmaps prenom n'est pas correcte");
+                         "\nLa longueur du champs prenom n'est pas correcte");
               this->prenom = utils->to_upper_first_name(prenom);
        }
 

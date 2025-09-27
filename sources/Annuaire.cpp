@@ -291,12 +291,12 @@ namespace Manage
               int len = int(email.length());
               if (len == 0)
               {
-                     Logger::log(WARNING, "L'addresse mail " + email + " n'est pas valide");
+                     Logger::log(WARNING, "L'adresse mail " + email + " n'est pas valide");
                      return nullptr;
               }
               if (!utils->check_email(email))
               {
-                     Logger::log(WARNING, "Le format de l'addresse mail " + email + " n'est pas valide");
+                     Logger::log(WARNING, "Le format de l'adresse mail " + email + " n'est pas valide");
                      return nullptr;
               }
               map<string, Contact *>::iterator it = this->map_annuaire.begin();

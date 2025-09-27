@@ -307,7 +307,7 @@ namespace Manage
                      cout << "Veuillez saisir le nom de la rue : " << endl;
                      cin.ignore();
                      getline(cin, rue);
-                     cout << "Veuillez saisir le complement d'addresse, sinon un espace et validez: " << endl;
+                     cout << "Veuillez saisir le complement d'adresse, sinon un espace et validez: " << endl;
                      cin.ignore();
                      getline(cin, complement);
                      cout << "Veuillez saisir le code postale : " << endl;
@@ -321,17 +321,17 @@ namespace Manage
               }
               catch (const std::ios_base::failure &ex)
               {
-                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'addresse postale ");
+                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'adresse postale ");
                      Logger::log(ERROR, ex.what());
               }
               catch (const exception &ex)
               {
-                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'addresse postale ");
+                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'adresse postale ");
                      Logger::log(ERROR, ex.what());
               }
               catch (...)
               {
-                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'addresse postale");
+                     Logger::log(ERROR, "Erreur inattendue durant la tentative de modification de l'adresse postale");
               }
               return nullptr;
        }
@@ -382,7 +382,7 @@ namespace Manage
                      } while (utils->validate_sexe(sexe) == 1);
                      do
                      {
-                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
+                            cout << "Veuillez saisir la situation Familiale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
                                  << endl;
                             cin.clear();
                             getline(cin, situation);
@@ -473,7 +473,7 @@ namespace Manage
                      } while (utils->validate_sexe(sexe) == 1);
                      do
                      {
-                            cout << "Veuillez saisir la situation Familliale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
+                            cout << "Veuillez saisir la situation Familiale (Marie, Celibataire, Veuf, Pasce ou Autres) : "
                                  << endl;
                             cin.clear();
                             getline(cin, situation);

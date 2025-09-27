@@ -80,7 +80,7 @@ namespace Heritage
               void set_email(string email)
               {
                      if (!this->utils->check_email(email))
-                            throw ContactException("\nLe champs addresse mail n'est pas correct : "+email);
+                            throw ContactException("\nLe champs adresse mail n'est pas correct : "+email);
                      this->email = email;
               }
               void infos() override;
