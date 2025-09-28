@@ -5,7 +5,6 @@
 #include "ContactProfessionel.hpp"
 #include "ContactPrive.hpp"
 #include "Contact.hpp"
-//#include "Logger.hpp"
 #include <map>
 
 using namespace Heritage;

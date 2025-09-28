@@ -2,11 +2,7 @@
 #define CONSOLE_H_FILE
 #include "Annuaire.hpp"
 #include "AdressePostale.hpp"
-//#include "ContactPrive.hpp"
-//#include "ContactPrive.hpp"
 #include "Display.hpp"
-//#include "Contact.hpp"
-//#include <map>
 
 #include <string>
 
