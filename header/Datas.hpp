@@ -2,10 +2,10 @@
 #define DATAS_H
 
 #include <iostream>
-#include <sstream>
+//#include <sstream>
 #include <string>
-#include <ctype.h>
-#include <stdio.h>
+//#include <ctype.h>
+//#include <stdio.h>
 
 using namespace std;
 
