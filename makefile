@@ -15,7 +15,7 @@ else
 	OS_DETAILS := $(OSFLAG)
 endif
 
-CC := g++ -Wall -ansi -pedantic -std=c++0x
+CC := g++ -g -Wall -ansi -pedantic -std=c++0x
 
 ifeq ($(OSFLAG), linux)
 	COMPIL:="compilation sous Linux"
