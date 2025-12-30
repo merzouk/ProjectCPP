@@ -55,17 +55,16 @@ namespace Heritage
               char *get_prenom() { return this->prenom; }
               char get_sexe()
               {
-                     char se;
                      switch (this->sexe)
                      {
                      case 0:
-                            se = 'M';
-                            break;
+                            return 'M';
+                            //break;
                      case 1:
-                            se = 'F';
-                            break;
+                            return 'F';
+                            //break;
                      }
-                     return se;
+                     return ' ';
               }
               string get_filiation()
               {

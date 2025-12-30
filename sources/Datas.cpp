@@ -9,7 +9,8 @@ namespace ToolsDate
 	std::string Datas::deleteBlanckChar(const std::string &s)
 	{
 		std::string result = "";
-		for (int i = 0; i < s.size(); i++)
+		int size = s.size();
+		for (int i = 0; i < size; i++)
 		{
 			char c = s[i];
 			if (c != ' ')
@@ -22,9 +23,10 @@ namespace ToolsDate
 
 	bool Datas::checkIsDigitContaint(const std::string &str)
 	{
-		if (str.size() == 6 || str.size() == 8)
+		int size = str.size();
+		if (size == 6 || size == 8)
 		{
-			for (int i = 0; i < str.size(); i++)
+			for (int i = 0; i < size; i++)
 			{
 				char c = str[i];
 				if (!std::isdigit(c))
@@ -40,7 +42,8 @@ namespace ToolsDate
 	void Datas::decomposeString(const std::string &str)
 	{
 		std::string result = "";
-		if (str.size() == 6)
+		int size = str.size();
+		if (size == 6)
 		{
 			result += str[0];
 			this->day = stoi(result);
@@ -48,14 +51,14 @@ namespace ToolsDate
 			result += str[1];
 			this->month = stoi(result);
 			result = "";
-			for (int i = 2; i < str.size(); i++)
+			for (int i = 2; i < size; i++)
 			{
 				result += str[i];
 			}
 			this->year = stoi(result);
 		}
 
-		if (str.size() == 8)
+		if (size == 8)
 		{
 			std::string result = "";
 			for (int i = 0; i < 2; i++)
@@ -70,7 +73,7 @@ namespace ToolsDate
 			}
 			this->month = stoi(result);
 			result = "";
-			for (int i = 4; i < str.size(); i++)
+			for (int i = 4; i < size; i++)
 			{
 				result += str[i];
 			}
@@ -81,7 +84,8 @@ namespace ToolsDate
 	std::string Datas::searchCharDelimiter(const std::string &s)
 	{
 		std::string result = "";
-		for (int i = 0; i < s.size(); i++)
+		int size = s.size();
+		for (int i = 0; i < size; i++)
 		{
 			char c = s[i];
 			if (!std::isdigit(c))

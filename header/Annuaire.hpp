@@ -18,8 +18,7 @@ namespace Manage
 
        public:
               Annuaire() { this->utils = new Utils(); }
-              ~Annuaire()
-              {
+              ~Annuaire() override {
                      delete this->utils;
                      this->utils = nullptr;
               }

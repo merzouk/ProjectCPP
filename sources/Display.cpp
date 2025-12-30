@@ -56,6 +56,7 @@ namespace Manage
                    << setw(20) << contact_prive->get_adressePostale()->get_ville()
                    << setw(11) << format_date(contact_prive)
                    << setw(30) << " "
+                   << setw(12) << " " <<"*"
                    << endl;
        }
 
@@ -79,7 +80,9 @@ namespace Manage
                    << setw(6) << contact_prof->get_adressePostale()->get_code_postale()
                    << setw(20) << contact_prof->get_adressePostale()->get_ville()
                    << setw(11) << " "
-                   << setw(30) << contact_prof->get_email() << endl;
+                   << setw(30) << contact_prof->get_email()
+                   << setw(12) << " " <<"*"
+                   << endl;
        }
 
        void Display::display(vector<Contact *> vects)

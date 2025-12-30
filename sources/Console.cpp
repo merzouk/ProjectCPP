@@ -338,9 +338,6 @@ namespace Manage
 
        dat_naiss Console::saisir_date_naissance()
        {
-              int mois;
-              int jour;
-              int annee;
               dat_naiss dat;
               cout << "Veuillez saisir l'annee de naissance : " << endl;
               dat.year = check_input_value();

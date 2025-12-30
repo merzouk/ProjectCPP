@@ -14,8 +14,8 @@ int main(int argc, char **argv)
        }
        else
        {
-              fileContactPro = "pros.dat";
-              fileContactPrivate = "privates.dat";
+              fileContactPro = "datas/pros.dat";
+              fileContactPrivate = "datas/privates.dat";
        }
        Menu *menu = new Menu();
        menu->launch_programm_manage_annuaire(fileContactPrivate, fileContactPro);

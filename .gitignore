@@ -3,15 +3,116 @@ obj/
 docs/
 .vs/
 .settings/
+Debug/
 .project
 .cproject
 .idea/
+.vscode/
 *.cbp
 *.depend
 *.layout
 *.o
 *.exe
 *.zip
-*.dat
+*.txt
+.metadata/
+
+# Compiled class file
+*.class
+
+# Log file
 *.log
-manage_prj
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.txt
+*.tasty
+
+
+
+.mvn/
+
+SCALA_JAVA/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+
+node_modules/
+.settings/
+.idea/
+.metadata/
+.classpath
+.project
+.projet
+gestion-depenses.iml
+package-lock.json
+
+#Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# IntelliJ
+.idea
+*.ipr
+*.iml
+*.iws
+
+# NetBeans
+nb-configuration.xml
+
+# Visual Studio Code
+.vscode
+.factorypath
+
+# OSX
+.DS_Store
+
+# Vim
+*.swp
+*.swo
+
+# patch
+*.orig
+*.rej
+*.json
+*.csv
+*.zip
+*.gz
+*.pdf
+*.jar
+
+#Other 
+log.txt
+use_api
+data.json
+
+# Local environment
+.env
+
+# SCALA
+
+.bsp/
+.scala-build/

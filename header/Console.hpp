@@ -8,12 +8,12 @@
 
 using namespace std;
 
-typedef struct
+using dat_naiss = struct
 {
        int year;
        int month;
        int day;
-} dat_naiss;
+};
 
 namespace Manage
 {

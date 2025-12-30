@@ -26,10 +26,16 @@ namespace Heritage
                      this->code_postale = code_postale;
               }
 
-              ~AdressePostale() {}
+              ~AdressePostale() {
+                     this->numero = 0;
+                     this->rue = "";
+                     this->complement = "";
+                     this->ville = "";
+                     this->code_postale = 0;
+              }
 
-              int get_numero() { return this->numero; }
-              int get_code_postale() { return this->code_postale; }
+              int get_numero() const { return this->numero; }
+              int get_code_postale() const { return this->code_postale; }
               string get_rue() { return this->rue; }
               string get_complement() { return this->complement; }
               string get_ville() { return this->ville; }
