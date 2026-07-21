@@ -18,6 +18,9 @@ OBJECTS    = $(patsubst $(SOURCEDIR)/%.cpp, $(BUILDDIR)/%.o, $(SOURCES))
 CLEAN      =:
 TROUVE     =: NON
 
+inf:
+	@echo '                                        Use make help for more information'
+
 help:
 	@echo ' '
 	@echo ' '
