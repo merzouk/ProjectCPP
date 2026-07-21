@@ -32,6 +32,7 @@ help:
 	@echo     make dir               - create bin and obj directories
 	@echo     make zip               - create zip $(ARCHIVE) file contain  sources/*.hpp, header/*.cpp and makefile
 	@echo     make binary            - create all obj/*.o files from all sources/*.cpp files and binary bin/$(PROG) file
+	@echo     make netoie            - netoie les dossiers bin et obj, ils sont crees si ils n'existent pas
 	@echo ' '
 	@echo  Informations project
 	@echo ' '
@@ -124,3 +125,8 @@ mrproper:
 zip:
 	@echo $(MSG_BUILD_ZIP)
 	$(ZIP)
+
+
+netoie:
+	@echo 'netoie target'
+	@cmd /C "$(CURDIR)/clean_directories.bat
