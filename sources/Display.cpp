@@ -20,6 +20,7 @@ namespace Manage
                    << setw(20) << "Ville"
                    << setw(11) << "Date Naiss"
                    << setw(30) << "Email"
+                   << setw(12) << " " <<"*"
                    << endl;
        }
 
@@ -93,6 +94,7 @@ namespace Manage
                      Logger::log(INFO, "Aucun contact dans l'annuaire");
                      return;
               }
+              cout << delimiter << endl;
               display_header_table();
               cout << delimiter << endl;
               for (Contact *contact : vects)
@@ -121,6 +123,7 @@ namespace Manage
                      Logger::log(INFO, "Aucun contact dans l'annuaire");
                      return;
               }
+              cout << delimiter << endl;
               display_header_table();
               cout << delimiter << endl;
               map<string, Contact *>::iterator it = map_annuaire.begin();
