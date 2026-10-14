@@ -2,7 +2,7 @@
 
 using namespace Manage;
 
-int main(int argc, char **argv)
+int main(const int argc, char **argv)
 {
        string fileContactPrivate;
        string fileContactPro;
