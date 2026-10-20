@@ -109,6 +109,7 @@ $(BINDIR)/$(PROG): $(OBJECTS)
 	@echo $(COMPIL)
 	@echo $(MSG_BUILD_END)
 	$(CC) $^ -o $@
+	@cmd /C "$(CURDIR)/delete_point_o.bat $(BUILDDIR)
 
 $(OBJECTS): $(BUILDDIR)/%.o : $(SOURCEDIR)/%.cpp
 	$(CC) $(FLAGS) $< -o $@
