@@ -80,7 +80,7 @@ ifeq ($(OSFLAG), linux)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
 	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
-	CLEAN_DIRECTORIES=$(shell ./clean_directories.sh)
+	CLEAN_DIRECTORIES=#$(shell ./clean_directories.sh $(BUILDDIR))
 endif
 
 ifeq ($(OSFLAG), darwin)
@@ -90,7 +90,7 @@ ifeq ($(OSFLAG), darwin)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
 	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
-    CLEAN_DIRECTORIES=$(shell ./clean_directories.sh)
+    CLEAN_DIRECTORIES=$(shell ./clean_directories.sh $(BUILDDIR))
 endif
 
 ifeq ($(OSFLAG), WIN)
