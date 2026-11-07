@@ -89,6 +89,8 @@ ifeq ($(OSFLAG), darwin)
 	ZIP:=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
+	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
+    CLEAN_DIRECTORIES=$(shell ./clean_directories.sh)
 endif
 
 ifeq ($(OSFLAG), WIN)
