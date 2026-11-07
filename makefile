@@ -1,6 +1,8 @@
 CC = g++ -O3 -Wall -Werror -ansi -pedantic --std=c++17
 FLAGS = -g -c
 
+DELETE_POINT =:
+CLEAN_DIRECTORIES =:
 SOURCEDIR  = sources
 BUILDDIR   = obj
 BINDIR     = bin
@@ -67,6 +69,8 @@ ifeq ($(OSFLAG), WIN)
     CLEAN = rmdir /q /s $(BUILDDIR) $(BINDIR)
     TROUVE:=OUI
     MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG).exe
+    DELETE_POINT=@cmd /C "$(CURDIR)/delete_point_o.bat $(BUILDDIR)
+    CLEAN_DIRECTORIES=@cmd /C "$(CURDIR)/clean_directories.bat
 endif
 
 ifeq ($(OSFLAG), linux)
@@ -75,6 +79,8 @@ ifeq ($(OSFLAG), linux)
 	ZIP:=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
+	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
+	CLEAN_DIRECTORIES=$(shell ./clean_directories.sh)
 endif
 
 ifeq ($(OSFLAG), darwin)
@@ -109,7 +115,7 @@ $(BINDIR)/$(PROG): $(OBJECTS)
 	@echo $(COMPIL)
 	@echo $(MSG_BUILD_END)
 	$(CC) $^ -o $@
-	@cmd /C "$(CURDIR)/delete_point_o.bat $(BUILDDIR)
+	$(DELETE_POINT)
 
 $(OBJECTS): $(BUILDDIR)/%.o : $(SOURCEDIR)/%.cpp
 	$(CC) $(FLAGS) $< -o $@
@@ -130,4 +136,4 @@ zip:
 
 netoie:
 	@echo 'netoie target'
-	@cmd /C "$(CURDIR)/clean_directories.bat
+	$(CLEAN_DIRECTORIES)
