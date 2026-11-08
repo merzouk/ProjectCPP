@@ -69,6 +69,7 @@ ifeq ($(OSFLAG), WIN)
     CLEAN = rmdir /q /s $(BUILDDIR) $(BINDIR)
     TROUVE:=OUI
     MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG).exe
+    COMPILE_LAUNCH=@cmd /C "$(CURDIR)/compile_and_launch_prg.bat $(BUILDDIR)
     DELETE_POINT=@cmd /C "$(CURDIR)/delete_point_o.bat $(BUILDDIR)
     CLEAN_DIRECTORIES=@cmd /C "$(CURDIR)/clean_directories.bat
 endif
@@ -79,6 +80,7 @@ ifeq ($(OSFLAG), linux)
 	ZIP:=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
+	COMPILE_LAUNCH=$(shell ./compile_and_launch_prg.bat $(BUILDDIR))
 	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
 	CLEAN_DIRECTORIES=#$(shell ./clean_directories.sh $(BUILDDIR))
 endif
@@ -89,6 +91,7 @@ ifeq ($(OSFLAG), darwin)
 	ZIP:=tar -cvzf $(ARCHIVE) $(TARGET_ARCHIVE)
 	CLEAN:=rm -rf $(BUILDDIR) $(BINDIR) $(ARCHIVE)
 	MSG_BUILD_END=Fin build des fichiers $(BUILDDIR)/.o et generation du fichier executable $(BINDIR)/$(PROG)
+	COMPILE_LAUNCH=$(shell ./compile_and_launch_prg.bat $(BUILDDIR))
 	DELETE_POINT=$(shell ./delete_point_o.sh  $(BUILDDIR))
     CLEAN_DIRECTORIES=$(shell ./clean_directories.sh $(BUILDDIR))
 endif
